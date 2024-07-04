@@ -1,6 +1,7 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from "./types";
+import { Button } from "../../ui/button";
 
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
@@ -12,6 +13,7 @@ export class ErrorBoundary extends Component<
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
+    console.log("hello");
     return { message: error.message, hasError: true };
   }
 
@@ -19,8 +21,19 @@ export class ErrorBoundary extends Component<
     console.error("ErrorBoundary caught an error", error, errorInfo);
   }
 
-  handleError = (): never => {
-    throw new Error("Test error");
+  handleError = (): void => {
+    try {
+      this.setState({ hasError: true });
+      throw new Error("Test error");
+    } catch (error) {
+      if (error instanceof Error) {
+        this.setState((state) => ({
+          ...state,
+          message: error.message,
+        }));
+        console.error(error.message);
+      }
+    }
   };
 
   handleClick = (): void => {
@@ -32,7 +45,7 @@ export class ErrorBoundary extends Component<
       return (
         <div className="error-boundary">
           <h1>Something went wrong.</h1>
-          <button onClick={this.handleClick}>Try Again</button>
+          <Button onClick={this.handleClick}>Try Again</Button>
         </div>
       );
     }
@@ -40,7 +53,7 @@ export class ErrorBoundary extends Component<
     return (
       <div>
         {this.props.children}
-        <button onClick={this.handleError}>Trigger Error</button>
+        <Button onClick={this.handleError}>Trigger Error</Button>
       </div>
     );
   }
