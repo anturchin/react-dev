@@ -2,6 +2,8 @@ import { Component, ChangeEvent, FormEvent, ReactNode } from "react";
 
 import { stringUtils } from "../../../core/utils/stringUtils";
 import { SearchBarProps, SearchBarState } from "./types";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 
 import "./SearchBar.css";
 
@@ -22,13 +24,9 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
 
   render(): ReactNode {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.query}
-          onChange={this.handleChange}
-        />
-        <button type="submit">Search</button>
+      <form className="form" onSubmit={this.handleSubmit}>
+        <Input value={this.state.query} onChange={this.handleChange} />
+        <Button>Search</Button>
       </form>
     );
   }

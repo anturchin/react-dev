@@ -7,10 +7,12 @@ import "./App.css";
 export class App extends Component {
   render(): ReactNode {
     return (
-      <main>
-        <h1>hello from react</h1>
-        <SearchPage />
-      </main>
+      <>
+        <h1 className="title">The Rick and Morty API</h1>
+        <main className="main">
+          <SearchPage />
+        </main>
+      </>
     );
   }
 }

@@ -6,6 +6,8 @@ import "./Input.css";
 export class Input extends Component<IInputProps> {
   render(): ReactNode {
     const { onChange, value } = this.props;
-    return <input type="text" value={value} onChange={onChange} />;
+    return (
+      <input className="input" type="text" value={value} onChange={onChange} />
+    );
   }
 }

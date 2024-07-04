@@ -13,7 +13,6 @@ export class ErrorBoundary extends Component<
   };
 
   static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    console.log("hello");
     return { message: error.message, hasError: true };
   }
 
@@ -44,17 +43,19 @@ export class ErrorBoundary extends Component<
     if (this.state.hasError) {
       return (
         <div className="error-boundary">
-          <h1>Something went wrong.</h1>
+          <h2>Something went wrong.</h2>
           <Button onClick={this.handleClick}>Try Again</Button>
         </div>
       );
     }
 
     return (
-      <div>
+      <>
+        <div className="trigger-error">
+          <Button onClick={this.handleError}>Trigger Error</Button>
+        </div>
         {this.props.children}
-        <Button onClick={this.handleError}>Trigger Error</Button>
-      </div>
+      </>
     );
   }
 }

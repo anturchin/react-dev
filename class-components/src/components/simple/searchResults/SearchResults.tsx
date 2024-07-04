@@ -9,10 +9,11 @@ export class SearchResults extends Component<ISearchResultsProps> {
     const { results } = this.props;
     return (
       <div className="search-results">
-        {results.map((result, index) => (
-          <div key={index} className="result-item">
-            <h3>{result.title}</h3>
-            <p>{result.description}</p>
+        {results.map((result) => (
+          <div key={result.id} className="result-item">
+            <h3>{result.name}</h3>
+            <p>{result.gender}</p>
+            <img src={result.image} alt="image" />
           </div>
         ))}
       </div>

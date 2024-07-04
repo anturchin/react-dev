@@ -1,13 +1,16 @@
-import { SearchDataType, ISearchResponseApi } from "./types";
+import { ISearchApi, SearchDataResponseType, SearchDataType } from "./types";
 
-export const apiService: ISearchResponseApi = {};
+const BASE_URL = "https://rickandmortyapi.com/api/character";
+
+export const apiService: ISearchApi = {};
 
 apiService.fetchSearchResults = async (
   query: string,
 ): Promise<SearchDataType[]> => {
-  const response = await fetch(`https://api.example.com/search?q=${query}`);
+  const response = await fetch(`${BASE_URL}?name=${query}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  return (await response.json()) as SearchDataType[];
+  const data = (await response.json()) as SearchDataResponseType;
+  return data.results;
 };

@@ -13,6 +13,7 @@ export class SearchContainer extends Component {
   state: ISearchContainerState = {
     query: localStorageService.getQuery?.() || "",
     results: [],
+    isLoading: true,
   };
 
   componentDidMount(): void {
@@ -24,7 +25,10 @@ export class SearchContainer extends Component {
       const results = (await apiService.fetchSearchResults?.(
         query,
       )) as SearchDataType[];
-      this.setState({ results });
+      this.setState({
+        results,
+        isLoading: false,
+      });
       localStorageService.saveQuery?.(query);
     } catch (error) {
       if (error instanceof Error)
@@ -33,20 +37,19 @@ export class SearchContainer extends Component {
   };
 
   handleSearch = (query: string): void => {
-    this.setState({ query }, () => {
+    this.setState({ query, isLoading: true }, () => {
       this.performSearch(query);
     });
   };
 
   render(): ReactNode {
+    const { results, query, isLoading } = this.state;
+
     return (
       <ErrorBoundary>
         <div className="search-container">
-          <SearchBar
-            onSearch={this.handleSearch}
-            initialQuery={this.state.query}
-          />
-          <SearchResults results={this.state.results} />
+          <SearchBar onSearch={this.handleSearch} initialQuery={query} />
+          {isLoading ? null : <SearchResults results={results} />}
         </div>
       </ErrorBoundary>
     );

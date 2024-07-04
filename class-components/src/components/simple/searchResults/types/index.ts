@@ -1,6 +1,8 @@
 export type ResultPropType = {
-  title: string;
-  description: string;
+  id: number;
+  name: string;
+  gender: string;
+  image: string;
 };
 
 export interface ISearchResultsProps {

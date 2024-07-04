@@ -1,9 +1,12 @@
 export type ResultsType = {
-  title: string;
-  description: string;
+  id: number;
+  name: string;
+  gender: string;
+  image: string;
 };
 
 export interface ISearchContainerState {
   query: string;
   results: ResultsType[];
+  isLoading: boolean;
 }
