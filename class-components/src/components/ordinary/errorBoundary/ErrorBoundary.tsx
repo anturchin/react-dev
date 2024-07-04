@@ -1,7 +1,11 @@
-import { Component, ErrorInfo } from "react";
+import { Component, ErrorInfo, ReactNode } from "react";
+
 import { ErrorBoundaryProps, ErrorBoundaryState } from "./types";
 
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export class ErrorBoundary extends Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   state: ErrorBoundaryState = {
     message: "",
     hasError: false,
@@ -11,22 +15,24 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return { message: error.message, hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error("ErrorBoundary caught an error", error, errorInfo);
   }
 
-  handleError = () => {
+  handleError = (): never => {
     throw new Error("Test error");
   };
 
-  render() {
+  handleClick = (): void => {
+    this.setState({ hasError: false });
+  };
+
+  render(): ReactNode {
     if (this.state.hasError) {
       return (
         <div className="error-boundary">
           <h1>Something went wrong.</h1>
-          <button onClick={() => this.setState({ hasError: false })}>
-            Try Again
-          </button>
+          <button onClick={this.handleClick}>Try Again</button>
         </div>
       );
     }
@@ -39,5 +45,3 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     );
   }
 }
-
-export default ErrorBoundary;
