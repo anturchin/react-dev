@@ -25,7 +25,11 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
   render(): ReactNode {
     return (
       <form className="form" onSubmit={this.handleSubmit}>
-        <Input value={this.state.query} onChange={this.handleChange} />
+        <Input
+          placeholder={`Please enter character name`}
+          value={this.state.query}
+          onChange={this.handleChange}
+        />
         <Button>Search</Button>
       </form>
     );

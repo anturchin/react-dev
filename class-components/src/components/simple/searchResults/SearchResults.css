@@ -1,16 +1,28 @@
 .search-results {
+  margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 25px;
+  background-color: rgb(39, 43, 51);
+  padding: 50px;
 }
 
 .result-item {
   font-size: 1.6rem;
   cursor: pointer;
   transition: all 0.3s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  gap: 15px;
 }
 
 .result-item:hover {
   transform: scale(1.05);
+}
+
+.image {
+  border-radius: 10px;
 }

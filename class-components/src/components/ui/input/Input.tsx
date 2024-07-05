@@ -5,9 +5,15 @@ import { IInputProps } from "./types";
 import "./Input.css";
 export class Input extends Component<IInputProps> {
   render(): ReactNode {
-    const { onChange, value } = this.props;
+    const { onChange, value, placeholder } = this.props;
     return (
-      <input className="input" type="text" value={value} onChange={onChange} />
+      <input
+        placeholder={placeholder}
+        className="input"
+        type="text"
+        value={value}
+        onChange={onChange}
+      />
     );
   }
 }

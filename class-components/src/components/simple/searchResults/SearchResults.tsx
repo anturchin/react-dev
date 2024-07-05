@@ -11,9 +11,9 @@ export class SearchResults extends Component<ISearchResultsProps> {
       <div className="search-results">
         {results.map((result) => (
           <div key={result.id} className="result-item">
-            <h3>{result.name}</h3>
-            <p>{result.gender}</p>
-            <img src={result.image} alt="image" />
+            <h3 className="person-name">{result.name}</h3>
+            <p className="person-gender">{result.gender}</p>
+            <img className="image" src={result.image} alt="image" />
           </div>
         ))}
       </div>

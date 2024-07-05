@@ -5,8 +5,8 @@
   margin-bottom: 10px;
   border-radius: 3px;
   outline: none;
-  padding: 10px;
-  font-size: 1.6rem;
+  padding: 7px;
+  font-size: 2rem;
 }
 
 .input::placeholder {
