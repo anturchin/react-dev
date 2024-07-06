@@ -6,12 +6,10 @@ import "./Button.css";
 
 export class Button extends Component<IButtonProps> {
   render(): ReactNode {
-    const { children, onClick, errorBoundary } = this.props;
+    const { children, onClick, additionalClass } = this.props;
+    const addClass = additionalClass ? `btn ${additionalClass}` : "btn";
     return (
-      <button
-        className={errorBoundary ? "btn btn-red" : "btn"}
-        onClick={onClick}
-      >
+      <button className={addClass} onClick={onClick}>
         {children}
       </button>
     );

@@ -1,6 +1,10 @@
 import { Component, ErrorInfo, ReactNode } from "react";
 
-import { ErrorBoundaryProps, ErrorBoundaryState } from "./types";
+import {
+  AdditionalClass,
+  ErrorBoundaryProps,
+  ErrorBoundaryState,
+} from "./types";
 import { Button } from "../../ui/button";
 
 import "./ErrorBoundary.css";
@@ -53,7 +57,10 @@ export class ErrorBoundary extends Component<
     return (
       <>
         <div className="trigger-error">
-          <Button errorBoundary={true} onClick={this.handleError}>
+          <Button
+            additionalClass={AdditionalClass.RED}
+            onClick={this.handleError}
+          >
             Trigger Error
           </Button>
         </div>

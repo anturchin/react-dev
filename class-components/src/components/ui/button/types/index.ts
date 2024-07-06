@@ -1,5 +1,5 @@
 export interface IButtonProps {
-  errorBoundary?: boolean;
+  additionalClass?: string;
   onClick?: () => void;
   children: React.ReactNode;
 }
