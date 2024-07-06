@@ -1,1 +1,1 @@
-export { SearchError } from "./SearchError";
+export { SearchError } from './SearchError';

@@ -1,11 +1,11 @@
-import { Component, ChangeEvent, FormEvent, ReactNode } from "react";
+import { Component, ChangeEvent, FormEvent, ReactNode } from 'react';
 
-import { stringUtils } from "../../../core/utils/stringUtils";
-import { SearchBarProps, SearchBarState } from "./types";
-import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
+import { stringUtils } from '../../../core/utils/stringUtils';
+import { SearchBarProps, SearchBarState } from './types';
+import { Button } from '../../ui/button';
+import { Input } from '../../ui/input';
 
-import "./SearchBar.css";
+import './SearchBar.css';
 
 export class SearchBar extends Component<SearchBarProps, SearchBarState> {
   state: SearchBarState = {

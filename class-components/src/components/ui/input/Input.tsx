@@ -1,8 +1,8 @@
-import { Component, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 
-import { IInputProps } from "./types";
+import { IInputProps } from './types';
 
-import "./Input.css";
+import './Input.css';
 export class Input extends Component<IInputProps> {
   render(): ReactNode {
     const { onChange, value, placeholder } = this.props;

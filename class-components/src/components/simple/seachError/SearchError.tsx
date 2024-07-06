@@ -1,7 +1,7 @@
-import { Component, ReactNode } from "react";
-import { ErrorTypeProps } from "./types";
+import { Component, ReactNode } from 'react';
+import { ErrorTypeProps } from './types';
 
-import "./SearchError.css";
+import './SearchError.css';
 
 export class SearchError extends Component<ErrorTypeProps> {
   render(): ReactNode {

@@ -1,19 +1,19 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ErrorInfo, ReactNode } from 'react';
 
 import {
   AdditionalClass,
   ErrorBoundaryProps,
   ErrorBoundaryState,
-} from "./types";
-import { Button } from "../../ui/button";
+} from './types';
+import { Button } from '../../ui/button';
 
-import "./ErrorBoundary.css";
+import './ErrorBoundary.css';
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
   ErrorBoundaryState
 > {
   state: ErrorBoundaryState = {
-    message: "",
+    message: '',
     hasError: false,
   };
 
@@ -22,13 +22,13 @@ export class ErrorBoundary extends Component<
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error("ErrorBoundary caught an error", error, errorInfo);
+    console.error('ErrorBoundary caught an error', error, errorInfo);
   }
 
   handleError = (): void => {
     try {
       this.setState({ hasError: true });
-      throw new Error("Test error");
+      throw new Error('Test error');
     } catch (error) {
       if (error instanceof Error) {
         this.setState((state) => ({

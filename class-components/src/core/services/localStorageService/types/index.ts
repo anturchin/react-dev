@@ -1,5 +1,5 @@
 export const enum LsKey {
-  QUERY_KEY = "searchQuery",
+  QUERY_KEY = 'searchQuery',
 }
 
 export interface ILocalStorageService {

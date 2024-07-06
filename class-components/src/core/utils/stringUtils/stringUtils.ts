@@ -1,4 +1,4 @@
-import { IStringUtils } from "./types";
+import { IStringUtils } from './types';
 
 export const stringUtils: IStringUtils = {};
 

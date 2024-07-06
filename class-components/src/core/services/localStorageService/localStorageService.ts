@@ -1,4 +1,4 @@
-import { ILocalStorageService, LsKey } from "./types";
+import { ILocalStorageService, LsKey } from './types';
 
 export const localStorageService: ILocalStorageService = {};
 

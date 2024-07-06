@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export const enum AdditionalClass {
-  RED = "red",
+  RED = 'red',
 }
 export interface ErrorBoundaryProps {
   children: ReactNode;

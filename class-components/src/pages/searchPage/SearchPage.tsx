@@ -1,8 +1,8 @@
-import { Component, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 
-import { SearchContainer } from "../../containers/searchContainer";
+import { SearchContainer } from '../../containers/searchContainer';
 
-import "./SearchPage.css";
+import './SearchPage.css';
 export class SearchPage extends Component {
   render(): ReactNode {
     return (

@@ -1,24 +1,24 @@
-import { Component, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 
-import { ErrorBoundary } from "../../components/ordinary/errorBoundary";
-import { SearchBar } from "../../components/simple/searchBar";
-import { SearchResults } from "../../components/simple/searchResults";
-import { apiService } from "../../core/services/apiService";
-import { SearchDataType } from "../../core/services/apiService/types";
-import { localStorageService } from "../../core/services/localStorageService/localStorageService";
-import { DelayDuration, ISearchContainerState } from "./types";
-import { Spinner } from "../../components/simple/spinner";
-import { delay } from "../../core/utils/delay/delay";
-import { SearchError } from "../../components/simple/seachError";
+import { ErrorBoundary } from '../../components/ordinary/errorBoundary';
+import { SearchBar } from '../../components/simple/searchBar';
+import { SearchResults } from '../../components/simple/searchResults';
+import { apiService } from '../../core/services/apiService';
+import { SearchDataType } from '../../core/services/apiService/types';
+import { localStorageService } from '../../core/services/localStorageService/localStorageService';
+import { DelayDuration, ISearchContainerState } from './types';
+import { Spinner } from '../../components/simple/spinner';
+import { delay } from '../../core/utils/delay/delay';
+import { SearchError } from '../../components/simple/seachError';
 
-import "./SearchContainer.css";
+import './SearchContainer.css';
 export class SearchContainer extends Component {
   state: ISearchContainerState = {
-    query: localStorageService.getQuery?.() || "",
+    query: localStorageService.getQuery?.() || '',
     results: [],
     isLoading: true,
     error: false,
-    errorMessage: "",
+    errorMessage: '',
   };
 
   componentDidMount(): void {
@@ -29,7 +29,7 @@ export class SearchContainer extends Component {
     try {
       await delay(DelayDuration.SHORT);
       const results = (await apiService.fetchSearchResults?.(
-        query,
+        query
       )) as SearchDataType[];
       this.setState({
         results,
@@ -44,7 +44,7 @@ export class SearchContainer extends Component {
           error: true,
           errorMessage: error.message,
         });
-        console.error("Error fetching search results:", error.message);
+        console.error('Error fetching search results:', error.message);
       }
     }
   };

@@ -1,8 +1,8 @@
-import { Component, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 
-import { ISearchResultsProps } from "./types";
+import { ISearchResultsProps } from './types';
 
-import "./SearchResults.css";
+import './SearchResults.css';
 
 export class SearchResults extends Component<ISearchResultsProps> {
   render(): ReactNode {
