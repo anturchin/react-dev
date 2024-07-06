@@ -6,10 +6,11 @@ import { SearchResults } from "../../components/simple/searchResults";
 import { apiService } from "../../core/services/apiService";
 import { SearchDataType } from "../../core/services/apiService/types";
 import { localStorageService } from "../../core/services/localStorageService/localStorageService";
-import { ISearchContainerState } from "./types";
+import { DelayDuration, ISearchContainerState } from "./types";
+import { Spinner } from "../../components/simple/spinner";
+import { delay } from "../../core/utils/delay/delay";
 
 import "./SearchContainer.css";
-import { Spinner } from "../../components/simple/spinner";
 export class SearchContainer extends Component {
   state: ISearchContainerState = {
     query: localStorageService.getQuery?.() || "",
@@ -24,6 +25,7 @@ export class SearchContainer extends Component {
 
   performSearch = async (query: string): Promise<void> => {
     try {
+      await delay(DelayDuration.SHORT);
       const results = (await apiService.fetchSearchResults?.(
         query,
       )) as SearchDataType[];
