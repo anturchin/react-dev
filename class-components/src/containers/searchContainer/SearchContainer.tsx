@@ -9,11 +9,13 @@ import { localStorageService } from "../../core/services/localStorageService/loc
 import { ISearchContainerState } from "./types";
 
 import "./SearchContainer.css";
+import { Spinner } from "../../components/simple/spinner";
 export class SearchContainer extends Component {
   state: ISearchContainerState = {
     query: localStorageService.getQuery?.() || "",
     results: [],
     isLoading: true,
+    error: false,
   };
 
   componentDidMount(): void {
@@ -28,11 +30,14 @@ export class SearchContainer extends Component {
       this.setState({
         results,
         isLoading: false,
+        error: false,
       });
       localStorageService.saveQuery?.(query);
     } catch (error) {
-      if (error instanceof Error)
+      if (error instanceof Error) {
+        this.setState({ error: false });
         console.error("Error fetching search results:", error.message);
+      }
     }
   };
 
@@ -44,12 +49,11 @@ export class SearchContainer extends Component {
 
   render(): ReactNode {
     const { results, query, isLoading } = this.state;
-
     return (
       <ErrorBoundary>
         <div className="search-container">
           <SearchBar onSearch={this.handleSearch} initialQuery={query} />
-          {isLoading ? null : <SearchResults results={results} />}
+          {isLoading ? <Spinner /> : <SearchResults results={results} />}
         </div>
       </ErrorBoundary>
     );

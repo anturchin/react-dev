@@ -9,4 +9,5 @@ export interface ISearchContainerState {
   query: string;
   results: ResultsType[];
   isLoading: boolean;
+  error: boolean;
 }
