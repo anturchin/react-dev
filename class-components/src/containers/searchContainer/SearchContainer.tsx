@@ -9,6 +9,7 @@ import { localStorageService } from "../../core/services/localStorageService/loc
 import { DelayDuration, ISearchContainerState } from "./types";
 import { Spinner } from "../../components/simple/spinner";
 import { delay } from "../../core/utils/delay/delay";
+import { SearchError } from "../../components/simple/seachError";
 
 import "./SearchContainer.css";
 export class SearchContainer extends Component {
@@ -17,6 +18,7 @@ export class SearchContainer extends Component {
     results: [],
     isLoading: true,
     error: false,
+    errorMessage: "",
   };
 
   componentDidMount(): void {
@@ -37,7 +39,11 @@ export class SearchContainer extends Component {
       localStorageService.saveQuery?.(query);
     } catch (error) {
       if (error instanceof Error) {
-        this.setState({ error: false });
+        this.setState({
+          isLoading: false,
+          error: true,
+          errorMessage: error.message,
+        });
         console.error("Error fetching search results:", error.message);
       }
     }
@@ -50,12 +56,17 @@ export class SearchContainer extends Component {
   };
 
   render(): ReactNode {
-    const { results, query, isLoading } = this.state;
+    const { results, query, isLoading, error, errorMessage } = this.state;
+    const content = error ? (
+      <SearchError message={errorMessage} />
+    ) : (
+      <SearchResults results={results} />
+    );
     return (
       <ErrorBoundary>
         <div className="search-container">
           <SearchBar onSearch={this.handleSearch} initialQuery={query} />
-          {isLoading ? <Spinner /> : <SearchResults results={results} />}
+          {isLoading ? <Spinner /> : content}
         </div>
       </ErrorBoundary>
     );

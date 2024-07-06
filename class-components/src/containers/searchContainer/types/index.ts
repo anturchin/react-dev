@@ -17,4 +17,5 @@ export interface ISearchContainerState {
   results: ResultsType[];
   isLoading: boolean;
   error: boolean;
+  errorMessage: string;
 }
