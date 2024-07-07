@@ -6,9 +6,9 @@ import './SearchPage.css';
 export class SearchPage extends Component {
   render(): ReactNode {
     return (
-      <main className="search-page">
+      <>
         <SearchContainer />
-      </main>
+      </>
     );
   }
 }
