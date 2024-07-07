@@ -77,12 +77,12 @@ export class SearchContainer extends Component {
       <SearchResults results={results} />
     );
     return (
-      <div className="search-container">
+      <>
         <ErrorBoundary>
           <SearchBar onSearch={this.handleSearch} initialQuery={query} />
           {isLoading ? <Spinner /> : content}
         </ErrorBoundary>
-      </div>
+      </>
     );
   }
 }

@@ -1,11 +1,8 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 
-import {
-  AdditionalClass,
-  ErrorBoundaryProps,
-  ErrorBoundaryState,
-} from './types';
+import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 import { Button } from '../../ui/button';
+import { ErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/ErrorBoundaryContext';
 
 import './ErrorBoundary.css';
 
@@ -26,23 +23,20 @@ export class ErrorBoundary extends Component<
     console.error('ErrorBoundary caught an error', error, errorInfo);
   }
 
-  handleError = (): void => {
+  handleClick = (): void => {
+    this.setState({ hasError: false });
+  };
+
+  triggerError = (): void => {
     try {
       this.setState({ hasError: true });
       throw new Error('Test error');
     } catch (error) {
       if (error instanceof Error) {
-        this.setState((state) => ({
-          ...state,
-          message: error.message,
-        }));
         console.error(error.message);
+        this.setState({ message: error.message });
       }
     }
-  };
-
-  handleClick = (): void => {
-    this.setState({ hasError: false });
   };
 
   render(): ReactNode {
@@ -56,17 +50,11 @@ export class ErrorBoundary extends Component<
     }
 
     return (
-      <>
-        <div className="trigger-error">
-          <Button
-            additionalClass={AdditionalClass.RED}
-            onClick={this.handleError}
-          >
-            Trigger Error
-          </Button>
-        </div>
+      <ErrorBoundaryContext.Provider
+        value={{ triggerError: this.triggerError }}
+      >
         {this.props.children}
-      </>
+      </ErrorBoundaryContext.Provider>
     );
   }
 }
