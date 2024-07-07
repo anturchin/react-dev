@@ -8,6 +8,7 @@ import {
 import { Button } from '../../ui/button';
 
 import './ErrorBoundary.css';
+
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
   ErrorBoundaryState

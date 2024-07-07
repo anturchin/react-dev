@@ -1,13 +1,21 @@
 import { ISearchApi, SearchDataResponseType, SearchDataType } from './types';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
+const PAGEG_NUMBER = '1';
 
 export const apiService: ISearchApi = {};
 
 apiService.fetchSearchResults = async (
   query: string
 ): Promise<SearchDataType[]> => {
-  const response = await fetch(`${BASE_URL}?name=${query}`);
+  const url = new URL(BASE_URL);
+
+  if (query) {
+    url.searchParams.append('name', query);
+    url.searchParams.append('pages', PAGEG_NUMBER);
+  }
+
+  const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }

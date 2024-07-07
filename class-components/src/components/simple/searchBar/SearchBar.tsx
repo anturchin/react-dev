@@ -24,14 +24,17 @@ export class SearchBar extends Component<SearchBarProps, SearchBarState> {
 
   render(): ReactNode {
     return (
-      <form className="form" onSubmit={this.handleSubmit}>
-        <Input
-          placeholder={`Please enter character name`}
-          value={this.state.query}
-          onChange={this.handleChange}
-        />
-        <Button>Search</Button>
-      </form>
+      <div className="search-bar">
+        <h2 className="title">The Rick and Morty API</h2>
+        <form className="form" onSubmit={this.handleSubmit}>
+          <Input
+            placeholder={`Please enter character name`}
+            value={this.state.query}
+            onChange={this.handleChange}
+          />
+          <Button>Search</Button>
+        </form>
+      </div>
     );
   }
 }

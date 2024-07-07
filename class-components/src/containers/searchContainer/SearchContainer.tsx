@@ -12,6 +12,7 @@ import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/seachError';
 
 import './SearchContainer.css';
+
 export class SearchContainer extends Component {
   state: ISearchContainerState = {
     query: localStorageService.getQuery?.() || '',
@@ -23,6 +24,15 @@ export class SearchContainer extends Component {
 
   componentDidMount(): void {
     this.performSearch(this.state.query);
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<{}>,
+    prevState: Readonly<ISearchContainerState>
+  ): void {
+    if (prevState.query !== this.state.query) {
+      this.performSearch(this.state.query);
+    }
   }
 
   performSearch = async (query: string): Promise<void> => {
@@ -50,9 +60,13 @@ export class SearchContainer extends Component {
   };
 
   handleSearch = (query: string): void => {
-    this.setState({ query, isLoading: true }, () => {
-      this.performSearch(query);
-    });
+    if (this.state.query === query) {
+      return;
+    } else {
+      this.setState({ query, isLoading: true }, () => {
+        this.performSearch(query);
+      });
+    }
   };
 
   render(): ReactNode {
@@ -63,12 +77,12 @@ export class SearchContainer extends Component {
       <SearchResults results={results} />
     );
     return (
-      <ErrorBoundary>
-        <div className="search-container">
+      <div className="search-container">
+        <ErrorBoundary>
           <SearchBar onSearch={this.handleSearch} initialQuery={query} />
           {isLoading ? <Spinner /> : content}
-        </div>
-      </ErrorBoundary>
+        </ErrorBoundary>
+      </div>
     );
   }
 }
