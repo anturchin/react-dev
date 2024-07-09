@@ -19,3 +19,4 @@ export interface ISearchContainerState {
   error: boolean;
   errorMessage: string;
 }
+export interface ISearchContainerProps {}

@@ -6,14 +6,21 @@ import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
 import { SearchDataType } from '../../core/services/apiService/types';
 import { localStorageService } from '../../core/services/localStorageService/localStorageService';
-import { DelayDuration, ISearchContainerState } from './types';
+import {
+  DelayDuration,
+  ISearchContainerProps,
+  ISearchContainerState,
+} from './types';
 import { Spinner } from '../../components/simple/spinner';
 import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/seachError';
 
 import './SearchContainer.css';
 
-export class SearchContainer extends Component {
+export class SearchContainer extends Component<
+  ISearchContainerProps,
+  ISearchContainerState
+> {
   state: ISearchContainerState = {
     query: localStorageService.getQuery?.() || '',
     results: [],
@@ -27,7 +34,7 @@ export class SearchContainer extends Component {
   }
 
   componentDidUpdate(
-    prevProps: Readonly<{}>,
+    prevProps: Readonly<ISearchContainerProps>,
     prevState: Readonly<ISearchContainerState>
   ): void {
     if (prevState.query !== this.state.query) {
