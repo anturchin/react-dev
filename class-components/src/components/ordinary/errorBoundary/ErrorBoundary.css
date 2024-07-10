@@ -1,0 +1,8 @@
+.error-boundary {
+  margin-top: 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  gap: 35px;
+}
