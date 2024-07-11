@@ -1,7 +1,7 @@
 import { ISearchApi, SearchDataResponseType, SearchDataType } from './types';
 
 const BASE_URL = 'https://rickandmortyapi.com/api/character';
-const PAGEG_NUMBER = '1';
+const PAGES_NUMBER = '1';
 
 export const apiService: ISearchApi = {};
 
@@ -12,7 +12,7 @@ apiService.fetchSearchResults = async (
 
   if (query) {
     url.searchParams.append('name', query);
-    url.searchParams.append('pages', PAGEG_NUMBER);
+    url.searchParams.append('pages', PAGES_NUMBER);
   }
 
   const response = await fetch(url);

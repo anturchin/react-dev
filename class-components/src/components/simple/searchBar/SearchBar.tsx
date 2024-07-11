@@ -1,57 +1,48 @@
-import { Component, ChangeEvent, ReactNode, ContextType } from 'react';
+import { ChangeEvent, ReactNode, useContext, useState } from 'react';
 
 import { stringUtils } from '../../../core/utils/stringUtils';
-import { AdditionalClass, SearchBarProps, SearchBarState } from './types';
+import { AdditionalClass, SearchBarProps } from './types';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { ErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/ErrorBoundaryContext';
 
 import './SearchBar.css';
 
-export class SearchBar extends Component<SearchBarProps, SearchBarState> {
-  static contextType = ErrorBoundaryContext;
-  declare context: ContextType<typeof ErrorBoundaryContext>;
+export const SearchBar = (props: SearchBarProps): ReactNode => {
+  const context = useContext(ErrorBoundaryContext);
+  const [query, setQuery] = useState<string>(props.initialQuery);
 
-  state: SearchBarState = {
-    query: this.props.initialQuery,
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setQuery(event.target.value);
   };
 
-  handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ query: event.target.value });
+  const handleSubmit = (): void => {
+    const trimmedQuery = stringUtils.trimString?.(query) as string;
+    props.onSearch(trimmedQuery);
   };
 
-  handleSubmit = (): void => {
-    const trimmedQuery = stringUtils.trimString?.(this.state.query) as string;
-    this.props.onSearch(trimmedQuery);
-  };
-
-  triggerError = () => {
-    if (this.context) {
-      this.context.triggerError();
+  const triggerError = () => {
+    if (context) {
+      context.triggerError();
     }
   };
 
-  render(): ReactNode {
-    return (
-      <div className="search-bar">
-        <h2 className="title">The Rick and Morty API</h2>
-        <div className="search-wrapper" onSubmit={this.handleSubmit}>
-          <Input
-            placeholder={`Please enter character name`}
-            value={this.state.query}
-            onChange={this.handleChange}
-          />
-          <div className="btn-wrapper">
-            <Button onClick={this.handleSubmit}>Search</Button>
-            <Button
-              onClick={this.triggerError}
-              additionalClass={AdditionalClass.RED}
-            >
-              Trigger error
-            </Button>
-          </div>
+  return (
+    <div className="search-bar">
+      <h2 className="title">The Rick and Morty API</h2>
+      <div className="search-wrapper" onSubmit={handleSubmit}>
+        <Input
+          placeholder={`Please enter character name`}
+          value={query}
+          onChange={handleChange}
+        />
+        <div className="btn-wrapper">
+          <Button onClick={handleSubmit}>Search</Button>
+          <Button onClick={triggerError} additionalClass={AdditionalClass.RED}>
+            Trigger error
+          </Button>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};

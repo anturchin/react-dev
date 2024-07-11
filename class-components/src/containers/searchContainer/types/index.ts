@@ -11,12 +11,3 @@ export type ResultsType = {
   gender: string;
   image: string;
 };
-
-export interface ISearchContainerState {
-  query: string;
-  results: ResultsType[];
-  isLoading: boolean;
-  error: boolean;
-  errorMessage: string;
-}
-export interface ISearchContainerProps {}

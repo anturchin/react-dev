@@ -1,14 +1,13 @@
-import { Component, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { SearchContainer } from '../../containers/searchContainer';
 
 import './SearchPage.css';
-export class SearchPage extends Component {
-  render(): ReactNode {
-    return (
-      <>
-        <SearchContainer />
-      </>
-    );
-  }
-}
+
+export const SearchPage = (): ReactNode => {
+  return (
+    <>
+      <SearchContainer />
+    </>
+  );
+};
