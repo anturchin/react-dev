@@ -5,9 +5,9 @@ import { AdditionalClass, SearchBarProps } from './types';
 import { Button } from '../../ui/button';
 import { Input } from '../../ui/input';
 import { ErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/ErrorBoundaryContext';
+import { IErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/types';
 
 import './SearchBar.css';
-import { IErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/types';
 
 export const SearchBar = (props: SearchBarProps): ReactNode => {
   const context = useContext<IErrorBoundaryContext | null>(
