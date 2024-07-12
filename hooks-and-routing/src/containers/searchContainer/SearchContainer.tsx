@@ -5,26 +5,24 @@ import { SearchBar } from '../../components/simple/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
 import { SearchDataType } from '../../core/services/apiService/types';
-import { localStorageService } from '../../core/services/localStorageService/localStorageService';
 import { DelayDuration, ResultsType } from './types';
 import { Spinner } from '../../components/simple/spinner';
 import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
+import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 
 import './SearchContainer.css';
 
 export const SearchContainer = (): ReactNode => {
-  const [query, setQuery] = useState<string>(
-    localStorageService.getQuery?.() || ''
-  );
+  const { valueQuery, handleChangeValue } = useLocalStorage();
   const [results, setResults] = useState<ResultsType[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
-    performSearch(query);
-  }, [query]);
+    performSearch(valueQuery);
+  }, [valueQuery]);
 
   const performSearch = async (query: string): Promise<void> => {
     try {
@@ -36,7 +34,6 @@ export const SearchContainer = (): ReactNode => {
       setResults(results);
       setIsLoading(false);
       setError(false);
-      localStorageService.saveQuery?.(query);
     } catch (error) {
       if (error instanceof Error) {
         setIsLoading(false);
@@ -48,10 +45,10 @@ export const SearchContainer = (): ReactNode => {
   };
 
   const handleSearch = (newQuery: string): void => {
-    if (query === newQuery) {
+    if (valueQuery === newQuery) {
       return;
     } else {
-      setQuery(newQuery);
+      handleChangeValue(newQuery);
       setIsLoading(true);
       performSearch(newQuery);
     }
@@ -65,7 +62,7 @@ export const SearchContainer = (): ReactNode => {
   return (
     <>
       <ErrorBoundary>
-        <SearchBar onSearch={handleSearch} initialQuery={query} />
+        <SearchBar onSearch={handleSearch} initialQuery={valueQuery} />
         {isLoading ? <Spinner /> : content}
       </ErrorBoundary>
     </>

@@ -7,9 +7,12 @@ import { Input } from '../../ui/input';
 import { ErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/ErrorBoundaryContext';
 
 import './SearchBar.css';
+import { IErrorBoundaryContext } from '../../../core/context/errorBoundaryContext/types';
 
 export const SearchBar = (props: SearchBarProps): ReactNode => {
-  const context = useContext(ErrorBoundaryContext);
+  const context = useContext<IErrorBoundaryContext | null>(
+    ErrorBoundaryContext
+  );
   const [query, setQuery] = useState<string>(props.initialQuery);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
