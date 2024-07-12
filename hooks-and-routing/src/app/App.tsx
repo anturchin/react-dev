@@ -1,15 +1,8 @@
-import { Component, ReactNode } from 'react';
-
-import { SearchPage } from '../pages/searchPage';
+import { ReactNode } from 'react';
+import { Router } from '../routes/Router';
 
 import './App.css';
 
-export class App extends Component {
-  render(): ReactNode {
-    return (
-      <>
-        <SearchPage />
-      </>
-    );
-  }
-}
+export const App = (): ReactNode => {
+  return <Router />;
+};
