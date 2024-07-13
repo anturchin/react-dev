@@ -14,9 +14,9 @@ import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
+import { SearchDetails } from '../../components/smart/searchDetail';
 
 import './SearchContainer.css';
-import { SearchDetails } from '../../components/smart/searchDetail';
 
 const INITIAL_PAGE = 1;
 
@@ -33,12 +33,14 @@ export const SearchContainer = (): ReactNode => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   useEffect(() => {
     performSearch(valueQuery, currentPage);
   }, [valueQuery, currentPage]);
 
   const performSearch = async (query: string, page: number): Promise<void> => {
+    setIsLoading(true);
     try {
       await delay(DelayDuration.SHORT);
       const { results, info } = (await apiService.fetchSearchResults?.(
@@ -48,11 +50,9 @@ export const SearchContainer = (): ReactNode => {
 
       setResults(results);
       setInfo(info);
-      setIsLoading(false);
       setError(false);
     } catch (error) {
       if (error instanceof Error) {
-        setIsLoading(false);
         setError(true);
         setErrorMessage(error.message);
         console.error('Error fetching search results:', error.message);
@@ -67,21 +67,31 @@ export const SearchContainer = (): ReactNode => {
       return;
     } else {
       handleChangeValue(newQuery);
+      setSelectedId(null);
       setCurrentPage(INITIAL_PAGE);
       setIsLoading(true);
       performSearch(newQuery, INITIAL_PAGE);
     }
   };
 
-  const onPageChange = (page: number) => {
+  const onPageChange = (page: number): void => {
     setCurrentPage(page);
+    setSelectedId(null);
     setIsLoading(true);
+  };
+
+  const handleResultClick = (id: number): void => {
+    setSelectedId(id);
+  };
+
+  const handleCloseDetails = (): void => {
+    setSelectedId(null);
   };
 
   const content = error ? (
     <SearchError message={errorMessage} />
   ) : (
-    <SearchResults results={results} />
+    <SearchResults results={results} onResultClick={handleResultClick} />
   );
   return (
     <>
@@ -96,7 +106,9 @@ export const SearchContainer = (): ReactNode => {
         )}
         <div className="wrapper">
           {isLoading ? <Spinner /> : content}
-          <SearchDetails id={16} onClose={() => {}} />
+          {selectedId && (
+            <SearchDetails id={selectedId} onClose={handleCloseDetails} />
+          )}
         </div>
       </ErrorBoundary>
     </>

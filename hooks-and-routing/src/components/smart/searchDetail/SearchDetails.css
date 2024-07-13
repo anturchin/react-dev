@@ -1,8 +1,10 @@
 .details {
-  width: 40%;
+  min-width: 800px;
+  display: flex;
+  justify-content: center;
 }
 .details-item {
-  min-width: 700px;
+  width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +13,7 @@
 }
 
 .details .btn {
-  width: 60%;
+  width: 100%;
 }
 
 .details-title {
@@ -20,5 +22,5 @@
 }
 
 .details-img {
-  width: 60%;
+  width: 100%;
 }

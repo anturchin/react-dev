@@ -7,4 +7,5 @@ export type ResultPropType = {
 
 export interface ISearchResultsProps {
   results: ResultPropType[];
+  onResultClick: (id: number) => void;
 }

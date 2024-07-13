@@ -17,21 +17,24 @@ export const SearchDetails = (props: DetailsProps): ReactNode => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
+    setDetails(null);
+    setIsLoading(true);
+    setError(false);
+    setErrorMessage('');
     loadCharacterDetails(props.id);
   }, [props.id]);
 
   const loadCharacterDetails = async (id: number) => {
+    setIsLoading(true);
     try {
       await delay(DelayDuration.SHORT);
       const details = (await apiService.fetchSearchDetails?.(
         id
       )) as DetailsCharactersType;
       setDetails(details);
-      setIsLoading(false);
       setError(false);
     } catch (error) {
       if (error instanceof Error) {
-        setIsLoading(false);
         setError(true);
         setErrorMessage(error.message);
         console.error('Error fetching search character:', error.message);
@@ -41,24 +44,20 @@ export const SearchDetails = (props: DetailsProps): ReactNode => {
     }
   };
 
-  if (!details) return null;
-
   const content = error ? (
     <SearchError message={errorMessage} />
   ) : (
-    <div className="details">
-      <div className="details-item">
-        <Button onClick={props.onClose} additionalClass={AdditionalClass.RED}>
-          Close
-        </Button>
-        <img className="details-img" src={details.image} alt={details.name} />
-        <h3 className="details-title">{details.name}</h3>
-        <p className="details-status">Status: {details.status}</p>
-        <p className="details-species">Species: {details.species}</p>
-        <p className="details-gender">Gender: {details.gender}</p>
-      </div>
+    <div className="details-item">
+      <Button onClick={props.onClose} additionalClass={AdditionalClass.RED}>
+        Close
+      </Button>
+      <img className="details-img" src={details?.image} alt={details?.name} />
+      <h3 className="details-title">{details?.name}</h3>
+      <p className="details-status">Status: {details?.status}</p>
+      <p className="details-species">Species: {details?.species}</p>
+      <p className="details-gender">Gender: {details?.gender}</p>
     </div>
   );
 
-  return <>{isLoading ? <Spinner /> : content}</>;
+  return <div className="details">{isLoading ? <Spinner /> : content}</div>;
 };
