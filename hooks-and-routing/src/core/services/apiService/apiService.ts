@@ -12,7 +12,6 @@ apiService.fetchSearchResults = async (
   if (query) {
     url.searchParams.append('name', query);
   }
-
   url.searchParams.append('page', page.toString());
 
   const response = await fetch(url);
