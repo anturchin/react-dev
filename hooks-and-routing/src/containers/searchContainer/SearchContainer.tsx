@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 
 import { ErrorBoundary } from '../../components/ordinary/errorBoundary';
-import { SearchBar } from '../../components/simple/searchBar';
+import { SearchBar } from '../../components/smart/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
 import { ISearchResponse } from '../../core/services/apiService/types';
@@ -27,11 +27,11 @@ export const SearchContainer = (): ReactNode => {
   const performSearch = async (query: string): Promise<void> => {
     try {
       await delay(DelayDuration.SHORT);
-      const data = (await apiService.fetchSearchResults?.(
+      const { results } = (await apiService.fetchSearchResults?.(
         query
       )) as ISearchResponse;
 
-      setResults(data.results);
+      setResults(results);
       setIsLoading(false);
       setError(false);
     } catch (error) {
