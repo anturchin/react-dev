@@ -3,6 +3,4 @@ import { Router } from '../routes/Router';
 
 import './App.css';
 
-export const App = (): ReactNode => {
-  return <Router />;
-};
+export const App = (): ReactNode => <Router />;
