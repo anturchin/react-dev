@@ -16,6 +16,7 @@ import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 
 import './SearchContainer.css';
+import { SearchDetails } from '../../components/smart/searchDetail';
 
 const INITIAL_PAGE = 1;
 
@@ -93,7 +94,10 @@ export const SearchContainer = (): ReactNode => {
             totalPage={info.pages}
           />
         )}
-        {isLoading ? <Spinner /> : content}
+        <div className="wrapper">
+          {isLoading ? <Spinner /> : content}
+          <SearchDetails id={16} onClose={() => {}} />
+        </div>
       </ErrorBoundary>
     </>
   );

@@ -1,16 +1,16 @@
 .search-results {
-  margin-top: 30px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 25px;
-  padding: 50px;
-  width: 100%;
+  /* width: 100%; */
+  width: 60%;
 }
 
 .result-item {
   font-size: 1.6rem;
   max-width: 500px;
+  height: 500px;
   cursor: pointer;
   transition: all 0.3s ease-out;
   display: flex;
@@ -29,4 +29,8 @@
 
 .image {
   border-radius: 10px;
+}
+
+.search-results_details {
+  width: 60%;
 }

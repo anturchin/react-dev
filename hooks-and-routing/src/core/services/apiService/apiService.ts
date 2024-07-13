@@ -1,5 +1,5 @@
 import { BASE_URL } from '../../constants';
-import { ISearchApi, ISearchResponse } from './types';
+import { DetailsCharactersType, ISearchApi, ISearchResponse } from './types';
 
 export const apiService: ISearchApi = {};
 
@@ -19,4 +19,14 @@ apiService.fetchSearchResults = async (
     throw new Error('Network response was not ok');
   }
   return (await response.json()) as ISearchResponse;
+};
+
+apiService.fetchSearchDetails = async (
+  id: number
+): Promise<DetailsCharactersType> => {
+  const response = await fetch(`${BASE_URL}/${id}`);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return (await response.json()) as DetailsCharactersType;
 };
