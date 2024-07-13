@@ -1,24 +1,23 @@
-import { ISearchApi, SearchDataResponseType, SearchDataType } from './types';
-
-const BASE_URL = 'https://rickandmortyapi.com/api/character';
-const PAGES_NUMBER = '1';
+import { BASE_URL } from '../../constants';
+import { ISearchApi, ISearchResponse } from './types';
 
 export const apiService: ISearchApi = {};
 
 apiService.fetchSearchResults = async (
-  query: string
-): Promise<SearchDataType[]> => {
+  query: string,
+  page: number = 1
+): Promise<ISearchResponse> => {
   const url = new URL(BASE_URL);
 
   if (query) {
     url.searchParams.append('name', query);
-    url.searchParams.append('pages', PAGES_NUMBER);
   }
+
+  url.searchParams.append('pages', page.toString());
 
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  const data = (await response.json()) as SearchDataResponseType;
-  return data.results;
+  return (await response.json()) as ISearchResponse;
 };

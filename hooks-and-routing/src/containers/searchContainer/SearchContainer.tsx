@@ -4,7 +4,7 @@ import { ErrorBoundary } from '../../components/ordinary/errorBoundary';
 import { SearchBar } from '../../components/simple/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
-import { SearchDataType } from '../../core/services/apiService/types';
+import { ISearchResponse } from '../../core/services/apiService/types';
 import { DelayDuration, ResultsType } from './types';
 import { Spinner } from '../../components/simple/spinner';
 import { delay } from '../../core/utils/delay/delay';
@@ -27,11 +27,11 @@ export const SearchContainer = (): ReactNode => {
   const performSearch = async (query: string): Promise<void> => {
     try {
       await delay(DelayDuration.SHORT);
-      const results = (await apiService.fetchSearchResults?.(
+      const data = (await apiService.fetchSearchResults?.(
         query
-      )) as SearchDataType[];
+      )) as ISearchResponse;
 
-      setResults(results);
+      setResults(data.results);
       setIsLoading(false);
       setError(false);
     } catch (error) {

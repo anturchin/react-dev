@@ -3,12 +3,23 @@ export type SearchDataType = {
   name: string;
   gender: string;
   image: string;
+  type: string;
+  species: string;
 };
 
-export type SearchDataResponseType = {
+export type InfoType = {
+  count: number;
+  pages: number;
+  next: string;
+  prev: string;
+};
+export interface ISearchResponse {
+  info: InfoType;
   results: SearchDataType[];
-};
-
+}
 export interface ISearchApi {
-  fetchSearchResults?: (query: string) => Promise<SearchDataType[]>;
+  fetchSearchResults?: (
+    query: string,
+    page?: number
+  ) => Promise<ISearchResponse>;
 }

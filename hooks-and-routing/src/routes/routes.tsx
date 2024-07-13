@@ -8,4 +8,8 @@ export const routes: RoutesType[] = [
     element: <SearchPage />,
     errorElement: <NotFound />,
   },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
 ];
