@@ -1,6 +1,8 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Button } from '../../ui/button';
-import { AdditionalClass, DetailsProps } from './types';
+import { AdditionalClass } from './types';
 import { DetailsCharactersType } from '../../../core/services/apiService/types';
 import { DelayDuration } from '../../../containers/searchContainer/types';
 import { delay } from '../../../core/utils/delay/delay';
@@ -10,7 +12,10 @@ import { SearchError } from '../../simple/searchError';
 
 import './SearchDetails.css';
 
-export const SearchDetails = (props: DetailsProps): ReactNode => {
+export const SearchDetails = (): ReactNode => {
+  const { id, page } = useParams<{ id: string; page: string }>();
+  const navigate = useNavigate();
+
   const [details, setDetails] = useState<DetailsCharactersType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -21,8 +26,8 @@ export const SearchDetails = (props: DetailsProps): ReactNode => {
     setIsLoading(true);
     setError(false);
     setErrorMessage('');
-    loadCharacterDetails(props.id);
-  }, [props.id]);
+    loadCharacterDetails(Number(id));
+  }, [id]);
 
   const loadCharacterDetails = async (id: number) => {
     setIsLoading(true);
@@ -44,11 +49,15 @@ export const SearchDetails = (props: DetailsProps): ReactNode => {
     }
   };
 
+  const onHandleClose = () => {
+    navigate(`/search/${page}`);
+  };
+
   const content = error ? (
     <SearchError message={errorMessage} />
   ) : (
     <div className="details-item">
-      <Button onClick={props.onClose} additionalClass={AdditionalClass.RED}>
+      <Button onClick={onHandleClose} additionalClass={AdditionalClass.RED}>
         Close
       </Button>
       <img className="details-img" src={details?.image} alt={details?.name} />

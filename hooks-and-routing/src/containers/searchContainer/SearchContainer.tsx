@@ -1,4 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ErrorBoundary } from '../../components/ordinary/errorBoundary';
 import { SearchBar } from '../../components/smart/searchBar';
@@ -14,13 +15,15 @@ import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
-import { SearchDetails } from '../../components/smart/searchDetail';
 
 import './SearchContainer.css';
 
 const INITIAL_PAGE = 1;
 
 export const SearchContainer = (): ReactNode => {
+  const { page } = useParams<{ page: string }>();
+  const navigate = useNavigate();
+
   const { valueQuery, handleChangeValue } = useLocalStorage();
   const [results, setResults] = useState<ResultsType[]>([]);
   const [info, setInfo] = useState<InfoType>({
@@ -29,11 +32,12 @@ export const SearchContainer = (): ReactNode => {
     next: '',
     prev: '',
   });
-  const [currentPage, setCurrentPage] = useState<number>(INITIAL_PAGE);
+  const [currentPage, setCurrentPage] = useState<number>(
+    Number(page) || INITIAL_PAGE
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   useEffect(() => {
     performSearch(valueQuery, currentPage);
@@ -67,25 +71,21 @@ export const SearchContainer = (): ReactNode => {
       return;
     } else {
       handleChangeValue(newQuery);
-      setSelectedId(null);
       setCurrentPage(INITIAL_PAGE);
       setIsLoading(true);
       performSearch(newQuery, INITIAL_PAGE);
+      navigate(`/search/${INITIAL_PAGE}`);
     }
   };
 
   const onPageChange = (page: number): void => {
     setCurrentPage(page);
-    setSelectedId(null);
     setIsLoading(true);
+    navigate(`/search/${page}`);
   };
 
   const handleResultClick = (id: number): void => {
-    setSelectedId(id);
-  };
-
-  const handleCloseDetails = (): void => {
-    setSelectedId(null);
+    navigate(`/search/${currentPage}/details/${id}`);
   };
 
   const content = error ? (
@@ -106,9 +106,7 @@ export const SearchContainer = (): ReactNode => {
         )}
         <div className="wrapper">
           {isLoading ? <Spinner /> : content}
-          {selectedId && (
-            <SearchDetails id={selectedId} onClose={handleCloseDetails} />
-          )}
+          <Outlet />
         </div>
       </ErrorBoundary>
     </>
