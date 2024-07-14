@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { stringUtils } from './stringUtils';
+import { stringUtils } from '../stringUtils';
 
 describe('stringUtils', () => {
   it('trimString should remove leading and trailing spaces', () => {

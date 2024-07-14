@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { delay } from './delay';
+import { delay } from '../delay';
 
 describe('delay', () => {
   it('should resolve after the specified time', async () => {
