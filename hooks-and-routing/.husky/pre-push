@@ -1,2 +1,2 @@
 cd hooks-and-routing/
-npm run test
+npm run coverage
