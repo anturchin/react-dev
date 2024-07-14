@@ -1,0 +1,2 @@
+cd hooks-and-routing/
+npm run coverage
