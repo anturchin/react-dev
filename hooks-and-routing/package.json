@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format:fix": "prettier --write .",
     "ci:format": "prettier --check .",
-    "prepare": "cd ../ && husky class-components/.husky",
+    "prepare": "cd ../ && husky hooks-and-routing/.husky",
     "preview": "vite preview",
     "test": "vitest run",
     "coverage": "vitest run --coverage"
