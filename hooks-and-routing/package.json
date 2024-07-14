@@ -12,7 +12,7 @@
     "ci:format": "prettier --check .",
     "prepare": "cd ../ && husky class-components/.husky",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest run",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
