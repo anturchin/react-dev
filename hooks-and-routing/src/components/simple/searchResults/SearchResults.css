@@ -3,13 +3,12 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 15px;
+  cursor: pointer;
 }
 
 .result-item {
   font-size: 1.4rem;
   width: 250px;
-  height: 330px;
-  cursor: pointer;
   transition: all 0.3s ease-out;
   display: flex;
   flex-direction: column;
@@ -21,8 +20,10 @@
   padding: 10px;
 }
 
-.result-item:hover {
-  transform: scale(1.05);
+.result-item .btn {
+  margin-top: 10px;
+  align-self: flex-start;
+  padding: 7px;
 }
 
 .image {

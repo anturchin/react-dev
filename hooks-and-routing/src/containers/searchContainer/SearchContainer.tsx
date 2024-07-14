@@ -84,14 +84,22 @@ export const SearchContainer = (): ReactNode => {
     navigate(`/search/${page}`);
   };
 
-  const handleResultClick = (id: number): void => {
+  const handleDetailsClick = (id: number) => {
     navigate(`/search/${currentPage}/details/${id}`);
+  };
+
+  const handleResultsClick = (): void => {
+    navigate(`/search/${currentPage}`);
   };
 
   const content = error ? (
     <SearchError message={errorMessage} />
   ) : (
-    <SearchResults results={results} onResultClick={handleResultClick} />
+    <SearchResults
+      results={results}
+      onResultClick={handleResultsClick}
+      onInfoDetailsClick={handleDetailsClick}
+    />
   );
   return (
     <>
