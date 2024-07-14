@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { apiService } from './apiService';
-import { ISearchResponse, DetailsCharactersType } from './types';
+import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
+import { apiService } from '../apiService';
+import { ISearchResponse, DetailsCharactersType } from '../types';
 
 const mockFetch = (response: Response) => {
   return vi.fn().mockImplementation(() => Promise.resolve(response));
@@ -15,7 +15,7 @@ describe('apiService', () => {
     vi.restoreAllMocks();
   });
 
-  it('fetchSearchResults should return search results', async () => {
+  test('fetchSearchResults should return search results', async () => {
     const mockResponse: ISearchResponse = {
       results: [
         {
@@ -42,7 +42,7 @@ describe('apiService', () => {
     expect(result).toEqual(mockResponse);
   });
 
-  it('fetchSearchResults should throw an error for non-ok response', async () => {
+  test('fetchSearchResults should throw an error for non-ok response', async () => {
     const query = 'Character';
     const page = 1;
     const mockFetchResponse = new Response(null, { status: 500 });
@@ -54,7 +54,7 @@ describe('apiService', () => {
     );
   });
 
-  it('fetchSearchDetails should return character details', async () => {
+  test('fetchSearchDetails should return character details', async () => {
     const mockResponse: DetailsCharactersType = {
       id: 1,
       name: 'Character 1',
@@ -81,7 +81,7 @@ describe('apiService', () => {
     expect(result).toEqual(mockResponse);
   });
 
-  it('fetchSearchDetails should throw an error for non-ok response', async () => {
+  test('fetchSearchDetails should throw an error for non-ok response', async () => {
     const id = 1;
     const mockFetchResponse = new Response(null, { status: 500 });
 

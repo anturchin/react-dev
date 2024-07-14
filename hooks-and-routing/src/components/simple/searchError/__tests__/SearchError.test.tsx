@@ -1,11 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 
 import { SearchError } from '../SearchError';
 import { ErrorTypeProps } from '../types';
 
 describe('SearchError', () => {
-  it('should render the error message', () => {
+  test('should render the error message', () => {
     const errorMessage = 'Something went wrong';
     const props: ErrorTypeProps = { message: errorMessage };
 

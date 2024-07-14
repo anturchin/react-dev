@@ -1,8 +1,8 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, test, expect, vi } from 'vitest';
 import { delay } from '../delay';
 
 describe('delay', () => {
-  it('should resolve after the specified time', async () => {
+  test('should resolve after the specified time', async () => {
     const ms = 100;
     const start = Date.now();
 
@@ -15,7 +15,7 @@ describe('delay', () => {
     expect(elapsed).toBeLessThan(ms + 50);
   });
 
-  it('should call resolve after the specified time', async () => {
+  test('should call resolve after the specified time', async () => {
     const ms = 100;
     const resolve = vi.fn();
 

@@ -1,6 +1,6 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { localStorageService } from './localStorageService';
-import { LsKey } from './types';
+import { describe, test, expect, beforeEach } from 'vitest';
+import { localStorageService } from '../localStorageService';
+import { LsKey } from '../types';
 
 describe('localStorageService', () => {
   let store: Record<string, string> = {};
@@ -30,7 +30,7 @@ describe('localStorageService', () => {
     global.localStorage = localStorageMock;
   });
 
-  it('saveQuery should save query to localStorage', () => {
+  test('saveQuery should save query to localStorage', () => {
     const query = 'test query';
     localStorageService.saveQuery!(query);
 
@@ -38,7 +38,7 @@ describe('localStorageService', () => {
     expect(savedQuery).toEqual(query);
   });
 
-  it('getQuery should retrieve query from localStorage', () => {
+  test('getQuery should retrieve query from localStorage', () => {
     const query = 'test query';
     localStorage.setItem(LsKey.QUERY_KEY, query);
 
