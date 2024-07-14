@@ -1,2 +1,2 @@
 cd hooks-and-routing/
-npm run lint
+npm run test
