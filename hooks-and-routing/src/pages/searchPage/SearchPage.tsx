@@ -7,7 +7,7 @@ import './SearchPage.css';
 export const SearchPage = (): ReactNode => {
   return (
     <>
-      <SearchContainer />
+      <SearchContainer data-testid="search-container" />
     </>
   );
 };
