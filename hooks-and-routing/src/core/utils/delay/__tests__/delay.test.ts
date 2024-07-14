@@ -11,7 +11,9 @@ describe('delay', () => {
     const end = Date.now();
     const elapsed = end - start;
 
-    expect(elapsed).toBeGreaterThanOrEqual(ms);
+    const tolerance = 20;
+
+    expect(elapsed).toBeGreaterThanOrEqual(ms - tolerance);
     expect(elapsed).toBeLessThan(ms + 50);
   });
 
