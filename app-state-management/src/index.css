@@ -26,6 +26,11 @@ dd {
   margin: 0;
 }
 
+:root {
+  --light: #d8dbe0;
+  --dark: #28292c;
+}
+
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
