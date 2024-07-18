@@ -1,2 +1,2 @@
-cd hooks-and-routing/
+cd app-state-management/
 npm run coverage

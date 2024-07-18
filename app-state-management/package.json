@@ -1,5 +1,5 @@
 {
-  "name": "hooks-and-routing",
+  "name": "app-state-management",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint:fix": "eslint . --ext .ts --fix",
     "format:fix": "prettier --write .",
     "ci:format": "prettier --check .",
-    "prepare": "cd ../ && husky hooks-and-routing/.husky",
+    "prepare": "cd ../ && husky app-state-management/.husky",
     "preview": "vite preview",
     "test": "vitest run",
     "coverage": "vitest run --coverage"
