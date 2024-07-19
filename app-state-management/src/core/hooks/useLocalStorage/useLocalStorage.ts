@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { localStorageService } from '../../services/localStorageService/localStorageService';
 import { localStorageType } from './types';
+import { LsKey } from '../../services/localStorageService/types';
 
-export const useLocalStorage = (): localStorageType => {
-  const [valueQuery, setValueQuery] = useState(
-    localStorageService.getQuery?.() || ''
-  );
+export const useLocalStorage = (key: LsKey): localStorageType => {
+  const [value, setValue] = useState(localStorageService.getQuery?.(key) || '');
 
-  const handleChangeValue = (newValue: string): void => {
-    localStorageService.saveQuery?.(newValue);
-    setValueQuery(newValue);
+  useEffect(() => {
+    handleChangeValue(key, value);
+  }, [value, key]);
+
+  const handleChangeValue = (key: LsKey, newValue: string): void => {
+    localStorageService.saveQuery?.(key, newValue);
+    setValue(newValue);
   };
 
-  return { valueQuery, handleChangeValue };
+  return [value, handleChangeValue];
 };

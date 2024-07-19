@@ -32,7 +32,7 @@ describe('localStorageService', () => {
 
   test('saveQuery should save query to localStorage', () => {
     const query = 'test query';
-    localStorageService.saveQuery!(query);
+    localStorageService.saveQuery!(LsKey.QUERY_KEY, query);
 
     const savedQuery = localStorage.getItem(LsKey.QUERY_KEY);
     expect(savedQuery).toEqual(query);
@@ -42,7 +42,7 @@ describe('localStorageService', () => {
     const query = 'test query';
     localStorage.setItem(LsKey.QUERY_KEY, query);
 
-    const retrievedQuery = localStorageService.getQuery!();
+    const retrievedQuery = localStorageService.getQuery!(LsKey.QUERY_KEY);
     expect(retrievedQuery).toEqual(query);
   });
 });

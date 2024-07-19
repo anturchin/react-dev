@@ -17,6 +17,7 @@ import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 
 import './SearchContainer.css';
+import { LsKey } from '../../core/services/localStorageService/types';
 
 const INITIAL_PAGE = 1;
 
@@ -24,7 +25,7 @@ export const SearchContainer = (): ReactNode => {
   const { page } = useParams<{ page: string }>();
   const navigate = useNavigate();
 
-  const { valueQuery, handleChangeValue } = useLocalStorage();
+  const [valueQuery, handleChangeValue] = useLocalStorage(LsKey.QUERY_KEY);
   const [results, setResults] = useState<ResultsType[]>([]);
   const [info, setInfo] = useState<InfoType>({
     count: 0,
@@ -70,7 +71,7 @@ export const SearchContainer = (): ReactNode => {
     if (valueQuery === newQuery) {
       return;
     } else {
-      handleChangeValue(newQuery);
+      handleChangeValue(LsKey.QUERY_KEY, newQuery);
       setCurrentPage(INITIAL_PAGE);
       setIsLoading(true);
       performSearch(newQuery, INITIAL_PAGE);

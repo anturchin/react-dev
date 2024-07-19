@@ -2,10 +2,10 @@ import { ILocalStorageService, LsKey } from './types';
 
 export const localStorageService: ILocalStorageService = {};
 
-localStorageService.saveQuery = (query: string): void => {
-  localStorage.setItem(LsKey.QUERY_KEY, query);
+localStorageService.saveQuery = (key: LsKey, query: string): void => {
+  localStorage.setItem(key, query);
 };
 
-localStorageService.getQuery = (): string | null => {
-  return localStorage.getItem(LsKey.QUERY_KEY);
+localStorageService.getQuery = (key: LsKey): string | null => {
+  return localStorage.getItem(key);
 };

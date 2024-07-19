@@ -1,8 +1,9 @@
 export const enum LsKey {
   QUERY_KEY = 'searchQuery',
+  THEME = 'theme',
 }
 
 export interface ILocalStorageService {
-  saveQuery?: (query: string) => void;
-  getQuery?: () => string | null;
+  saveQuery?: (key: LsKey, query: string) => void;
+  getQuery?: (key: LsKey) => string | null;
 }
