@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
-import { ErrorBoundary } from '../../components/ordinary/errorBoundary';
+import { ErrorBoundary } from '../../components/smart/errorBoundary';
 import { SearchBar } from '../../components/smart/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
