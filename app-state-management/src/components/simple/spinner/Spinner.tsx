@@ -1,7 +1,9 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
+import { ThemeContext } from '../../../core/context/themeContext';
 
 import './Spinner.css';
 
 export const Spinner = (): ReactNode => {
-  return <div className="spinner"></div>;
+  const { theme } = useContext(ThemeContext);
+  return <div className={`spinner spinner-${theme}`}></div>;
 };
