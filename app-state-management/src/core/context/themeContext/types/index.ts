@@ -5,6 +5,11 @@ export const enum Theme {
   DARK = 'dark',
 }
 
+export interface ITheme {
+  theme: Theme;
+  handleChangeTheme: (theme: Theme) => void;
+}
+
 export type ContextPropType = {
   children: ReactNode;
 };

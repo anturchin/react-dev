@@ -5,11 +5,16 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { ContextPropType, Theme } from './types';
+import { ContextPropType, ITheme, Theme } from './types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { LsKey } from '../../services/localStorageService/types';
 
-export const ThemeContext = createContext<Theme>(Theme.LIGHT);
+const INITIAL_STATE = {
+  theme: Theme.LIGHT,
+  handleChangeTheme: () => {},
+};
+
+export const ThemeContext = createContext<ITheme>(INITIAL_STATE);
 
 export const ThemeContextProvider = ({
   children,
@@ -30,7 +35,7 @@ export const ThemeContextProvider = ({
   }, [handleChangeTheme, theme]);
 
   return (
-    <ThemeContext.Provider value={theme as Theme}>
+    <ThemeContext.Provider value={{ theme: theme as Theme, handleChangeTheme }}>
       {children}
     </ThemeContext.Provider>
   );
