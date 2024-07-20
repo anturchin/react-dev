@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 25px;
   cursor: pointer;
 }
 
@@ -19,6 +19,11 @@
   border-radius: 10px;
   gap: 5px;
   padding: 10px;
+}
+
+.result-item:hover {
+  position: relative;
+  transform: translateY(-15px);
 }
 
 .result-item-light {

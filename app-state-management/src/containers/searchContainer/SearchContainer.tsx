@@ -15,9 +15,9 @@ import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
+import { LsKey } from '../../core/services/localStorageService/types';
 
 import './SearchContainer.css';
-import { LsKey } from '../../core/services/localStorageService/types';
 
 const INITIAL_PAGE = 1;
 
