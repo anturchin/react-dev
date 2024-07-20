@@ -25,7 +25,7 @@ export const SearchContainer = (): ReactNode => {
   const { page } = useParams<{ page: string }>();
   const navigate = useNavigate();
 
-  const [valueQuery, handleChangeValue] = useLocalStorage(LsKey.QUERY_KEY);
+  const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
   const [results, setResults] = useState<ResultsType[]>([]);
   const [info, setInfo] = useState<InfoType>({
     count: 0,
@@ -71,7 +71,7 @@ export const SearchContainer = (): ReactNode => {
     if (valueQuery === newQuery) {
       return;
     } else {
-      handleChangeValue(LsKey.QUERY_KEY, newQuery);
+      setValueQuery(LsKey.QUERY_KEY, newQuery);
       setCurrentPage(INITIAL_PAGE);
       setIsLoading(true);
       performSearch(newQuery, INITIAL_PAGE);
