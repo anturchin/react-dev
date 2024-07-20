@@ -9,10 +9,13 @@
 .result-item {
   font-size: 1.4rem;
   width: 250px;
+  min-height: 400px;
+  text-align: center;
   transition: all 0.3s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border-radius: 10px;
   gap: 5px;
   padding: 10px;
