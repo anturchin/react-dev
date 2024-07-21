@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { currentPageSlice } from '../slices/currentPageSlice';
-import { detailsPageSlice } from '../slices/detailPageSlice';
+import { apiService } from '../services/apiService/apiService';
 
 export const store = configureStore({
   reducer: {
-    currentPage: currentPageSlice.reducer,
-    detailsPage: detailsPageSlice.reducer,
+    [apiService.reducerPath]: apiService.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiService.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

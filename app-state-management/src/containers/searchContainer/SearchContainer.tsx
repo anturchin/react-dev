@@ -1,26 +1,15 @@
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { ErrorBoundary } from '../../components/smart/errorBoundary';
 import { SearchBar } from '../../components/smart/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
-import { apiService } from '../../core/services/apiService';
-import { ISearchResponse } from '../../core/services/apiService/types';
-import { DelayDuration } from './types';
 import { Spinner } from '../../components/simple/spinner';
-import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 import { LsKey } from '../../core/services/localStorageService/types';
-import { AppDispatch, RootState } from '../../core/store/store';
-import {
-  changeCurrentPage,
-  fetchedPage,
-  fetchError,
-  fetchingPage,
-} from '../../core/slices/currentPageSlice';
+import { apiService } from '../../core/services/apiService';
 
 import './SearchContainer.css';
 
@@ -29,68 +18,40 @@ const RESET_PAGE = 1;
 export const SearchContainer = (): ReactNode => {
   const { page } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
-
-  const { currentPage, results, info, isLoading, error, errorMessage } =
-    useSelector((state: RootState) => state.currentPage);
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
 
-  const performSearch = useCallback(
-    async (query: string, page: number): Promise<void> => {
-      dispatch(fetchingPage());
-      try {
-        await delay(DelayDuration.SHORT);
-        const { results, info } = (await apiService.fetchSearchResults?.(
-          query,
-          page
-        )) as ISearchResponse;
-
-        dispatch(fetchedPage({ results, info, currentPage: page }));
-      } catch (error) {
-        if (error instanceof Error) {
-          dispatch(fetchError(error.message));
-          console.error('Error fetching search results:', error.message);
-        }
-      }
-    },
-    [dispatch]
-  );
-
-  useEffect(() => {
-    const newPage = page ? Number(page) : currentPage;
-    performSearch(valueQuery, newPage);
-  }, [performSearch, valueQuery, currentPage, page]);
+  const { data, error, isLoading } = apiService.useFetchSearchResultsQuery({
+    query: valueQuery,
+    page: Number(page) || RESET_PAGE,
+  });
 
   const handleSearch = (newQuery: string): void => {
     if (valueQuery === newQuery) {
       return;
     } else {
       setValueQuery(LsKey.QUERY_KEY, newQuery);
-      dispatch(changeCurrentPage(RESET_PAGE));
-      performSearch(newQuery, RESET_PAGE);
       navigate(`/search/${RESET_PAGE}`);
     }
   };
 
   const onPageChange = (page: number): void => {
-    dispatch(changeCurrentPage(page));
     navigate(`/search/${page}`);
   };
 
   const handleDetailsClick = (id: number) => {
-    navigate(`/search/${currentPage}/details/${id}`);
+    navigate(`/search/${Number(page) || RESET_PAGE}/details/${id}`);
   };
 
   const handleResultsClick = (): void => {
-    navigate(`/search/${currentPage}`);
+    navigate(`/search/${Number(page) || RESET_PAGE}`);
   };
 
   const content = error ? (
-    <SearchError message={errorMessage} />
+    <SearchError message="Failed to fetch data" />
   ) : (
     <SearchResults
-      results={results}
+      results={data?.results || []}
       onResultClick={handleResultsClick}
       onInfoDetailsClick={handleDetailsClick}
     />
@@ -99,11 +60,11 @@ export const SearchContainer = (): ReactNode => {
     <>
       <ErrorBoundary>
         <SearchBar onSearch={handleSearch} initialQuery={valueQuery} />
-        {info && info.pages > 1 && (
+        {data?.info && data.info.pages > 1 && (
           <SearchPagination
             onPageChange={onPageChange}
-            currentPage={currentPage}
-            totalPage={info.pages}
+            currentPage={Number(page) || RESET_PAGE}
+            totalPage={data.info.pages}
           />
         )}
         <div className="wrapper">
