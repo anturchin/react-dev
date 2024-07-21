@@ -15,15 +15,15 @@ const AppContent = () => {
 
   return (
     <div className={`app-container ${theme}-theme`}>
-      <Provider store={store}>
-        <Router />
-      </Provider>
+      <Router />
     </div>
   );
 };
 
 export const App = (): ReactNode => (
   <ThemeContextProvider>
-    <AppContent />
+    <Provider store={store}>
+      <AppContent />
+    </Provider>
   </ThemeContextProvider>
 );
