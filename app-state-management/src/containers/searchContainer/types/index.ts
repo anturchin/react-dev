@@ -4,10 +4,3 @@ export const enum DelayDuration {
   LONG = 5000,
   VERY_LONG = 10000,
 }
-
-export type ResultsType = {
-  id: number;
-  name: string;
-  gender: string;
-  image: string;
-};

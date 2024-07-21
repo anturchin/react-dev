@@ -1,87 +1,78 @@
-import { ReactNode, useEffect, useState } from 'react';
-import { Outlet, useNavigate, useParams } from 'react-router-dom';
+import { ReactNode, useCallback, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ErrorBoundary } from '../../components/smart/errorBoundary';
 import { SearchBar } from '../../components/smart/searchBar';
 import { SearchResults } from '../../components/simple/searchResults';
 import { apiService } from '../../core/services/apiService';
-import {
-  InfoType,
-  ISearchResponse,
-} from '../../core/services/apiService/types';
-import { DelayDuration, ResultsType } from './types';
+import { ISearchResponse } from '../../core/services/apiService/types';
+import { DelayDuration } from './types';
 import { Spinner } from '../../components/simple/spinner';
 import { delay } from '../../core/utils/delay/delay';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 import { LsKey } from '../../core/services/localStorageService/types';
+import { AppDispatch, RootState } from '../../core/store/store';
+import {
+  changeCurrentPage,
+  fetchedPage,
+  fetchError,
+  fetchingPage,
+} from '../../core/slices/currentPageSlice';
 
 import './SearchContainer.css';
 
-const INITIAL_PAGE = 1;
+const RESET_PAGE = 1;
 
 export const SearchContainer = (): ReactNode => {
-  const { page } = useParams<{ page: string }>();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { currentPage, results, info, isLoading, error, errorMessage } =
+    useSelector((state: RootState) => state.currentPage);
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
-  const [results, setResults] = useState<ResultsType[]>([]);
-  const [info, setInfo] = useState<InfoType>({
-    count: 0,
-    pages: 0,
-    next: '',
-    prev: '',
-  });
-  const [currentPage, setCurrentPage] = useState<number>(
-    Number(page) || INITIAL_PAGE
+
+  const performSearch = useCallback(
+    async (query: string, page: number): Promise<void> => {
+      dispatch(fetchingPage());
+      try {
+        await delay(DelayDuration.SHORT);
+        const { results, info } = (await apiService.fetchSearchResults?.(
+          query,
+          page
+        )) as ISearchResponse;
+
+        dispatch(fetchedPage({ results, info, currentPage: page }));
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch(fetchError(error.message));
+          console.error('Error fetching search results:', error.message);
+        }
+      }
+    },
+    [dispatch]
   );
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
     performSearch(valueQuery, currentPage);
-  }, [valueQuery, currentPage]);
-
-  const performSearch = async (query: string, page: number): Promise<void> => {
-    setIsLoading(true);
-    try {
-      await delay(DelayDuration.SHORT);
-      const { results, info } = (await apiService.fetchSearchResults?.(
-        query,
-        page
-      )) as ISearchResponse;
-
-      setResults(results);
-      setInfo(info);
-      setError(false);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(true);
-        setErrorMessage(error.message);
-        console.error('Error fetching search results:', error.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [performSearch, valueQuery, currentPage]);
 
   const handleSearch = (newQuery: string): void => {
     if (valueQuery === newQuery) {
       return;
     } else {
       setValueQuery(LsKey.QUERY_KEY, newQuery);
-      setCurrentPage(INITIAL_PAGE);
-      setIsLoading(true);
-      performSearch(newQuery, INITIAL_PAGE);
-      navigate(`/search/${INITIAL_PAGE}`);
+      dispatch(changeCurrentPage(RESET_PAGE));
+      performSearch(newQuery, RESET_PAGE);
+      navigate(`/search/${RESET_PAGE}`);
     }
   };
 
   const onPageChange = (page: number): void => {
-    setCurrentPage(page);
-    setIsLoading(true);
+    dispatch(changeCurrentPage(page));
     navigate(`/search/${page}`);
   };
 
