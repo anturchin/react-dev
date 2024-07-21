@@ -13,7 +13,7 @@ export const SearchDetails = (): ReactNode => {
   const { id, page } = useParams<{ id: string; page: string }>();
   const navigate = useNavigate();
 
-  const { data, error, isLoading } = apiService.useFetchSearchDetailsQuery(
+  const { data, isError, isFetching } = apiService.useFetchSearchDetailsQuery(
     Number(id)
   );
 
@@ -21,7 +21,7 @@ export const SearchDetails = (): ReactNode => {
     navigate(`/search/${page}`);
   };
 
-  const content = error ? (
+  const content = isError ? (
     <SearchError message="Failed to fetch data" />
   ) : (
     <div className="details-item">
@@ -36,5 +36,5 @@ export const SearchDetails = (): ReactNode => {
     </div>
   );
 
-  return <div className="details">{isLoading ? <Spinner /> : content}</div>;
+  return <div className="details">{isFetching ? <Spinner /> : content}</div>;
 };

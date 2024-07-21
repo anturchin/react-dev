@@ -21,7 +21,7 @@ export const SearchContainer = (): ReactNode => {
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
 
-  const { data, error, isLoading } = apiService.useFetchSearchResultsQuery({
+  const { data, isError, isFetching } = apiService.useFetchSearchResultsQuery({
     query: valueQuery,
     page: Number(page) || RESET_PAGE,
   });
@@ -47,7 +47,7 @@ export const SearchContainer = (): ReactNode => {
     navigate(`/search/${Number(page) || RESET_PAGE}`);
   };
 
-  const content = error ? (
+  const content = isError ? (
     <SearchError message="Failed to fetch data" />
   ) : (
     <SearchResults
@@ -68,7 +68,7 @@ export const SearchContainer = (): ReactNode => {
           />
         )}
         <div className="wrapper">
-          {isLoading ? <Spinner /> : content}
+          {isFetching ? <Spinner /> : content}
           <Outlet />
         </div>
       </ErrorBoundary>
