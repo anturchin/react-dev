@@ -5,7 +5,7 @@ import { Button } from '../../ui/button';
 import { AdditionalClass } from './types';
 import { Spinner } from '../../simple/spinner';
 import { SearchError } from '../../simple/searchError';
-import { apiService } from '../../../core/services/apiService';
+import { useFetchSearchDetailsQuery } from '../../../core/services/apiService';
 
 import './SearchDetails.css';
 
@@ -13,9 +13,7 @@ export const SearchDetails = (): ReactNode => {
   const { id, page } = useParams<{ id: string; page: string }>();
   const navigate = useNavigate();
 
-  const { data, isError, isFetching } = apiService.useFetchSearchDetailsQuery(
-    Number(id)
-  );
+  const { data, isError, isFetching } = useFetchSearchDetailsQuery(Number(id));
 
   const onHandleClose = () => {
     navigate(`/search/${page}`);

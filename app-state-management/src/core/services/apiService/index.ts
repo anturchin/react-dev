@@ -1,1 +1,5 @@
-export { apiService } from './apiService';
+export {
+  apiService,
+  useFetchSearchResultsQuery,
+  useFetchSearchDetailsQuery,
+} from './apiService';

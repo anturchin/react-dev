@@ -23,3 +23,6 @@ export const apiService = createApi({
     }),
   }),
 });
+
+export const { useFetchSearchResultsQuery, useFetchSearchDetailsQuery } =
+  apiService;

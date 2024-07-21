@@ -9,7 +9,7 @@ import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 import { LsKey } from '../../core/services/localStorageService/types';
-import { apiService } from '../../core/services/apiService';
+import { useFetchSearchResultsQuery } from '../../core/services/apiService';
 
 import './SearchContainer.css';
 
@@ -21,7 +21,7 @@ export const SearchContainer = (): ReactNode => {
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
 
-  const { data, isError, isFetching } = apiService.useFetchSearchResultsQuery({
+  const { data, isError, isFetching } = useFetchSearchResultsQuery({
     query: valueQuery,
     page: Number(page) || RESET_PAGE,
   });
