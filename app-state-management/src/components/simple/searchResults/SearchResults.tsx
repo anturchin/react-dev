@@ -20,16 +20,17 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
 
   return (
     <div className="search-results" onClick={onResultClick}>
-      {results.map((result) => (
-        <div key={result.id} className={`result-item result-item-${theme}`}>
-          <h3 className="person-name">{result.name}</h3>
-          <p className="person-gender">{result.gender}</p>
-          <img className="image" src={result.image} alt="image" />
-          <Button onClick={(e) => handleButtonClick(e, result.id)}>
-            Info details
-          </Button>
-        </div>
-      ))}
+      {Array.isArray(results) &&
+        results.map((result) => (
+          <div key={result.id} className={`result-item result-item-${theme}`}>
+            <h3 className="person-name">{result.name}</h3>
+            <p className="person-gender">{result.gender}</p>
+            <img className="image" src={result.image} alt="image" />
+            <Button onClick={(e) => handleButtonClick(e, result.id)}>
+              Info details
+            </Button>
+          </div>
+        ))}
     </div>
   );
 };

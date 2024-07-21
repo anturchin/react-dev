@@ -97,7 +97,7 @@ export const SearchContainer = (): ReactNode => {
     <>
       <ErrorBoundary>
         <SearchBar onSearch={handleSearch} initialQuery={valueQuery} />
-        {info.pages > 1 && (
+        {info && info.pages > 1 && (
           <SearchPagination
             onPageChange={onPageChange}
             currentPage={currentPage}
