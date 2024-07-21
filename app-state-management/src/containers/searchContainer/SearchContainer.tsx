@@ -1,5 +1,5 @@
 import { ReactNode, useCallback, useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ErrorBoundary } from '../../components/smart/errorBoundary';
@@ -27,6 +27,7 @@ import './SearchContainer.css';
 const RESET_PAGE = 1;
 
 export const SearchContainer = (): ReactNode => {
+  const { page } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -57,8 +58,9 @@ export const SearchContainer = (): ReactNode => {
   );
 
   useEffect(() => {
-    performSearch(valueQuery, currentPage);
-  }, [performSearch, valueQuery, currentPage]);
+    const newPage = page ? Number(page) : currentPage;
+    performSearch(valueQuery, newPage);
+  }, [performSearch, valueQuery, currentPage, page]);
 
   const handleSearch = (newQuery: string): void => {
     if (valueQuery === newQuery) {

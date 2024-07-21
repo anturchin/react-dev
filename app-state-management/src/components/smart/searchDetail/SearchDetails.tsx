@@ -1,5 +1,6 @@
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '../../ui/button';
 import { AdditionalClass } from './types';
@@ -9,6 +10,12 @@ import { delay } from '../../../core/utils/delay/delay';
 import { apiService } from '../../../core/services/apiService';
 import { Spinner } from '../../simple/spinner';
 import { SearchError } from '../../simple/searchError';
+import { AppDispatch, RootState } from '../../../core/store/store';
+import {
+  fetchError,
+  fetchedDetailPage,
+  fetchingDetailPage,
+} from '../../../core/slices/detailPageSlice';
 
 import './SearchDetails.css';
 
@@ -16,38 +23,33 @@ export const SearchDetails = (): ReactNode => {
   const { id, page } = useParams<{ id: string; page: string }>();
   const navigate = useNavigate();
 
-  const [details, setDetails] = useState<DetailsCharactersType | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const { details, isLoading, error, errorMessage } = useSelector(
+    (state: RootState) => state.detailsPage
+  );
+
+  const loadCharacterDetails = useCallback(
+    async (id: number) => {
+      dispatch(fetchingDetailPage());
+      try {
+        await delay(DelayDuration.SHORT);
+        const details = (await apiService.fetchSearchDetails?.(
+          id
+        )) as DetailsCharactersType;
+        dispatch(fetchedDetailPage({ details }));
+      } catch (error) {
+        if (error instanceof Error) {
+          dispatch(fetchError(error.message));
+          console.error('Error fetching search character:', error.message);
+        }
+      }
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    setDetails(null);
-    setIsLoading(true);
-    setError(false);
-    setErrorMessage('');
     loadCharacterDetails(Number(id));
-  }, [id]);
-
-  const loadCharacterDetails = async (id: number) => {
-    setIsLoading(true);
-    try {
-      await delay(DelayDuration.SHORT);
-      const details = (await apiService.fetchSearchDetails?.(
-        id
-      )) as DetailsCharactersType;
-      setDetails(details);
-      setError(false);
-    } catch (error) {
-      if (error instanceof Error) {
-        setError(true);
-        setErrorMessage(error.message);
-        console.error('Error fetching search character:', error.message);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  }, [id, dispatch, loadCharacterDetails]);
 
   const onHandleClose = () => {
     navigate(`/search/${page}`);
