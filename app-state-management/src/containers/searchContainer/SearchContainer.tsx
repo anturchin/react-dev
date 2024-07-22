@@ -11,6 +11,9 @@ import { SearchPagination } from '../../components/simple/searchPagination';
 import { LsKey } from '../../core/services/localStorageService/types';
 import { useFetchSearchResultsQuery } from '../../core/slices/rickAndMortyApiSlice';
 import { FAILED_TO_FETCH, RESET_PAGE } from '../../core/constants';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../core/store/store';
+import { setCurrentPage } from '../../core/slices/currentPageSlice';
 
 import './SearchContainer.css';
 
@@ -19,6 +22,7 @@ export const SearchContainer = (): ReactNode => {
   const navigate = useNavigate();
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
+  const dispatch = useDispatch<AppDispatch>();
 
   const { data, isError, isFetching } = useFetchSearchResultsQuery({
     query: valueQuery,
@@ -35,6 +39,7 @@ export const SearchContainer = (): ReactNode => {
   };
 
   const onPageChange = (page: number): void => {
+    dispatch(setCurrentPage(page));
     navigate(`/search/${page}`);
   };
 

@@ -1,1 +1,1 @@
-export { currentPageSlice } from './currentPageSlice';
+export { currentPageSlice, setCurrentPage } from './currentPageSlice';

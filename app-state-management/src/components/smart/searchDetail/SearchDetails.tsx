@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../../ui/button';
@@ -7,6 +7,9 @@ import { Spinner } from '../../simple/spinner';
 import { SearchError } from '../../simple/searchError';
 import { useFetchSearchDetailsQuery } from '../../../core/slices/rickAndMortyApiSlice';
 import { FAILED_TO_FETCH } from '../../../core/constants';
+import { AppDispatch } from '../../../core/store/store';
+import { useDispatch } from 'react-redux';
+import { setSelectedItemDetails } from '../../../core/slices/selectedItemDetailsSlice';
 
 import './SearchDetails.css';
 
@@ -15,6 +18,11 @@ export const SearchDetails = (): ReactNode => {
   const navigate = useNavigate();
 
   const { data, isError, isFetching } = useFetchSearchDetailsQuery(Number(id));
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (data) dispatch(setSelectedItemDetails(data));
+  });
 
   const onHandleClose = () => {
     navigate(`/search/${page}`);

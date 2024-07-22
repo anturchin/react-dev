@@ -15,3 +15,5 @@ export const currentPageSlice = createSlice({
     },
   },
 });
+
+export const { setCurrentPage } = currentPageSlice.actions;

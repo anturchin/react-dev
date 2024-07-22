@@ -22,3 +22,6 @@ export const selectedItemDetailsSlice = createSlice({
     },
   },
 });
+
+export const { clearSelectedItemDetails, setSelectedItemDetails } =
+  selectedItemDetailsSlice.actions;
