@@ -36,3 +36,6 @@ export const selectedItemsSlice = createSlice({
     },
   },
 });
+
+export const { setSelectedItem, deleteSelectedItem, clearSelectedItems } =
+  selectedItemsSlice.actions;

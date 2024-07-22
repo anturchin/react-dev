@@ -1,1 +1,6 @@
-export { selectedItemsSlice } from './selectedItemsSlice';
+export {
+  selectedItemsSlice,
+  setSelectedItem,
+  deleteSelectedItem,
+  clearSelectedItems,
+} from './selectedItemsSlice';
