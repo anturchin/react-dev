@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ErrorBoundary } from '../../components/smart/errorBoundary';
@@ -29,6 +29,16 @@ export const SearchContainer = (): ReactNode => {
     page: Number(page) || RESET_PAGE,
   });
 
+  useEffect(() => {
+    if (data)
+      dispatch(
+        setCurrentPage({
+          currentPage: Number(page) || RESET_PAGE,
+          results: data.results,
+        })
+      );
+  }, [data, page, dispatch]);
+
   const handleSearch = (newQuery: string): void => {
     if (valueQuery === newQuery) {
       return;
@@ -39,7 +49,8 @@ export const SearchContainer = (): ReactNode => {
   };
 
   const onPageChange = (page: number): void => {
-    dispatch(setCurrentPage(page));
+    if (data)
+      dispatch(setCurrentPage({ currentPage: page, results: data.results }));
     navigate(`/search/${page}`);
   };
 

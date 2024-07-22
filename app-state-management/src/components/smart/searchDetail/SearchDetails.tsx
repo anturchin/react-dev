@@ -22,7 +22,7 @@ export const SearchDetails = (): ReactNode => {
 
   useEffect(() => {
     if (data) dispatch(setSelectedItemDetails(data));
-  });
+  }, [data, dispatch]);
 
   const onHandleClose = () => {
     navigate(`/search/${page}`);
