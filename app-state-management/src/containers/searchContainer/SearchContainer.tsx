@@ -3,7 +3,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 import { ErrorBoundary } from '../../components/smart/errorBoundary';
 import { SearchBar } from '../../components/smart/searchBar';
-import { SearchResults } from '../../components/simple/searchResults';
+import { SearchResults } from '../../components/smart/searchResults';
 import { Spinner } from '../../components/simple/spinner';
 import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
