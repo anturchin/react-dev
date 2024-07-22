@@ -1,5 +1,5 @@
 export {
-  apiService,
+  rickAndMortyApiSlice,
   useFetchSearchResultsQuery,
   useFetchSearchDetailsQuery,
-} from './apiService';
+} from './rickAndMortyApiSlice';

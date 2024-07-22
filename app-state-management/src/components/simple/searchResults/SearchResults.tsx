@@ -2,9 +2,9 @@ import { ReactNode, useContext } from 'react';
 
 import { ISearchResultsProps } from './types';
 import { Button } from '../../ui/button';
+import { ThemeContext } from '../../../core/context/themeContext';
 
 import './SearchResults.css';
-import { ThemeContext } from '../../../core/context/themeContext';
 
 export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   const { results, onInfoDetailsClick, onResultClick } = props;

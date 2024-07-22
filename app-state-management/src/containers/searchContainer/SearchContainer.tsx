@@ -9,11 +9,10 @@ import { SearchError } from '../../components/simple/searchError';
 import { useLocalStorage } from '../../core/hooks/useLocalStorage';
 import { SearchPagination } from '../../components/simple/searchPagination';
 import { LsKey } from '../../core/services/localStorageService/types';
-import { useFetchSearchResultsQuery } from '../../core/services/apiService';
+import { useFetchSearchResultsQuery } from '../../core/slices/rickAndMortyApiSlice';
+import { FAILED_TO_FETCH, RESET_PAGE } from '../../core/constants';
 
 import './SearchContainer.css';
-
-const RESET_PAGE = 1;
 
 export const SearchContainer = (): ReactNode => {
   const { page } = useParams();
@@ -48,7 +47,7 @@ export const SearchContainer = (): ReactNode => {
   };
 
   const content = isError ? (
-    <SearchError message="Failed to fetch data" />
+    <SearchError message={FAILED_TO_FETCH} />
   ) : (
     <SearchResults
       results={data?.results || []}

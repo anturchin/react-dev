@@ -5,7 +5,8 @@ import { Button } from '../../ui/button';
 import { AdditionalClass } from './types';
 import { Spinner } from '../../simple/spinner';
 import { SearchError } from '../../simple/searchError';
-import { useFetchSearchDetailsQuery } from '../../../core/services/apiService';
+import { useFetchSearchDetailsQuery } from '../../../core/slices/rickAndMortyApiSlice';
+import { FAILED_TO_FETCH } from '../../../core/constants';
 
 import './SearchDetails.css';
 
@@ -20,7 +21,7 @@ export const SearchDetails = (): ReactNode => {
   };
 
   const content = isError ? (
-    <SearchError message="Failed to fetch data" />
+    <SearchError message={FAILED_TO_FETCH} />
   ) : (
     <div className="details-item">
       <Button onClick={onHandleClose} additionalClass={AdditionalClass.RED}>

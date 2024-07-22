@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ISearchResponse, DetailsCharactersType } from './types';
 import { BASE_URL } from '../../constants';
 
-export const apiService = createApi({
-  reducerPath: 'apiService',
+export const rickAndMortyApiSlice = createApi({
+  reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     fetchSearchResults: builder.query<
@@ -25,4 +25,4 @@ export const apiService = createApi({
 });
 
 export const { useFetchSearchResultsQuery, useFetchSearchDetailsQuery } =
-  apiService;
+  rickAndMortyApiSlice;

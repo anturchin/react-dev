@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiService } from '../services/apiService/apiService';
+import { rickAndMortyApiSlice } from '../slices/rickAndMortyApiSlice/rickAndMortyApiSlice';
 
 export const store = configureStore({
   reducer: {
-    [apiService.reducerPath]: apiService.reducer,
+    [rickAndMortyApiSlice.reducerPath]: rickAndMortyApiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiService.middleware),
+    getDefaultMiddleware().concat(rickAndMortyApiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
