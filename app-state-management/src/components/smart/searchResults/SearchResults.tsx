@@ -30,11 +30,18 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
 
   const handleSelectedItem = (e: ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation();
+    const item = results.find((item) => item.id === Number(e.target.id));
     if (e.target.checked) {
-      dispatch(setSelectedItem(Number(e.target.id)));
+      if (item) dispatch(setSelectedItem({ ...item }));
     } else {
-      dispatch(deleteSelectedItem(Number(e.target.id)));
+      if (item) dispatch(deleteSelectedItem({ ...item }));
     }
+  };
+
+  const checkedItem = (id: number) => {
+    const item = selectedItems.find((item) => item.id === id);
+    if (item) return true;
+    return false;
   };
 
   return (
@@ -44,7 +51,7 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
           <div key={result.id} className={`result-item result-item-${theme}`}>
             <Checkbox
               resultId={result.id}
-              checked={selectedItems.includes(result.id)}
+              checked={checkedItem(result.id)}
               handleSelectedItem={handleSelectedItem}
             />
             <h3 className="person-name">{`${stringUtils.cutString?.(result.name)}`}</h3>
