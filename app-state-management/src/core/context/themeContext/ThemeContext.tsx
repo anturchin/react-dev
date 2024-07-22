@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+
 import { ContextPropType, ITheme, Theme } from './types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { LsKey } from '../../services/localStorageService/types';

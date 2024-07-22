@@ -1,0 +1,1 @@
+export { selectedItemDetailsSlice } from './selectedItemDetailsSlice';

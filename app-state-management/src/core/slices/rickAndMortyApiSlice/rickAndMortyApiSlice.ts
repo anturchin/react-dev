@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
 import { ISearchResponse, DetailsCharactersType } from './types';
 import { BASE_URL } from '../../constants';
 
