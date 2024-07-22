@@ -1,12 +1,12 @@
-.checkbox-wrapper-19 {
+.checkbox-wrapper {
   --checkbox-height: 25px;
 }
 
-.checkbox-wrapper-19 input[type='checkbox'] {
+.checkbox-wrapper input[type='checkbox'] {
   display: none;
 }
 
-.checkbox-wrapper-19 .check-box {
+.checkbox-wrapper .check-box {
   height: var(--checkbox-height);
   width: var(--checkbox-height);
   background-color: transparent;
@@ -18,8 +18,8 @@
   transition: border-color ease 0.2s;
   cursor: pointer;
 }
-.checkbox-wrapper-19 .check-box::before,
-.checkbox-wrapper-19 .check-box::after {
+.checkbox-wrapper .check-box::before,
+.checkbox-wrapper .check-box::after {
   box-sizing: border-box;
   position: absolute;
   height: 0;
@@ -31,29 +31,29 @@
   content: ' ';
   transition: opacity ease 0.5;
 }
-.checkbox-wrapper-19 .check-box::before {
+.checkbox-wrapper .check-box::before {
   top: calc(var(--checkbox-height) * 0.72);
   left: calc(var(--checkbox-height) * 0.41);
   box-shadow: 0 0 0 calc(var(--checkbox-height) * 0.05) var(--background-color);
   transform: rotate(-135deg);
 }
-.checkbox-wrapper-19 .check-box::after {
+.checkbox-wrapper .check-box::after {
   top: calc(var(--checkbox-height) * 0.37);
   left: calc(var(--checkbox-height) * 0.05);
   transform: rotate(-45deg);
 }
 
-.checkbox-wrapper-19 input[type='checkbox']:checked + .check-box,
-.checkbox-wrapper-19 .check-box.checked {
+.checkbox-wrapper input[type='checkbox']:checked + .check-box,
+.checkbox-wrapper .check-box.checked {
   border-color: #34b93d;
 }
-.checkbox-wrapper-19 input[type='checkbox']:checked + .check-box::after,
-.checkbox-wrapper-19 .check-box.checked::after {
+.checkbox-wrapper input[type='checkbox']:checked + .check-box::after,
+.checkbox-wrapper .check-box.checked::after {
   height: calc(var(--checkbox-height) / 2);
   animation: dothabottomcheck-19 0.2s ease 0s forwards;
 }
-.checkbox-wrapper-19 input[type='checkbox']:checked + .check-box::before,
-.checkbox-wrapper-19 .check-box.checked::before {
+.checkbox-wrapper input[type='checkbox']:checked + .check-box::before,
+.checkbox-wrapper .check-box.checked::before {
   height: calc(var(--checkbox-height) * 1.2);
   animation: dothatopcheck-19 0.4s ease 0s forwards;
 }

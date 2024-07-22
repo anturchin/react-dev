@@ -10,7 +10,7 @@ export const Checkbox = ({
   handleSelectedItem,
 }: ICheckboxProps): ReactNode => {
   return (
-    <div className="checkbox-wrapper-19">
+    <div className="checkbox-wrapper">
       <input
         type="checkbox"
         id={`${resultId}`}
