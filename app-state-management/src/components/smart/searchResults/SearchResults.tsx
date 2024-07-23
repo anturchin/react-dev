@@ -7,6 +7,7 @@ import { ThemeContext } from '../../../core/context/themeContext';
 import { Checkbox } from '../../ui/checkbox';
 import { AppDispatch, RootState } from '../../../core/store/store';
 import {
+  clearSelectedItems,
   deleteSelectedItem,
   setSelectedItem,
 } from '../../../core/slices/selectedItemsSlice';
@@ -42,6 +43,10 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     }
   };
 
+  const deselectItems = (): void => {
+    dispatch(clearSelectedItems());
+  };
+
   const checkedItem = (id: number): boolean => {
     const item = selectedItems.find((item) => item.id === id);
     if (item) return true;
@@ -68,7 +73,9 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
             </div>
           ))}
       </div>
-      {selectedItems.length > 0 && <Modal count={selectedItems.length} />}
+      {selectedItems.length > 0 && (
+        <Modal onClick={deselectItems} count={selectedItems.length} />
+      )}
     </>
   );
 };
