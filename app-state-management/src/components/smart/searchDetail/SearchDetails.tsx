@@ -24,7 +24,7 @@ export const SearchDetails = (): ReactNode => {
     if (data) dispatch(setSelectedItemDetails(data));
   }, [data, dispatch]);
 
-  const onHandleClose = () => {
+  const onHandleClose = (): void => {
     navigate(`/search/${page}`);
   };
 

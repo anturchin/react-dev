@@ -7,7 +7,7 @@ import './SearchPagination.css';
 export const SearchPagination = (props: PaginationPropType): ReactNode => {
   const { currentPage, totalPage, onPageChange } = props;
 
-  const handlePageChange = (newPage: number) => {
+  const handlePageChange = (newPage: number): void => {
     if (newPage > 0 && newPage <= totalPage) {
       onPageChange(newPage);
     }

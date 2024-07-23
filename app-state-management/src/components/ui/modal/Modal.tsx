@@ -1,10 +1,12 @@
 import { ReactNode, useContext } from 'react';
+
 import { ThemeContext } from '../../../core/context/themeContext';
+import { ITheme } from '../../../core/context/themeContext/types';
 
 import './Modal.css';
 
 export const Modal = ({ count = 0 }: { count: number }): ReactNode => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext<ITheme>(ThemeContext);
 
   return (
     <div className={`modal modal-theme-${theme}`}>

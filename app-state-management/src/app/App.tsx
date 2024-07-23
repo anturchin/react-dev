@@ -7,11 +7,12 @@ import {
   ThemeContextProvider,
 } from '../core/context/themeContext';
 import { store } from '../core/store';
+import { ITheme } from '../core/context/themeContext/types';
 
 import './App.css';
 
-const AppContent = () => {
-  const { theme } = useContext(ThemeContext);
+const AppContent = (): ReactNode => {
+  const { theme } = useContext<ITheme>(ThemeContext);
 
   return (
     <div className={`app-container ${theme}-theme`}>

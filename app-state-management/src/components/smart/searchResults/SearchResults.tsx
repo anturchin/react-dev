@@ -24,12 +24,15 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     (state: RootState) => state.selectedItems
   );
 
-  const handleButtonClick = (e: MouseEvent<HTMLButtonElement>, id: number) => {
+  const handleButtonClick = (
+    e: MouseEvent<HTMLButtonElement>,
+    id: number
+  ): void => {
     e.stopPropagation();
     onInfoDetailsClick(id);
   };
 
-  const handleSelectedItem = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSelectedItem = (e: ChangeEvent<HTMLInputElement>): void => {
     e.stopPropagation();
     const item = results.find((item) => item.id === Number(e.target.id));
     if (e.target.checked) {
@@ -39,7 +42,7 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     }
   };
 
-  const checkedItem = (id: number) => {
+  const checkedItem = (id: number): boolean => {
     const item = selectedItems.find((item) => item.id === id);
     if (item) return true;
     return false;

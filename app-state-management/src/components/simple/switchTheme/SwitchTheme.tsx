@@ -1,13 +1,14 @@
 import { ReactNode, useContext } from 'react';
+
 import { ThemeContext } from '../../../core/context/themeContext';
-import { Theme } from '../../../core/context/themeContext/types';
+import { ITheme, Theme } from '../../../core/context/themeContext/types';
 
 import './SwitchTheme.css';
 
 export const SwitchTheme = (): ReactNode => {
-  const { theme, handleChangeTheme } = useContext(ThemeContext);
+  const { theme, handleChangeTheme } = useContext<ITheme>(ThemeContext);
 
-  const onToggleTheme = () => {
+  const onToggleTheme = (): void => {
     const newTheme = (theme as string) === 'light' ? 'dark' : 'light';
     handleChangeTheme(newTheme as Theme);
   };

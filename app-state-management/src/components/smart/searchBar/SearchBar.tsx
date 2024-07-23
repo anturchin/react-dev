@@ -24,7 +24,7 @@ export const SearchBar = (props: SearchBarProps): ReactNode => {
     props.onSearch(trimmedQuery);
   };
 
-  const triggerError = () => {
+  const triggerError = (): void => {
     if (context) {
       context.triggerError();
     }

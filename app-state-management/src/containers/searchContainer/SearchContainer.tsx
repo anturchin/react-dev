@@ -54,7 +54,7 @@ export const SearchContainer = (): ReactNode => {
     navigate(`/search/${page}`);
   };
 
-  const handleDetailsClick = (id: number) => {
+  const handleDetailsClick = (id: number): void => {
     navigate(`/search/${Number(page) || RESET_PAGE}/details/${id}`);
   };
 
@@ -62,7 +62,7 @@ export const SearchContainer = (): ReactNode => {
     navigate(`/search/${Number(page) || RESET_PAGE}`);
   };
 
-  const content = isError ? (
+  const content: ReactNode = isError ? (
     <SearchError message={FAILED_TO_FETCH} />
   ) : (
     <SearchResults
