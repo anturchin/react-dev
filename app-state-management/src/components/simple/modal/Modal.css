@@ -7,6 +7,10 @@
   border-radius: 10px;
 }
 
+.modal a {
+  text-decoration: none;
+}
+
 .modal-theme-light {
   background-color: var(--dark);
   color: var(--light);

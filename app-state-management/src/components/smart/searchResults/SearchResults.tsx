@@ -12,7 +12,8 @@ import {
   setSelectedItem,
 } from '../../../core/slices/selectedItemsSlice';
 import { stringUtils } from '../../../core/utils/stringUtils';
-import { Modal } from '../../ui/modal/Modal';
+import { Modal } from '../../simple/modal/Modal';
+import { generateCSV } from '../../../core/utils/csvUtils/csvUtils';
 
 import './SearchResults.css';
 
@@ -53,6 +54,19 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     return false;
   };
 
+  const generateFileName = () => `${selectedItems.length}_items.csv`;
+
+  const getBlob = (): Blob => {
+    return generateCSV(
+      selectedItems.map((item) => ({
+        id: item.id,
+        gender: item.gender,
+        image: item.image,
+        name: item.name,
+      }))
+    );
+  };
+
   return (
     <>
       <div className="search-results" onClick={onResultClick}>
@@ -74,7 +88,12 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
           ))}
       </div>
       {selectedItems.length > 0 && (
-        <Modal onClick={deselectItems} count={selectedItems.length} />
+        <Modal
+          filename={generateFileName()}
+          blob={getBlob()}
+          deselectItems={deselectItems}
+          count={selectedItems.length}
+        />
       )}
     </>
   );

@@ -6,10 +6,14 @@ import { ITheme } from '../../../core/context/themeContext/types';
 import './Modal.css';
 
 export const Modal = ({
-  onClick,
+  deselectItems,
+  filename,
+  blob,
   count = 0,
 }: {
-  onClick: () => void;
+  deselectItems: () => void;
+  filename: string;
+  blob: Blob;
   count: number;
 }): ReactNode => {
   const { theme } = useContext<ITheme>(ThemeContext);
@@ -18,10 +22,19 @@ export const Modal = ({
     <div className={`modal modal-theme-${theme}`}>
       <p className="modal-content">Selected items: {count}</p>
       <div className="modal-btn">
-        <button onClick={onClick} className={`btn red modal-btn-${theme}`}>
+        <button
+          onClick={deselectItems}
+          className={`btn red modal-btn-${theme}`}
+        >
           deselect all
         </button>
-        <button className={`btn modal-btn-${theme}`}>load</button>
+        <a
+          href={URL.createObjectURL(blob)}
+          download={filename}
+          className={`btn modal-btn-${theme}`}
+        >
+          load
+        </a>
       </div>
     </div>
   );
