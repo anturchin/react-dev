@@ -11,6 +11,7 @@ import {
   setSelectedItem,
 } from '../../../core/slices/selectedItemsSlice';
 import { stringUtils } from '../../../core/utils/stringUtils';
+import { Modal } from '../../ui/modal/Modal';
 
 import './SearchResults.css';
 
@@ -45,23 +46,26 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   };
 
   return (
-    <div className="search-results" onClick={onResultClick}>
-      {Array.isArray(results) &&
-        results.map((result) => (
-          <div key={result.id} className={`result-item result-item-${theme}`}>
-            <Checkbox
-              resultId={result.id}
-              checked={checkedItem(result.id)}
-              handleSelectedItem={handleSelectedItem}
-            />
-            <h3 className="person-name">{`${stringUtils.cutString?.(result.name)}`}</h3>
-            <p className="person-gender">{result.gender}</p>
-            <img className="image" src={result.image} alt="image" />
-            <Button onClick={(e) => handleButtonClick(e, result.id)}>
-              Info details
-            </Button>
-          </div>
-        ))}
-    </div>
+    <>
+      <div className="search-results" onClick={onResultClick}>
+        {Array.isArray(results) &&
+          results.map((result) => (
+            <div key={result.id} className={`result-item result-item-${theme}`}>
+              <Checkbox
+                resultId={result.id}
+                checked={checkedItem(result.id)}
+                handleSelectedItem={handleSelectedItem}
+              />
+              <h3 className="person-name">{`${stringUtils.cutString?.(result.name)}`}</h3>
+              <p className="person-gender">{result.gender}</p>
+              <img className="image" src={result.image} alt="image" />
+              <Button onClick={(e) => handleButtonClick(e, result.id)}>
+                Info details
+              </Button>
+            </div>
+          ))}
+      </div>
+      {selectedItems.length > 0 && <Modal count={selectedItems.length} />}
+    </>
   );
 };
