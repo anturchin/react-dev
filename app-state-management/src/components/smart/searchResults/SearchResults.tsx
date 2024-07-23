@@ -54,7 +54,7 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     return false;
   };
 
-  const generateFileName = () => `${selectedItems.length}_items.csv`;
+  const generateFileName = () => `${selectedItems.length}_character.csv`;
 
   const getBlob = (): Blob => {
     return generateCSV(
@@ -67,12 +67,20 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
     );
   };
 
+  const setClassNames = (id: number): string => {
+    let classNames: string = `result-item result-item-${theme}`;
+    if (checkedItem(id)) {
+      classNames += ' checked';
+    }
+    return classNames;
+  };
+
   return (
     <>
       <div className="search-results" onClick={onResultClick}>
         {Array.isArray(results) &&
           results.map((result) => (
-            <div key={result.id} className={`result-item result-item-${theme}`}>
+            <div key={result.id} className={setClassNames(result.id)}>
               <Checkbox
                 resultId={result.id}
                 checked={checkedItem(result.id)}
