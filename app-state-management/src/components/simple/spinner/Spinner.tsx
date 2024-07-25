@@ -7,5 +7,5 @@ import './Spinner.css';
 
 export const Spinner = (): ReactNode => {
   const { theme } = useContext<ITheme>(ThemeContext);
-  return <div className={`spinner spinner-${theme}`}></div>;
+  return <div className={`spinner spinner-${theme}`} role="status"></div>;
 };
