@@ -1,0 +1,2 @@
+cd app-state-management/
+npm run lint
