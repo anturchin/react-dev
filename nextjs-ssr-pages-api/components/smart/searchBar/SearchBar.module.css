@@ -17,3 +17,8 @@
   display: flex;
   gap: 5px;
 }
+
+.title {
+  text-align: center;
+  font-size: 6rem;
+}

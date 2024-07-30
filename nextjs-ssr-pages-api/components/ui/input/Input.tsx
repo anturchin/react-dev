@@ -4,7 +4,7 @@ import { IInputProps } from './types';
 import { ThemeContext } from '../../../core/context/themeContext';
 import { ITheme } from '../../../core/context/themeContext/types';
 
-import './Input.css';
+import styles from './Input.module.css';
 
 export const Input = (props: IInputProps): ReactNode => {
   const { onChange, value, placeholder } = props;
@@ -13,7 +13,7 @@ export const Input = (props: IInputProps): ReactNode => {
   return (
     <input
       placeholder={placeholder}
-      className={`input input-${theme}`}
+      className={`${styles["input"]} ${styles[`input-${theme}`]}`}
       type="text"
       value={value}
       onChange={onChange}

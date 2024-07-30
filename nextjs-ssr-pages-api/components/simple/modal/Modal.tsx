@@ -3,7 +3,7 @@ import { ReactNode, useContext } from 'react';
 import { ThemeContext } from '@/core/context/themeContext';
 import { ITheme } from '@/core/context/themeContext/types';
 
-import './Modal.css';
+import styles from './Modal.module.css';
 
 export const Modal = ({
   deselectItems,
@@ -19,19 +19,19 @@ export const Modal = ({
   const { theme } = useContext<ITheme>(ThemeContext);
 
   return (
-    <div role="dialog" className={`modal modal-theme-${theme}`}>
-      <p className="modal-content">Selected items: {count}</p>
-      <div className="modal-btn">
+    <div role="dialog" className={ `${styles['modal']} ${styles[`modal-theme-${theme}`]}`}>
+      <p className={`${styles['modal-content']}`}>Selected items: {count}</p>
+      <div className={`${styles["modal-btn"]}`}>
         <button
           onClick={deselectItems}
-          className={`btn red modal-btn-${theme}`}
+          className={`${styles['btn']} ${styles['red']} ${styles[`modal-btn-${theme}`]}}`}
         >
           deselect all
         </button>
         <a
           href={URL.createObjectURL(blob)}
           download={filename}
-          className={`btn modal-btn-${theme}`}
+          className={`${styles['btn']} ${styles[`modal-btn-${theme}`]}`}
         >
           load
         </a>

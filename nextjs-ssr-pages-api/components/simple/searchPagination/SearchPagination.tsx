@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { PaginationPropType } from './types';
 
-import './SearchPagination.css';
+import styles from './SearchPagination.module.css';
 
 export const SearchPagination = (props: PaginationPropType): ReactNode => {
   const { currentPage, totalPage, onPageChange } = props;
@@ -15,7 +15,7 @@ export const SearchPagination = (props: PaginationPropType): ReactNode => {
   };
 
   return (
-    <div className="pagination">
+    <div className={`${styles["pagination"]}`}>
       <Button onClick={() => handlePageChange(currentPage - 1)}>prev</Button>
       <Button onClick={() => handlePageChange(currentPage + 1)}>next</Button>
     </div>

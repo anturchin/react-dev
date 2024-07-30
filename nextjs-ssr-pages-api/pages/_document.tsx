@@ -10,7 +10,7 @@ class CustomDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap"
           />
         </Head>
-        <body>
+        <body className='body'>
           <Main />
           <NextScript />
         </body>

@@ -2,7 +2,7 @@ import { ChangeEvent, ReactNode } from 'react';
 
 import { ICheckboxProps } from './types';
 
-import './Checkbox.css';
+import styles from './Checkbox.module.css';
 
 export const Checkbox = ({
   checked,
@@ -10,14 +10,14 @@ export const Checkbox = ({
   handleSelectedItem,
 }: ICheckboxProps): ReactNode => {
   return (
-    <div className="checkbox-wrapper">
+    <div className={`${styles["checkbox-wrapper"]}`}>
       <input
         type="checkbox"
         id={`${resultId}`}
         checked={checked}
         onChange={(e: ChangeEvent<HTMLInputElement>) => handleSelectedItem(e)}
       />
-      <label htmlFor={`${resultId}`} className="check-box" />
+      <label htmlFor={`${resultId}`} className={`${styles["check-box"]}`} />
     </div>
   );
 };

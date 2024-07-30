@@ -5,7 +5,7 @@ export const enum AdditionalClass {
 export interface SearchBarProps {
   triggerError?: () => void;
   onSearch: (query: string) => void;
-  initialQuery: string;
+  initialQuery?: string;
 }
 
 export interface SearchBarState {

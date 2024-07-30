@@ -4,7 +4,7 @@ import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 import { Button } from '@/components/ui/button';
 import { ErrorBoundaryContext } from '@/core/context/errorBoundaryContext';
 
-import './ErrorBoundary.css';
+import styles from './ErrorBoundary.module.css';
 
 export class ErrorBoundary extends Component<
   ErrorBoundaryProps,
@@ -42,7 +42,7 @@ export class ErrorBoundary extends Component<
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="error-boundary">
+        <div className={`${styles["error-boundary"]}`}>
           <h2>Something went wrong.</h2>
           <Button onClick={this.handleClick}>Try Again</Button>
         </div>

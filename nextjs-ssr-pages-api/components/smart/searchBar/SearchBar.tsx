@@ -7,13 +7,13 @@ import { Input } from '@/components/ui/input';
 import { ErrorBoundaryContext } from '@/core/context/errorBoundaryContext/ErrorBoundaryContext';
 import { IErrorBoundaryContext } from '@/core/context/errorBoundaryContext/types';
 
-import './SearchBar.css';
+import styles from './SearchBar.module.css';
 
 export const SearchBar = (props: SearchBarProps): ReactNode => {
   const context = useContext<IErrorBoundaryContext | null>(
     ErrorBoundaryContext
   );
-  const [query, setQuery] = useState<string>(props.initialQuery);
+  const [query, setQuery] = useState<string>(props.initialQuery || '');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setQuery(event.target.value);
@@ -31,15 +31,15 @@ export const SearchBar = (props: SearchBarProps): ReactNode => {
   };
 
   return (
-    <div className="search-bar">
-      <h2 className="title">The Rick and Morty API</h2>
-      <div className="search-wrapper" onSubmit={handleSubmit}>
+    <div className={`${styles["search-bar"]}`}>
+      <h2 className={`${styles["title"]}`}>The Rick and Morty API</h2>
+      <div className={`${styles["search-wrapper"]}`} onSubmit={handleSubmit}>
         <Input
           placeholder={`Please enter character name`}
           value={query}
           onChange={handleChange}
         />
-        <div className="btn-wrapper">
+        <div className={`${styles["btn-wrapper"]}`}>
           <Button onClick={handleSubmit}>Search</Button>
           <Button onClick={triggerError} additionalClass={AdditionalClass.RED}>
             Trigger error
