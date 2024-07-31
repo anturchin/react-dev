@@ -4,11 +4,11 @@ import {
   useCallback,
   useEffect,
   useState,
-} from 'react';
+} from "react";
 
-import { ContextPropType, ITheme, Theme } from './types';
-import { useLocalStorage } from '@/core/hooks/useLocalStorage';
-import { LsKey } from '@/core/services/localStorageService/types';
+import { useLocalStorage } from "@/core/hooks/useLocalStorage";
+import { LsKey } from "@/core/services/localStorageService/types";
+import { ContextPropType, ITheme, Theme } from "./types";
 
 const INITIAL_STATE = {
   theme: Theme.LIGHT,
@@ -21,7 +21,7 @@ export const ThemeContextProvider = ({
   children,
 }: ContextPropType): ReactNode => {
   const [valueTheme, setValueTheme] = useLocalStorage(LsKey.THEME);
-  const [theme, setTheme] = useState<Theme | string>(valueTheme || Theme.LIGHT);
+  const [theme, setTheme] = useState<Theme | string>(Theme.LIGHT);
 
   const handleChangeTheme = useCallback(
     (theme: Theme) => {
@@ -32,8 +32,10 @@ export const ThemeContextProvider = ({
   );
 
   useEffect(() => {
-    handleChangeTheme(theme as Theme);
-  }, [handleChangeTheme, theme]);
+    if (valueTheme) {
+      setTheme(valueTheme);
+    }
+  }, [valueTheme]);
 
   return (
     <ThemeContext.Provider value={{ theme: theme as Theme, handleChangeTheme }}>

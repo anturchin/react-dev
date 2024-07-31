@@ -1,14 +1,16 @@
-import { ReactNode } from 'react';
+import { ReactNode, useContext } from 'react';
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
-import { ImageSize, ISearchResultsProps } from './types';
 import { Checkbox } from '@/components/ui/checkbox';
+import { ThemeContext } from '@/core/context/themeContext';
+import { ImageSize, ISearchResultsProps } from './types';
 
 import styles from './SearchResults.module.css';
 
 export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   const { results, onInfoDetailsClick, onResultClick } = props;
+  const { theme } = useContext(ThemeContext);
 
   const handleButtonClick = (
     e: React.MouseEvent<HTMLButtonElement>,
@@ -21,7 +23,7 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   return (
     <div className={`${styles["search-results"]}`} onClick={onResultClick}>
       {results.map((result) => (
-        <div key={result.id} className={`${styles["result-item"]}`}>
+        <div key={result.id} className={`${styles["result-item"]} ${styles[`result-item-${theme}`]}`}>
           <Checkbox
                 resultId={result.id}
                 checked={false}

@@ -1,7 +1,6 @@
 import { describe, test, expect, beforeEach, afterEach, vi } from 'vitest';
 
 import { apiService } from './apiService';
-import { BASE_URL } from '@/core/constants';
 import { ISearchResponse, DetailsCharactersType } from './types';
 
 
@@ -41,7 +40,7 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    const result = await apiService.fetchSearchResults(process.env.PUBLIC_BASE_URL || BASE_URL, query, page);
+    const result = await apiService.fetchSearchResults('https://test.ru',  query, page);
     expect(result).toEqual(mockResponse);
   });
 
@@ -52,7 +51,7 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    await expect(apiService.fetchSearchResults(process.env.PUBLIC_BASE_URL || BASE_URL, query, page)).rejects.toThrow(
+    await expect(apiService.fetchSearchResults('https://test.ru', query, page)).rejects.toThrow(
       'Network response was not ok'
     );
   });
@@ -80,7 +79,7 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    const result = await apiService.fetchSearchDetails(process.env.PUBLIC_BASE_URL || BASE_URL, id);
+    const result = await apiService.fetchSearchDetails('https://test.ru', id);
     expect(result).toEqual(mockResponse);
   });
 
@@ -90,7 +89,7 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    await expect(apiService.fetchSearchDetails(process.env.PUBLIC_BASE_URL || BASE_URL, id)).rejects.toThrow(
+    await expect(apiService.fetchSearchDetails('https://test.ru', id)).rejects.toThrow(
       'Network response was not ok'
     );
   });

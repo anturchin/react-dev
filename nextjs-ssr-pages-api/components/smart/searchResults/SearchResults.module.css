@@ -2,30 +2,40 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 25px;
   cursor: pointer;
 }
 
 .result-item {
   font-size: 1.4rem;
-  width: 250px;
+  width: 300px;
+  height: 450px;
+  text-align: center;
   transition: all 0.3s ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: rgb(39, 43, 51);
-  box-shadow: 0 0 82px -40px rgba(39, 43, 51, 0.91) inset;
+  justify-content: space-between;
   border-radius: 10px;
   gap: 5px;
   padding: 10px;
 }
 
-.person-name {
-  font-size: 1.6rem;
+.result-item:hover {
+  position: relative;
+  transform: translateY(-15px);
 }
 
-.person-gender {
-  font-size: 1.4rem;
+.result-item.checked {
+  transform: translateY(-15px);
+}
+
+.result-item-light {
+  box-shadow: 0 0 82px -40px rgba(39, 43, 51, 0.91) inset;
+}
+
+.result-item-dark {
+  box-shadow: 0 0 82px -40px rgba(222, 224, 228, 0.91) inset;
 }
 
 .result-item button {
@@ -35,7 +45,7 @@
 }
 
 .image {
-  border-radius: 15px;
+  border-radius: 10px;
   width: auto;
   height: auto;
   object-fit: contain;

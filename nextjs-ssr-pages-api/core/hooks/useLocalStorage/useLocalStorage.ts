@@ -5,15 +5,24 @@ import { localStorageType } from './types';
 import { LsKey } from '@/core/services/localStorageService/types';
 
 export const useLocalStorage = (key: LsKey): localStorageType => {
-  const [value, setValue] = useState(localStorageService.getQuery?.(key) || '');
+  const [value, setValue] = useState(() => {
+    return localStorageService.getQuery(key) || '';
+  });
 
   useEffect(() => {
-    handleChangeValue(key, value);
-  }, [value, key]);
+    if (typeof window !== 'undefined') {
+      const storedValue = localStorageService.getQuery(key);
+      if (storedValue) {
+        setValue(storedValue);
+      }
+    }
+  }, [key]);
 
   const handleChangeValue = (key: LsKey, newValue: string): void => {
-    localStorageService.saveQuery?.(key, newValue);
-    setValue(newValue);
+    if (typeof window !== 'undefined') {
+      localStorageService.saveQuery(key, newValue);
+      setValue(newValue);
+    }
   };
 
   return [value, handleChangeValue];

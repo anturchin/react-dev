@@ -5,6 +5,6 @@ export const enum LsKey {
 }
 
 export interface ILocalStorageService {
-  saveQuery?: (key: LsKey, query: string) => void;
-  getQuery?: (key: LsKey) => string | null;
+  saveQuery: (key: LsKey, query: string) => void;
+  getQuery: (key: LsKey) => string | null;
 }
