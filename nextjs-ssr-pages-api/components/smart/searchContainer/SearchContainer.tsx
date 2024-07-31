@@ -11,14 +11,10 @@ import { ResultsType } from './types';
 import styles from './SearchContainer.module.css';
 
 export const SearchContainer = (props: ResultsType): ReactNode => {
-  const { results, currentPage, pages, isError } = props;
+  const { results, currentPage, pages, isError, onPageChange } = props;
 
   const handleSearch = (newQuery: string): void => {
     console.log(newQuery);
-  };
-
-  const onPageChange = (page: number): void => {
-    console.log(page);
   };
 
   const handleDetailsClick = (id: number) => {

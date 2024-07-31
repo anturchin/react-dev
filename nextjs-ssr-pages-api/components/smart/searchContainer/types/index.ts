@@ -5,4 +5,5 @@ export type ResultsType = {
   currentPage: number;
   isError: boolean;
   pages: number;
+  onPageChange?: (page: number) => void;
 };
