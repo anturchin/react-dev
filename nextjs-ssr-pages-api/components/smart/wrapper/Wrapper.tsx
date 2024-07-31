@@ -8,7 +8,7 @@ import { ITheme } from '@/core/context/themeContext/types';
 
 import styles from './Wrapper.module.css';
 
-const Content = ({ children }: { children: ReactNode }) => {
+const Content = ({ children }: { children: ReactNode }): JSX.Element => {
   const { theme } = useContext<ITheme>(ThemeContext);
   return (
     <div className={`${styles['app-container']} ${styles[`${theme}-theme`]}`}>
@@ -17,7 +17,7 @@ const Content = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export const Wrapper = ({ children }: { children: ReactNode }) => {
+export const Wrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <ThemeContextProvider>
       <Content>{children}</Content>

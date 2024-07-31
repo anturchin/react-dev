@@ -14,7 +14,7 @@ describe('Modal component', () => {
   const renderWithTheme = (theme: Theme) => {
     render(
       <ThemeContext.Provider
-        value={{ theme: theme as Theme, handleChangeTheme: () => {} }}
+        value={{ theme: theme, handleChangeTheme: () => {} }}
       >
         <Modal
           deselectItems={deselectItemsMock}
@@ -26,10 +26,14 @@ describe('Modal component', () => {
     );
   };
 
+  const createObjectURL = function (this: void): string {
+    return 'mocked-url';
+  } as typeof URL.createObjectURL;
+
   let originalCreateObjectURL: typeof URL.createObjectURL;
 
   beforeAll(() => {
-    originalCreateObjectURL = URL.createObjectURL;
+    originalCreateObjectURL = createObjectURL;
     URL.createObjectURL = vi.fn().mockReturnValue('mocked-url');
   });
 

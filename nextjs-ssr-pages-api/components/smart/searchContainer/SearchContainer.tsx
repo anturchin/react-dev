@@ -1,5 +1,3 @@
-import { ReactNode } from 'react';
-
 import { SearchResults } from '@/components/smart/searchResults';
 import { SearchPagination } from '@/components/simple/searchPagination';
 import { FAILED_TO_FETCH } from '@/core/constants';
@@ -10,7 +8,7 @@ import { ResultsType } from './types';
 
 import styles from './SearchContainer.module.css';
 
-export const SearchContainer = (props: ResultsType): ReactNode => {
+export const SearchContainer = (props: ResultsType): JSX.Element => {
   const { results, currentPage, pages, isError, onPageChange } = props;
 
   const handleSearch = (newQuery: string): void => {

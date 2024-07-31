@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode, useContext, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 
 import { stringUtils } from '@/core/utils/stringUtils';
 import { AdditionalClass, SearchBarProps } from './types';
@@ -9,7 +9,7 @@ import { IErrorBoundaryContext } from '@/core/context/errorBoundaryContext/types
 
 import styles from './SearchBar.module.css';
 
-export const SearchBar = (props: SearchBarProps): ReactNode => {
+export const SearchBar = (props: SearchBarProps): JSX.Element => {
   const context = useContext<IErrorBoundaryContext | null>(
     ErrorBoundaryContext
   );

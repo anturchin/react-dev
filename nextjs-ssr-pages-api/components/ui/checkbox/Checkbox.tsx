@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent } from 'react';
 
 import { ICheckboxProps } from './types';
 
@@ -8,7 +8,7 @@ export const Checkbox = ({
   checked,
   resultId,
   handleSelectedItem,
-}: ICheckboxProps): ReactNode => {
+}: ICheckboxProps): JSX.Element => {
   return (
     <div className={`${styles['checkbox-wrapper']}`}>
       <input

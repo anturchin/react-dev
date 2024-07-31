@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { useContext } from 'react';
 
 import { ThemeContext } from '@/core/context/themeContext';
 import { ITheme } from '@/core/context/themeContext/types';
@@ -15,7 +15,7 @@ export const Modal = ({
   filename: string;
   blob: Blob;
   count: number;
-}): ReactNode => {
+}): JSX.Element => {
   const { theme } = useContext<ITheme>(ThemeContext);
 
   return (

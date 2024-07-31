@@ -1,10 +1,4 @@
-import {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { createContext, useCallback, useEffect, useState } from 'react';
 
 import { useLocalStorage } from '@/core/hooks/useLocalStorage';
 import { LsKey } from '@/core/services/localStorageService/types';
@@ -19,7 +13,7 @@ export const ThemeContext = createContext<ITheme>(INITIAL_STATE);
 
 export const ThemeContextProvider = ({
   children,
-}: ContextPropType): ReactNode => {
+}: ContextPropType): JSX.Element => {
   const [valueTheme, setValueTheme] = useLocalStorage(LsKey.THEME);
   const [theme, setTheme] = useState<Theme | string>(Theme.LIGHT);
 

@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import Image from 'next/image';
 
 import { IDetailsCharacter, AdditionalClass } from './types';
@@ -8,7 +7,7 @@ import { Button } from '@/components/ui/button';
 
 import styles from './SearchDetails.module.css';
 
-export const SearchDetails = (props: IDetailsCharacter): ReactNode => {
+export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
   const { isError, character } = props;
 
   const onHandleClose = (): void => {

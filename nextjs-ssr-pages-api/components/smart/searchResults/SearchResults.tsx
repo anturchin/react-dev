@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { useContext } from 'react';
 import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
@@ -8,7 +8,7 @@ import { ImageSize, ISearchResultsProps } from './types';
 
 import styles from './SearchResults.module.css';
 
-export const SearchResults = (props: ISearchResultsProps): ReactNode => {
+export const SearchResults = (props: ISearchResultsProps): JSX.Element => {
   const { results, onInfoDetailsClick, onResultClick } = props;
   const { theme } = useContext(ThemeContext);
 

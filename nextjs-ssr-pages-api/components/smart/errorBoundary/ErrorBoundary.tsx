@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, ErrorInfo } from 'react';
 
 import { ErrorBoundaryProps, ErrorBoundaryState } from './types';
 import { Button } from '@/components/ui/button';
@@ -39,7 +39,7 @@ export class ErrorBoundary extends Component<
     }
   };
 
-  render(): ReactNode {
+  render(): JSX.Element {
     if (this.state.hasError) {
       return (
         <div className={`${styles['error-boundary']}`}>

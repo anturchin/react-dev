@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from 'react';
+import { useContext } from 'react';
 
 import { IInputProps } from './types';
 import { ThemeContext } from '../../../core/context/themeContext';
@@ -6,7 +6,7 @@ import { ITheme } from '../../../core/context/themeContext/types';
 
 import styles from './Input.module.css';
 
-export const Input = (props: IInputProps): ReactNode => {
+export const Input = (props: IInputProps): JSX.Element => {
   const { onChange, value, placeholder } = props;
   const { theme } = useContext<ITheme>(ThemeContext);
 

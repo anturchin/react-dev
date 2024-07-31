@@ -1,11 +1,9 @@
-import { ReactNode } from 'react';
-
 import { Button } from '@/components/ui/button';
 import { PaginationPropType } from './types';
 
 import styles from './SearchPagination.module.css';
 
-export const SearchPagination = (props: PaginationPropType): ReactNode => {
+export const SearchPagination = (props: PaginationPropType): JSX.Element => {
   const { currentPage, totalPage, onPageChange } = props;
 
   const handlePageChange = (newPage: number): void => {
