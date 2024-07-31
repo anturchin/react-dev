@@ -42,7 +42,7 @@ export class ErrorBoundary extends Component<
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className={`${styles["error-boundary"]}`}>
+        <div className={`${styles['error-boundary']}`}>
           <h2>Something went wrong.</h2>
           <Button onClick={this.handleClick}>Try Again</Button>
         </div>

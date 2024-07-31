@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { useParams } from 'next/navigation';
 import Image from 'next/image';
 
 import { IDetailsCharacter, AdditionalClass } from './types';
@@ -10,27 +9,34 @@ import { Button } from '@/components/ui/button';
 import styles from './SearchDetails.module.css';
 
 export const SearchDetails = (props: IDetailsCharacter): ReactNode => {
-  const { id, page } = useParams<{ id: string; page: string }>();
-
   const { isError, character } = props;
 
   const onHandleClose = (): void => {
-    // navigate(`/search/${page}`);
     console.log('navigate');
   };
 
   const content = isError ? (
     <SearchError message={FAILED_TO_FETCH} />
   ) : (
-    <div className={`${styles["details-item"]}`}>
+    <div className={`${styles['details-item']}`}>
       <Button onClick={onHandleClose} additionalClass={AdditionalClass.RED}>
         Close
       </Button>
-      <Image className={`${styles["details-img"]}`} src={character.image} alt={character.name} />
-      <h3 className={`${styles["details-title"]}`}>{character.name}</h3>
-      <p className={`${styles["details-status"]}`}>Status: {character.status}</p>
-      <p className={`${styles["details-species"]}`}>Species: {character.species}</p>
-      <p className={`${styles["details-gender"]}`}>Gender: {character.gender}</p>
+      <Image
+        className={`${styles['details-img']}`}
+        src={character.image}
+        alt={character.name}
+      />
+      <h3 className={`${styles['details-title']}`}>{character.name}</h3>
+      <p className={`${styles['details-status']}`}>
+        Status: {character.status}
+      </p>
+      <p className={`${styles['details-species']}`}>
+        Species: {character.species}
+      </p>
+      <p className={`${styles['details-gender']}`}>
+        Gender: {character.gender}
+      </p>
     </div>
   );
 

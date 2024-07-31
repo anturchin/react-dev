@@ -10,9 +10,14 @@ export const Button = (props: IButtonProps): ReactNode => {
   const { children, onClick, additionalClass } = props;
   const { theme } = useContext<ITheme>(ThemeContext);
 
-  const addClass: string = additionalClass ? `${styles['btn']} ${styles[additionalClass]}` : `${styles['btn']}`;
+  const addClass: string = additionalClass
+    ? `${styles['btn']} ${styles[additionalClass]}`
+    : `${styles['btn']}`;
   return (
-    <button className={`${addClass} ${styles[`btn-${theme}-theme`]}`} onClick={onClick}>
+    <button
+      className={`${addClass} ${styles[`btn-${theme}-theme`]}`}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

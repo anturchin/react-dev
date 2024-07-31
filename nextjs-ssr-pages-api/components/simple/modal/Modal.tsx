@@ -19,9 +19,12 @@ export const Modal = ({
   const { theme } = useContext<ITheme>(ThemeContext);
 
   return (
-    <div role="dialog" className={ `${styles['modal']} ${styles[`modal-theme-${theme}`]}`}>
+    <div
+      role="dialog"
+      className={`${styles['modal']} ${styles[`modal-theme-${theme}`]}`}
+    >
       <p className={`${styles['modal-content']}`}>Selected items: {count}</p>
-      <div className={`${styles["modal-btn"]}`}>
+      <div className={`${styles['modal-btn']}`}>
         <button
           onClick={deselectItems}
           className={`${styles['btn']} ${styles['red']} ${styles[`modal-btn-${theme}`]}}`}

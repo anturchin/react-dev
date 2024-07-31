@@ -1,15 +1,15 @@
-import { SearchContainer } from "@/components/smart/searchContainer/SearchContainer";
-import { GetStaticProps } from "next";
+import { SearchContainer } from '@/components/smart/searchContainer/SearchContainer';
+import { GetStaticProps } from 'next';
 
-import { ResultsType } from "@/components/smart/searchContainer/types";
-import { apiService } from "@/core/services/apiService";
-import { SwitchTheme } from "@/components/simple/switchTheme";
+import { ResultsType } from '@/components/smart/searchContainer/types';
+import { apiService } from '@/core/services/apiService';
+import { SwitchTheme } from '@/components/simple/switchTheme';
 
 export const getStaticProps: GetStaticProps<ResultsType> = async () => {
   const {
     info: { pages },
     results,
-  } = await apiService.fetchSearchResults(process.env.BASE_URL as string, "");
+  } = await apiService.fetchSearchResults(process.env.BASE_URL as string, '');
 
   return {
     props: {
@@ -22,7 +22,6 @@ export const getStaticProps: GetStaticProps<ResultsType> = async () => {
 };
 
 const Home = (props: ResultsType): JSX.Element => {
-
   return (
     <>
       <SwitchTheme />

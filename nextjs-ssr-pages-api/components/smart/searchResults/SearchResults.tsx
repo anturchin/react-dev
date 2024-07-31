@@ -21,24 +21,27 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   };
 
   return (
-    <div className={`${styles["search-results"]}`} onClick={onResultClick}>
+    <div className={`${styles['search-results']}`} onClick={onResultClick}>
       {results.map((result) => (
-        <div key={result.id} className={`${styles["result-item"]} ${styles[`result-item-${theme}`]}`}>
+        <div
+          key={result.id}
+          className={`${styles['result-item']} ${styles[`result-item-${theme}`]}`}
+        >
           <Checkbox
-                resultId={result.id}
-                checked={false}
-                handleSelectedItem={()=> {}}
-              />
-          <h3 className={`${styles["person-name"]}`}>{result.name}</h3>
-          <p className={`${styles["person-gender"]}`}>{result.gender}</p>
-          <Image 
-            className={`${styles["image"]}`}
+            resultId={result.id}
+            checked={false}
+            handleSelectedItem={() => {}}
+          />
+          <h3 className={`${styles['person-name']}`}>{result.name}</h3>
+          <p className={`${styles['person-gender']}`}>{result.gender}</p>
+          <Image
+            className={`${styles['image']}`}
             src={result.image}
             width={ImageSize.WIDTH}
             height={ImageSize.HEIGHT}
             priority={true}
             alt="image"
-            />
+          />
           <Button onClick={(e) => handleButtonClick(e, result.id)}>
             Info details
           </Button>

@@ -31,15 +31,15 @@ export const SearchBar = (props: SearchBarProps): ReactNode => {
   };
 
   return (
-    <div className={`${styles["search-bar"]}`}>
-      <h2 className={`${styles["title"]}`}>The Rick and Morty API</h2>
-      <div className={`${styles["search-wrapper"]}`} onSubmit={handleSubmit}>
+    <div className={`${styles['search-bar']}`}>
+      <h2 className={`${styles['title']}`}>The Rick and Morty API</h2>
+      <div className={`${styles['search-wrapper']}`} onSubmit={handleSubmit}>
         <Input
           placeholder={`Please enter character name`}
           value={query}
           onChange={handleChange}
         />
-        <div className={`${styles["btn-wrapper"]}`}>
+        <div className={`${styles['btn-wrapper']}`}>
           <Button onClick={handleSubmit}>Search</Button>
           <Button onClick={triggerError} additionalClass={AdditionalClass.RED}>
             Trigger error

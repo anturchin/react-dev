@@ -11,7 +11,6 @@ import { ResultsType } from './types';
 import styles from './SearchContainer.module.css';
 
 export const SearchContainer = (props: ResultsType): ReactNode => {
-
   const { results, currentPage, pages, isError } = props;
 
   const handleSearch = (newQuery: string): void => {
@@ -27,7 +26,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
   };
 
   const handleResultsClick = (): void => {
-    console.log('handleResultsClick')
+    console.log('handleResultsClick');
   };
 
   const content = isError ? (
@@ -42,7 +41,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
   return (
     <>
       <ErrorBoundary>
-        <SearchBar onSearch={handleSearch}  />
+        <SearchBar onSearch={handleSearch} />
         {pages > 1 && (
           <SearchPagination
             onPageChange={onPageChange}
@@ -50,9 +49,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
             totalPage={pages}
           />
         )}
-        <div className={`${styles["wrapper"]}`}>
-          {content}
-        </div>
+        <div className={`${styles['wrapper']}`}>{content}</div>
       </ErrorBoundary>
     </>
   );

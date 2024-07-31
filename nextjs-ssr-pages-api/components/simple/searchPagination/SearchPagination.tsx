@@ -15,7 +15,7 @@ export const SearchPagination = (props: PaginationPropType): ReactNode => {
   };
 
   return (
-    <div className={`${styles["pagination"]}`}>
+    <div className={`${styles['pagination']}`}>
       <Button onClick={() => handlePageChange(currentPage - 1)}>prev</Button>
       <Button onClick={() => handlePageChange(currentPage + 1)}>next</Button>
     </div>

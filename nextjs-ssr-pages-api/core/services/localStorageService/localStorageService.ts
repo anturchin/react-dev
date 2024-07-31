@@ -1,6 +1,6 @@
 import { ILocalStorageService, LsKey } from './types';
 
-export const localStorageService = {
+export const localStorageService: ILocalStorageService = {
   saveQuery: (key: LsKey, value: string): void => {
     if (typeof window !== 'undefined') {
       localStorage.setItem(key, value);

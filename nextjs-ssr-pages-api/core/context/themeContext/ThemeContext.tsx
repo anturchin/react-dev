@@ -4,11 +4,11 @@ import {
   useCallback,
   useEffect,
   useState,
-} from "react";
+} from 'react';
 
-import { useLocalStorage } from "@/core/hooks/useLocalStorage";
-import { LsKey } from "@/core/services/localStorageService/types";
-import { ContextPropType, ITheme, Theme } from "./types";
+import { useLocalStorage } from '@/core/hooks/useLocalStorage';
+import { LsKey } from '@/core/services/localStorageService/types';
+import { ContextPropType, ITheme, Theme } from './types';
 
 const INITIAL_STATE = {
   theme: Theme.LIGHT,

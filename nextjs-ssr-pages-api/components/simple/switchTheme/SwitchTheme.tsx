@@ -14,15 +14,15 @@ export const SwitchTheme = (): ReactNode => {
   };
 
   return (
-    <div className={`${styles["toggle-switch"]}`}>
-      <label className={`${styles["label"]}`}>
+    <div className={`${styles['toggle-switch']}`}>
+      <label className={`${styles['label']}`}>
         <input
-          className={`${styles["input-checkbox"]}`}
+          className={`${styles['input-checkbox']}`}
           type="checkbox"
           onChange={onToggleTheme}
           checked={theme === 'dark'}
         />
-        <span className={`${styles["slider"]}`} />
+        <span className={`${styles['slider']}`} />
       </label>
     </div>
   );

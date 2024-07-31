@@ -5,7 +5,6 @@ import { ThemeContext } from '@/core/context/themeContext';
 import { Theme } from '@/core/context/themeContext/types';
 import { SwitchTheme } from './SwitchTheme';
 
-
 describe('SwitchTheme component', () => {
   const handleChangeThemeMock = vi.fn();
 

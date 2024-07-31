@@ -13,7 +13,7 @@ export const Input = (props: IInputProps): ReactNode => {
   return (
     <input
       placeholder={placeholder}
-      className={`${styles["input"]} ${styles[`input-${theme}`]}`}
+      className={`${styles['input']} ${styles[`input-${theme}`]}`}
       type="text"
       value={value}
       onChange={onChange}

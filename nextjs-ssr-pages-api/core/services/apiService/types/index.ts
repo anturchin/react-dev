@@ -46,5 +46,8 @@ export interface ISearchApi {
     query: string,
     page?: number
   ) => Promise<ISearchResponse>;
-  fetchSearchDetails: (domain: string, id: number) => Promise<DetailsCharactersType>;
+  fetchSearchDetails: (
+    domain: string,
+    id: number
+  ) => Promise<DetailsCharactersType>;
 }

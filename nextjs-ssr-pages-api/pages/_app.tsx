@@ -1,8 +1,8 @@
-import type { AppProps } from "next/app";
+import type { AppProps } from 'next/app';
 
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
-import { Wrapper } from "@/components/smart/wrapper";
+import { Wrapper } from '@/components/smart/wrapper';
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
