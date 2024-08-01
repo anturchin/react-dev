@@ -16,7 +16,10 @@ const withDetailsData = (WrappedComponent: ComponentType<LayoutCharacterProps>) 
         searchResults: {
           ...searchResults,
         },
-        characterDetails,
+        characterDetails: {
+          ...characterDetails,
+          currentPage: searchResults.currentPage,
+        },
       },
     };
   };

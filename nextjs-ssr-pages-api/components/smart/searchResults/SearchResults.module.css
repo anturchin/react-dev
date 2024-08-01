@@ -46,7 +46,7 @@
 
 .image {
   border-radius: 10px;
-  width: auto;
-  height: auto;
+  width: 300px;
+  height: 320px;
   object-fit: contain;
 }

@@ -12,4 +12,5 @@ export const enum ImageSizeDetails {
 export interface IDetailsCharacter {
   character: DetailsCharactersType | null;
   isError: boolean;
+  currentPage?: number;
 }

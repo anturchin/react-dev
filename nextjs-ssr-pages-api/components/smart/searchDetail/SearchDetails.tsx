@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import { IDetailsCharacter, AdditionalClass, ImageSizeDetails } from './types';
@@ -8,10 +9,12 @@ import { Button } from '@/components/ui/button';
 import styles from './SearchDetails.module.css';
 
 export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
-  const { isError, character } = props;
+  const router = useRouter();
+
+  const { isError, character, currentPage } = props;
 
   const onHandleClose = (): void => {
-    console.log('navigate');
+    void router.push(`/page/${currentPage}`);
   };
 
   const content = isError ? (
