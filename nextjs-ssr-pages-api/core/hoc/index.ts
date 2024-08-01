@@ -1,0 +1,1 @@
+export { withSearchData } from './withSearchData';

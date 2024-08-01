@@ -2,7 +2,7 @@ import { ResultPropType } from '@/components/smart/searchResults/types';
 import { ReactNode } from 'react';
 
 export type ResultsType = {
-  results: ResultPropType[];
+  results: ResultPropType[] | null;
   currentPage: number;
   isError: boolean;
   pages: number;

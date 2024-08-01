@@ -27,7 +27,7 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
     <SearchError message={FAILED_TO_FETCH} />
   ) : (
     <SearchResults
-      results={results}
+      results={results!}
       onResultClick={handleResultsClick}
       onInfoDetailsClick={handleDetailsClick}
     />

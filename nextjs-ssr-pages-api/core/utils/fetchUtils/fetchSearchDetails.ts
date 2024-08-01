@@ -2,10 +2,18 @@ import { IDetailsCharacter } from '@/components/smart/searchDetail/types';
 import { apiService } from '@/core/services/apiService';
 
 export const fetchSearchDetails = async (id: number): Promise<IDetailsCharacter> => {
-  const result = await apiService.fetchSearchDetails(process.env.BASE_URL as string, id);
+  let characterDetails: IDetailsCharacter;
+  try {
+    const character = await apiService.fetchSearchDetails(process.env.BASE_URL as string, id);
+    characterDetails = { character, isError: false };
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+    characterDetails = { character: null, isError: true };
+  }
 
   return {
-    character: result,
-    isError: false,
+    ...characterDetails,
   };
 };
