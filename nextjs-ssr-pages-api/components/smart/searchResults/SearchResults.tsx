@@ -12,10 +12,7 @@ export const SearchResults = (props: ISearchResultsProps): JSX.Element => {
   const { results, onInfoDetailsClick, onResultClick } = props;
   const { theme } = useContext(ThemeContext);
 
-  const handleButtonClick = (
-    e: React.MouseEvent<HTMLButtonElement>,
-    id: number
-  ) => {
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>, id: number) => {
     e.stopPropagation();
     onInfoDetailsClick(id);
   };
@@ -27,11 +24,7 @@ export const SearchResults = (props: ISearchResultsProps): JSX.Element => {
           key={result.id}
           className={`${styles['result-item']} ${styles[`result-item-${theme}`]}`}
         >
-          <Checkbox
-            resultId={result.id}
-            checked={false}
-            handleSelectedItem={() => {}}
-          />
+          <Checkbox resultId={result.id} checked={false} handleSelectedItem={() => {}} />
           <h3 className={`${styles['person-name']}`}>{result.name}</h3>
           <p className={`${styles['person-gender']}`}>{result.gender}</p>
           <Image
@@ -42,9 +35,7 @@ export const SearchResults = (props: ISearchResultsProps): JSX.Element => {
             priority={true}
             alt="image"
           />
-          <Button onClick={(e) => handleButtonClick(e, result.id)}>
-            Info details
-          </Button>
+          <Button onClick={(e) => handleButtonClick(e, result.id)}>Info details</Button>
         </div>
       ))}
     </div>

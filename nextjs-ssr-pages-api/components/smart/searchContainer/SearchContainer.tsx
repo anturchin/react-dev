@@ -9,7 +9,7 @@ import { ResultsType } from './types';
 import styles from './SearchContainer.module.css';
 
 export const SearchContainer = (props: ResultsType): JSX.Element => {
-  const { results, currentPage, pages, isError, onPageChange } = props;
+  const { results, currentPage, pages, isError, onPageChange, children } = props;
 
   const handleSearch = (newQuery: string): void => {
     console.log(newQuery);
@@ -43,7 +43,10 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
             totalPage={pages}
           />
         )}
-        <div className={`${styles['wrapper']}`}>{content}</div>
+        <div className={`${styles['wrapper']}`}>
+          {content}
+          {children && children}
+        </div>
       </ErrorBoundary>
     </>
   );

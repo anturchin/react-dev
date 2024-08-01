@@ -10,9 +10,7 @@ describe('SwitchTheme component', () => {
 
   const renderWithTheme = (theme: Theme) => {
     render(
-      <ThemeContext.Provider
-        value={{ theme, handleChangeTheme: handleChangeThemeMock }}
-      >
+      <ThemeContext.Provider value={{ theme, handleChangeTheme: handleChangeThemeMock }}>
         <SwitchTheme />
       </ThemeContext.Provider>
     );

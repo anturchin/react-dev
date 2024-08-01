@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { IDetailsCharacter, AdditionalClass } from './types';
+import { IDetailsCharacter, AdditionalClass, ImageSizeDetails } from './types';
 import { FAILED_TO_FETCH } from '@/core/constants';
 import { SearchError } from '@/components/simple/searchError';
 import { Button } from '@/components/ui/button';
@@ -23,19 +23,16 @@ export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
       </Button>
       <Image
         className={`${styles['details-img']}`}
-        src={character.image}
-        alt={character.name}
+        src={character!.image}
+        alt={character!.name}
+        width={ImageSizeDetails.WIDTH}
+        height={ImageSizeDetails.HEIGHT}
+        priority={true}
       />
-      <h3 className={`${styles['details-title']}`}>{character.name}</h3>
-      <p className={`${styles['details-status']}`}>
-        Status: {character.status}
-      </p>
-      <p className={`${styles['details-species']}`}>
-        Species: {character.species}
-      </p>
-      <p className={`${styles['details-gender']}`}>
-        Gender: {character.gender}
-      </p>
+      <h3 className={`${styles['details-title']}`}>{character!.name}</h3>
+      <p className={`${styles['details-status']}`}>Status: {character!.status}</p>
+      <p className={`${styles['details-species']}`}>Species: {character!.species}</p>
+      <p className={`${styles['details-gender']}`}>Gender: {character!.gender}</p>
     </div>
   );
 

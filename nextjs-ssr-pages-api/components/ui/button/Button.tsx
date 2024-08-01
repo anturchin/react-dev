@@ -14,10 +14,7 @@ export const Button = (props: IButtonProps): JSX.Element => {
     ? `${styles['btn']} ${styles[additionalClass]}`
     : `${styles['btn']}`;
   return (
-    <button
-      className={`${addClass} ${styles[`btn-${theme}-theme`]}`}
-      onClick={onClick}
-    >
+    <button className={`${addClass} ${styles[`btn-${theme}-theme`]}`} onClick={onClick}>
       {children}
     </button>
   );

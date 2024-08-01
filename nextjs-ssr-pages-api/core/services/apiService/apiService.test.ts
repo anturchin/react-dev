@@ -39,11 +39,7 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    const result = await apiService.fetchSearchResults(
-      'https://test.ru',
-      query,
-      page
-    );
+    const result = await apiService.fetchSearchResults('https://test.ru', query, page);
     expect(result).toEqual(mockResponse);
   });
 
@@ -54,9 +50,9 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    await expect(
-      apiService.fetchSearchResults('https://test.ru', query, page)
-    ).rejects.toThrow('Network response was not ok');
+    await expect(apiService.fetchSearchResults('https://test.ru', query, page)).rejects.toThrow(
+      'Network response was not ok'
+    );
   });
 
   test('fetchSearchDetails should return character details', async () => {
@@ -92,8 +88,8 @@ describe('apiService', () => {
 
     global.fetch = mockFetch(mockFetchResponse);
 
-    await expect(
-      apiService.fetchSearchDetails('https://test.ru', id)
-    ).rejects.toThrow('Network response was not ok');
+    await expect(apiService.fetchSearchDetails('https://test.ru', id)).rejects.toThrow(
+      'Network response was not ok'
+    );
   });
 });

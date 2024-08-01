@@ -1,6 +1,8 @@
+.wrapper {
+  min-width: 400px;
+}
 .search-error {
   margin-top: 100px;
   color: darkred;
   font-size: 4rem;
-  text-align: center;
 }

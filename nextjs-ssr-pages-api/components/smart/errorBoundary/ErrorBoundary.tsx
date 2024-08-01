@@ -6,10 +6,7 @@ import { ErrorBoundaryContext } from '@/core/context/errorBoundaryContext';
 
 import styles from './ErrorBoundary.module.css';
 
-export class ErrorBoundary extends Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
     message: '',
     hasError: false,
@@ -50,9 +47,7 @@ export class ErrorBoundary extends Component<
     }
 
     return (
-      <ErrorBoundaryContext.Provider
-        value={{ triggerError: this.triggerError }}
-      >
+      <ErrorBoundaryContext.Provider value={{ triggerError: this.triggerError }}>
         {this.props.children}
       </ErrorBoundaryContext.Provider>
     );

@@ -25,9 +25,7 @@ describe('SearchResults', () => {
       />
     );
 
-    const personNames = resultsMock.map((result) =>
-      screen.getByText(result.name)
-    );
+    const personNames = resultsMock.map((result) => screen.getByText(result.name));
     expect(personNames.length).toBe(resultsMock.length);
   });
 

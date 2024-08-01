@@ -5,9 +5,7 @@ import { useRef, useEffect } from 'react';
 import { ErrorBoundary } from './ErrorBoundary';
 
 vi.mock('../../ui/button', () => ({
-  Button: ({ onClick }: { onClick: () => void }) => (
-    <button onClick={onClick}>Try Again</button>
-  ),
+  Button: ({ onClick }: { onClick: () => void }) => <button onClick={onClick}>Try Again</button>,
 }));
 
 describe('ErrorBoundary', () => {

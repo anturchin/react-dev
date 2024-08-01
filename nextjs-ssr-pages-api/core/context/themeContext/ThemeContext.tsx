@@ -11,9 +11,7 @@ const INITIAL_STATE = {
 
 export const ThemeContext = createContext<ITheme>(INITIAL_STATE);
 
-export const ThemeContextProvider = ({
-  children,
-}: ContextPropType): JSX.Element => {
+export const ThemeContextProvider = ({ children }: ContextPropType): JSX.Element => {
   const [valueTheme, setValueTheme] = useLocalStorage(LsKey.THEME);
   const [theme, setTheme] = useState<Theme | string>(Theme.LIGHT);
 

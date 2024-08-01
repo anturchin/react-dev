@@ -13,15 +13,8 @@ describe('Modal component', () => {
 
   const renderWithTheme = (theme: Theme) => {
     render(
-      <ThemeContext.Provider
-        value={{ theme: theme, handleChangeTheme: () => {} }}
-      >
-        <Modal
-          deselectItems={deselectItemsMock}
-          filename={filename}
-          blob={blob}
-          count={count}
-        />
+      <ThemeContext.Provider value={{ theme: theme, handleChangeTheme: () => {} }}>
+        <Modal deselectItems={deselectItemsMock} filename={filename} blob={blob} count={count} />
       </ThemeContext.Provider>
     );
   };
@@ -44,27 +37,17 @@ describe('Modal component', () => {
   test('renders correctly with light theme', () => {
     renderWithTheme('light' as Theme);
     expect(screen.getByText(/selected items: 3/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /deselect all/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /deselect all/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /load/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /load/i })).toHaveAttribute(
-      'download',
-      filename
-    );
+    expect(screen.getByRole('link', { name: /load/i })).toHaveAttribute('download', filename);
   });
 
   test('renders correctly with dark theme', () => {
     renderWithTheme('dark' as Theme);
     expect(screen.getByText(/selected items: 3/i)).toBeInTheDocument();
-    expect(
-      screen.getByRole('button', { name: /deselect all/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /deselect all/i })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /load/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /load/i })).toHaveAttribute(
-      'download',
-      filename
-    );
+    expect(screen.getByRole('link', { name: /load/i })).toHaveAttribute('download', filename);
   });
 
   test('calls deselectItems when deselect all button is clicked', () => {

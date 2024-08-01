@@ -8,9 +8,7 @@ describe('SearchBar', () => {
   test('updates the input value when changed', () => {
     render(<SearchBar initialQuery="" onSearch={() => {}} />);
 
-    const inputElement = screen.getByPlaceholderText(
-      'Please enter character name'
-    );
+    const inputElement = screen.getByPlaceholderText('Please enter character name');
     fireEvent.change(inputElement, { target: { value: 'Rick' } });
 
     expect(inputElement).toHaveValue('Rick');
@@ -20,9 +18,7 @@ describe('SearchBar', () => {
     const onSearchMock = vi.fn();
     render(<SearchBar initialQuery="" onSearch={onSearchMock} />);
 
-    const inputElement = screen.getByPlaceholderText(
-      'Please enter character name'
-    );
+    const inputElement = screen.getByPlaceholderText('Please enter character name');
     fireEvent.change(inputElement, { target: { value: 'Rick ' } });
     fireEvent.click(screen.getByText('Search'));
 

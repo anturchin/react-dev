@@ -20,10 +20,7 @@ export const apiService: ISearchApi = {
     return (await response.json()) as ISearchResponse;
   },
 
-  fetchSearchDetails: async (
-    domain: string,
-    id: number
-  ): Promise<DetailsCharactersType> => {
+  fetchSearchDetails: async (domain: string, id: number): Promise<DetailsCharactersType> => {
     const response = await fetch(`${domain}/${id}`);
     if (!response.ok) {
       throw new Error('Network response was not ok');

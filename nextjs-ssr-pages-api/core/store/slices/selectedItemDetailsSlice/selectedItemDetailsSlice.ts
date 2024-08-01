@@ -10,10 +10,7 @@ export const selectedItemDetailsSlice = createSlice({
   name: 'selectedItemDetails',
   initialState,
   reducers: {
-    setSelectedItemDetails: (
-      state,
-      action: PayloadAction<DetailsCharactersType>
-    ) => {
+    setSelectedItemDetails: (state, action: PayloadAction<DetailsCharactersType>) => {
       state.selectedItemDetails = action.payload;
     },
     clearSelectedItemDetails: (state) => {

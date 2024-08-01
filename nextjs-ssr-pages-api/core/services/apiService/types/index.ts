@@ -41,13 +41,7 @@ export type DetailsCharactersType = {
 };
 
 export interface ISearchApi {
-  fetchSearchResults: (
-    domain: string,
-    query: string,
-    page?: number
-  ) => Promise<ISearchResponse>;
-  fetchSearchDetails: (
-    domain: string,
-    id: number
-  ) => Promise<DetailsCharactersType>;
+  fetchCharacterById(characterId: string): unknown;
+  fetchSearchResults: (domain: string, query: string, page?: number) => Promise<ISearchResponse>;
+  fetchSearchDetails: (domain: string, id: number) => Promise<DetailsCharactersType>;
 }

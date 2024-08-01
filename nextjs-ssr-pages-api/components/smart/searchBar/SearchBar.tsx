@@ -10,9 +10,7 @@ import { IErrorBoundaryContext } from '@/core/context/errorBoundaryContext/types
 import styles from './SearchBar.module.css';
 
 export const SearchBar = (props: SearchBarProps): JSX.Element => {
-  const context = useContext<IErrorBoundaryContext | null>(
-    ErrorBoundaryContext
-  );
+  const context = useContext<IErrorBoundaryContext | null>(ErrorBoundaryContext);
   const [query, setQuery] = useState<string>(props.initialQuery || '');
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -34,11 +32,7 @@ export const SearchBar = (props: SearchBarProps): JSX.Element => {
     <div className={`${styles['search-bar']}`}>
       <h2 className={`${styles['title']}`}>The Rick and Morty API</h2>
       <div className={`${styles['search-wrapper']}`} onSubmit={handleSubmit}>
-        <Input
-          placeholder={`Please enter character name`}
-          value={query}
-          onChange={handleChange}
-        />
+        <Input placeholder={`Please enter character name`} value={query} onChange={handleChange} />
         <div className={`${styles['btn-wrapper']}`}>
           <Button onClick={handleSubmit}>Search</Button>
           <Button onClick={triggerError} additionalClass={AdditionalClass.RED}>

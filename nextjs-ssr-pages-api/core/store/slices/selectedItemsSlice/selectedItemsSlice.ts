@@ -28,9 +28,7 @@ export const selectedItemsSlice = createSlice({
       state.selectedItems.push(action.payload);
     },
     deleteSelectedItem: (state, action: PayloadAction<ResultPropType>) => {
-      state.selectedItems = state.selectedItems.filter(
-        (item) => item.id != action.payload.id
-      );
+      state.selectedItems = state.selectedItems.filter((item) => item.id != action.payload.id);
     },
     clearSelectedItems: (state) => {
       state.selectedItems = [];
