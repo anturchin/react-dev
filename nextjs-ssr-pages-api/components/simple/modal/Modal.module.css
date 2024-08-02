@@ -31,12 +31,33 @@
   gap: 10px;
 }
 
-.modal-btn-light {
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: all 250ms;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-light {
   background-color: var(--light);
   color: var(--dark);
 }
 
-.modal-btn-dark {
+.btn-dark {
   background-color: var(--dark);
   color: var(--light);
+}
+
+.btn:hover {
+  background-color: #78b159;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  transform: translateY(-1px);
+  color: var(--light);
+}
+.btn.red:hover {
+  background-color: red;
 }

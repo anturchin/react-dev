@@ -24,14 +24,14 @@ export const Modal = ({
       <div className={`${styles['modal-btn']}`}>
         <button
           onClick={deselectItems}
-          className={`${styles['btn']} ${styles['red']} ${styles[`modal-btn-${theme}`]}}`}
+          className={`${styles['btn']} ${styles[`btn-${theme}`]} ${styles['red']}`}
         >
           deselect all
         </button>
         <a
           href={URL.createObjectURL(blob)}
           download={filename}
-          className={`${styles['btn']} ${styles[`modal-btn-${theme}`]}`}
+          className={`${styles['btn']} ${styles[`btn-${theme}`]}`}
         >
           load
         </a>

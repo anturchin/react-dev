@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useState, useEffect } from 'react';
 
 import { SearchResults } from '@/components/smart/searchResults';
 import { SearchPagination } from '@/components/simple/searchPagination';
@@ -12,6 +13,12 @@ import styles from './SearchContainer.module.css';
 
 export const SearchContainer = (props: ResultsType): JSX.Element => {
   const router = useRouter();
+
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const { results, currentPage, pages, isError, onPageChange, children } = props;
 
@@ -27,7 +34,7 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
     void router.push(`/page/${currentPage || RESET_PAGE}`);
   };
 
-  const content = isError ? (
+  const searchResultsOrError = isError ? (
     <SearchError message={FAILED_TO_FETCH} />
   ) : (
     <SearchResults
@@ -36,7 +43,8 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
       onInfoDetailsClick={handleDetailsClick}
     />
   );
-  return (
+
+  const content = (
     <>
       <ErrorBoundary>
         <SearchBar onSearch={handleSearch} />
@@ -48,10 +56,12 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
           />
         )}
         <div className={`${styles['wrapper']}`}>
-          {content}
+          {searchResultsOrError}
           {children && children}
         </div>
       </ErrorBoundary>
     </>
   );
+
+  return <>{isClient && content}</>;
 };

@@ -10,7 +10,7 @@ const Content = ({ children }: { children: ReactNode }): JSX.Element => {
   return <div className={`${styles['app-container']} ${styles[`${theme}-theme`]}`}>{children}</div>;
 };
 
-export const Wrapper = ({ children }: { children: ReactNode }): JSX.Element => {
+export const ThemeWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
   return (
     <ThemeContextProvider>
       <Content>{children}</Content>

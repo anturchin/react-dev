@@ -30,7 +30,8 @@ export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
         alt={character!.name}
         width={ImageSizeDetails.WIDTH}
         height={ImageSizeDetails.HEIGHT}
-        priority={true}
+        placeholder="blur"
+        blurDataURL={character!.image}
       />
       <h3 className={`${styles['details-title']}`}>{character!.name}</h3>
       <p className={`${styles['details-status']}`}>Status: {character!.status}</p>
