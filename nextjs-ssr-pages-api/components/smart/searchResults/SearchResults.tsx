@@ -11,12 +11,15 @@ import { AppDispatch, AppState } from '@/core/store/store';
 import { setSelectedItem, deleteSelectedItem, clearSelectedItems } from '@/core/store/slices';
 import { generateCSV } from '@/core/utils/csvUtils';
 import { Modal } from '@/components/simple/modal';
+import { useScrollPosition } from '@/core/hooks/useScrollPosition';
 
 import styles from './SearchResults.module.css';
 
 export const SearchResults = (props: ISearchResultsProps): JSX.Element => {
   const { results, onInfoDetailsClick, onResultClick } = props;
   const { theme } = useContext(ThemeContext);
+
+  useScrollPosition();
 
   const dispatch = useDispatch<AppDispatch>();
   const { selectedItems } = useSelector((state: AppState) => state.selectedItems);

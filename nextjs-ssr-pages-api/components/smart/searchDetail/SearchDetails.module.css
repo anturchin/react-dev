@@ -2,12 +2,39 @@
   min-width: 700px;
   display: flex;
 }
+
+@media (max-width: 998px) {
+  .details {
+    width: 600px;
+  }
+}
+
+@media (max-width: 550px) {
+  .details {
+    width: 370px;
+  }
+}
+
 .details-item {
   width: 600px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 15px;
   font-size: 2.5rem;
+}
+
+@media (max-width: 998px) {
+  .details-item {
+    width: 600px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .details-item {
+    width: 370px;
+  }
 }
 
 .details-item button {
@@ -17,6 +44,12 @@
 .details-title {
   font-size: 3rem;
   text-transform: uppercase;
+}
+
+@media (max-width: 550px) {
+  .details-title {
+    font-size: 2.4rem;
+  }
 }
 
 .details-img {

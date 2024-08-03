@@ -3,12 +3,18 @@ import { useRouter } from 'next/router';
 import { SwitchTheme } from '@/components/simple/switchTheme';
 import { SearchContainer } from '@/components/smart/searchContainer/SearchContainer';
 import { ResultsType } from '@/components/smart/searchContainer/types';
+import { useState } from 'react';
 
 export const LayoutResults = (props: ResultsType): JSX.Element => {
   const router = useRouter();
 
+  const [isNavigating, setIsNavigating] = useState<boolean>(false);
+
   const handlePageChange = (newPage: number): void => {
-    void router.push(`/page/${newPage}`);
+    if (!isNavigating) {
+      setIsNavigating(true);
+      void router.push(`/page/${newPage}`).then(() => setIsNavigating(false));
+    }
   };
 
   return (

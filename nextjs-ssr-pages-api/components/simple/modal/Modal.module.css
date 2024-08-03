@@ -7,6 +7,14 @@
   border-radius: 10px;
 }
 
+@media (max-width: 998px) {
+  .modal {
+    width: 350px;
+    right: 5px;
+    bottom: 5px;
+  }
+}
+
 .modal a {
   text-decoration: none;
 }

@@ -9,9 +9,8 @@ import { useEffect } from 'react';
 
 import '@/styles/globals.css';
 
-const App = ({ Component, ...rest }: AppProps) => {
-  const { store, props } = wrapper.useWrappedStore(rest);
-  const { pageProps } = props;
+const App = ({ Component, pageProps, ...rest }: AppProps) => {
+  const { store } = wrapper.useWrappedStore(rest);
 
   useEffect(() => {
     const unsubscribe = store.subscribe(() => {

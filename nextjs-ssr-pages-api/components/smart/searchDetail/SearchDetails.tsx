@@ -7,14 +7,20 @@ import { SearchError } from '@/components/simple/searchError';
 import { Button } from '@/components/ui/button';
 
 import styles from './SearchDetails.module.css';
+import { useState } from 'react';
 
 export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
   const router = useRouter();
 
   const { isError, character, currentPage } = props;
 
+  const [isNavigating, setIsNavigating] = useState<boolean>(false);
+
   const onHandleClose = (): void => {
-    void router.push(`/page/${currentPage}`);
+    if (!isNavigating) {
+      setIsNavigating(true);
+      void router.push(`/page/${currentPage}`).then(() => setIsNavigating(false));
+    }
   };
 
   const content = isError ? (
