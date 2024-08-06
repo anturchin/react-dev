@@ -1,11 +1,11 @@
 import { ChangeEvent, useContext, useState } from 'react';
 
 import { stringUtils } from '@/core/utils/stringUtils';
-import { AdditionalClass, SearchBarProps } from './types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ErrorBoundaryContext } from '@/core/context/errorBoundaryContext/ErrorBoundaryContext';
 import { IErrorBoundaryContext } from '@/core/context/errorBoundaryContext/types';
+import { AdditionalClass, SearchBarProps } from './types';
 
 import styles from './SearchBar.module.css';
 

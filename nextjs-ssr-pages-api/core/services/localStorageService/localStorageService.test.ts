@@ -1,4 +1,5 @@
 import { describe, test, expect, beforeEach } from 'vitest';
+
 import { localStorageService } from '../localStorageService';
 import { LsKey } from './types';
 

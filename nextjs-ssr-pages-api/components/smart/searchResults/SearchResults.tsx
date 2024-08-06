@@ -5,13 +5,13 @@ import { ChangeEvent, MouseEvent, useContext } from 'react';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ThemeContext } from '@/core/context/themeContext';
-import { ImageSize, ISearchResultsProps } from './types';
 import { stringUtils } from '@/core/utils/stringUtils';
 import { AppDispatch, AppState } from '@/core/store/store';
 import { setSelectedItem, deleteSelectedItem, clearSelectedItems } from '@/core/store/slices';
 import { generateCSV } from '@/core/utils/csvUtils';
 import { Modal } from '@/components/simple/modal';
 import { useScrollPosition } from '@/core/hooks/useScrollPosition';
+import { ImageSize, ISearchResultsProps } from './types';
 
 import styles from './SearchResults.module.css';
 

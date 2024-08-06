@@ -1,6 +1,7 @@
+import { describe, beforeEach, test, expect } from 'vitest';
+
 import { selectedItemsSlice } from './slices';
 import { AppStore, makeStore } from './store';
-import { describe, beforeEach, test, expect } from 'vitest';
 
 describe('Redux Store', () => {
   let store: AppStore;

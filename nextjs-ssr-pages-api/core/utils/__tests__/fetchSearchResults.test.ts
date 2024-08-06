@@ -1,4 +1,5 @@
 import { describe, test, expect, vi, Mock } from 'vitest';
+
 import { fetchSearchResults } from '../fetchUtils';
 import { apiService } from '@/core/services/apiService';
 

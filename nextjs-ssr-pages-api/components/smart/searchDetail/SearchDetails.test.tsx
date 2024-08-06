@@ -1,6 +1,7 @@
 import { describe, test, expect, beforeEach, vi, Mock } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { useRouter } from 'next/router';
+
 import { SearchDetails } from './SearchDetails';
 
 vi.mock('next/router', () => ({
@@ -61,7 +62,7 @@ describe('SearchDetails', () => {
     expect(screen.getByAltText('Toxic Rick')).toBeInTheDocument();
   });
 
-  test('should navigate back to the current page when Close button is clicked', async () => {
+  test('should navigate back to the current page when Close button is clicked', () => {
     render(<SearchDetails isError={false} character={character} currentPage={1} />);
 
     fireEvent.click(screen.getByText('Close'));

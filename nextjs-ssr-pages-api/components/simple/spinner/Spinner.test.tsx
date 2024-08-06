@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
+
 import { Spinner } from './Spinner';
 
 describe('Spinner', () => {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { SwitchTheme } from '@/components/simple/switchTheme';
 import { SearchContainer } from '@/components/smart/searchContainer/SearchContainer';
 import { ResultsType } from '@/components/smart/searchContainer/types';
-import { useState } from 'react';
 
 export const LayoutResults = (props: ResultsType): JSX.Element => {
   const router = useRouter();

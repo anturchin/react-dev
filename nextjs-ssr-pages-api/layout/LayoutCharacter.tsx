@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 import { SwitchTheme } from '@/components/simple/switchTheme';
 import { SearchDetails } from '@/components/smart/searchDetail';
-import { LayoutCharacterProps } from './types';
 import { SearchContainer } from '@/components/smart/searchContainer/SearchContainer';
-import { useState } from 'react';
+import { LayoutCharacterProps } from './types';
 
 export const LayoutCharacter = ({
   searchResults,

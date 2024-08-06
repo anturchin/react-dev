@@ -1,6 +1,7 @@
-import { describe, test, expect, vi } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { useContext } from 'react';
+
 import { ThemeWrapper } from './ThemeWrapper';
 import { ThemeContext } from '@/core/context/themeContext';
 

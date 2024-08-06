@@ -2,6 +2,7 @@ import { describe, test, expect, beforeEach, vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
+
 import { SearchContainer } from './SearchContainer';
 import { createMockStore } from '@/__mocks__/mockStore';
 

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, vi, test, expect, beforeEach, afterEach, Mock } from 'vitest';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { SearchResults } from './SearchResults';
 import { Theme } from '@/core/context/themeContext/types';
 import { ThemeContext } from '@/core/context/themeContext';
@@ -10,6 +11,17 @@ vi.mock('react-redux', () => ({
   useSelector: vi.fn(),
   useDispatch: vi.fn(),
 }));
+
+type RootState = {
+  selectedItems: {
+    selectedItems: Array<{
+      id: number;
+      name: string;
+      gender: string;
+      image: string;
+    }>;
+  };
+};
 
 describe('SearchResults component', () => {
   const mockDispatch = vi.fn();
@@ -43,7 +55,7 @@ describe('SearchResults component', () => {
 
   beforeEach(() => {
     (useDispatch as unknown as Mock).mockReturnValue(mockDispatch);
-    (useSelector as unknown as Mock).mockImplementation((selector) =>
+    (useSelector as unknown as Mock).mockImplementation((selector: (state: RootState) => unknown) =>
       selector({
         selectedItems: { selectedItems: mockSelectedItems },
       })

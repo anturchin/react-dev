@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { describe, test, expect, vi, beforeEach } from 'vitest';
-import { useRouter } from 'next/router';
+import { describe, test, expect, vi } from 'vitest';
+
 import { LayoutCharacter } from '../LayoutCharacter';
 import { CharacterProps } from '../types';
 
@@ -8,15 +8,7 @@ vi.mock('next/router', () => ({
   useRouter: vi.fn(),
 }));
 
-const mockRouter = {
-  push: vi.fn(),
-};
-
 describe('LayoutCharacter', () => {
-  beforeEach(() => {
-    (useRouter as any).mockReturnValue(mockRouter);
-  });
-
   test('should render SwitchTheme, SearchContainer, and SearchDetails', () => {
     const searchResults = {
       results: [],

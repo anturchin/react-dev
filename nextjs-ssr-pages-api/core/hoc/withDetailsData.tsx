@@ -1,6 +1,7 @@
-import { LayoutCharacterProps } from '@/layout/types';
 import { GetServerSideProps } from 'next';
 import { ComponentType } from 'react';
+
+import { LayoutCharacterProps } from '@/layout/types';
 import { fetchSearchResults, fetchSearchDetails } from '../utils/fetchUtils';
 
 const withDetailsData = (WrappedComponent: ComponentType<LayoutCharacterProps>) => {

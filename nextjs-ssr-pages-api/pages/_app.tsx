@@ -1,11 +1,11 @@
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
+import { useEffect } from 'react';
 
 import { wrapper } from '@/core/store/store';
 import { ThemeWrapper } from '@/components/smart/themeWrapper';
 import { localStorageService } from '@/core/services/localStorageService';
 import { LsKey } from '@/core/services/localStorageService/types';
-import { useEffect } from 'react';
 
 import '@/styles/globals.css';
 
