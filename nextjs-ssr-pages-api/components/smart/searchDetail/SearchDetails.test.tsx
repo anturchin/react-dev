@@ -1,9 +1,7 @@
 import { describe, test, expect, beforeEach, vi, Mock } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { useRouter } from 'next/router';
 import { SearchDetails } from './SearchDetails';
-import { createMockStore } from '@/__mocks__/mockStore';
 
 vi.mock('next/router', () => ({
   useRouter: vi.fn(),
@@ -50,7 +48,7 @@ describe('SearchDetails', () => {
   test('should render SearchError when isError is true', () => {
     render(<SearchDetails isError={true} character={null} />);
 
-    expect(screen.getByText('Failed to fetch')).toBeInTheDocument();
+    expect(screen.getByText('Failed to fetch data')).toBeInTheDocument();
   });
 
   test('should render character details when isError is false', () => {
