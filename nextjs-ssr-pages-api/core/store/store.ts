@@ -3,7 +3,7 @@ import { createWrapper } from 'next-redux-wrapper';
 
 import { selectedItemsSlice } from './slices';
 
-const makeStore = () => {
+export const makeStore = () => {
   return configureStore({
     reducer: {
       [selectedItemsSlice.name]: selectedItemsSlice.reducer,

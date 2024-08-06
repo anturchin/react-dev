@@ -4,10 +4,6 @@ import withSearchData from '../withSearchData';
 import { ResultsType } from '@/components/smart/searchContainer/types';
 import { ResultPropType } from '@/components/smart/searchResults/types';
 
-vi.mock('../utils/fetchUtils', () => ({
-  fetchSearchResults: vi.fn(),
-}));
-
 const MockComponent = (props: ResultsType) => (
   <div>
     {props.results?.length ? (

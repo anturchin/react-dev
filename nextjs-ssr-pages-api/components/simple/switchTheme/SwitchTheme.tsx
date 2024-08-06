@@ -14,7 +14,7 @@ export const SwitchTheme = (): JSX.Element => {
   };
 
   return (
-    <div className={`${styles['toggle-switch']}`}>
+    <div className={`${styles['toggle-switch']}`} data-testid="switch-theme">
       <label className={`${styles['label']}`}>
         <input
           className={`${styles['input-checkbox']}`}

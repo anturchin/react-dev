@@ -1,12 +1,7 @@
 import { render } from '@testing-library/react';
-import { describe, test, expect, vi } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import withDetailsData from '../withDetailsData';
 import { DetailsCharactersType } from '@/core/services/apiService/types';
-
-vi.mock('../utils/fetchUtils', () => ({
-  fetchSearchResults: vi.fn(),
-  fetchSearchDetails: vi.fn(),
-}));
 
 const MockComponent = () => <div>Mock Component</div>;
 
