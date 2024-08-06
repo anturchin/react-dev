@@ -5,9 +5,9 @@ import { IDetailsCharacter, AdditionalClass, ImageSizeDetails } from './types';
 import { FAILED_TO_FETCH } from '@/core/constants';
 import { SearchError } from '@/components/simple/searchError';
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
 
 import styles from './SearchDetails.module.css';
-import { useState } from 'react';
 
 export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
   const router = useRouter();

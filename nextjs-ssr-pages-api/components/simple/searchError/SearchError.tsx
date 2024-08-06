@@ -6,7 +6,9 @@ export const SearchError = (props: ErrorTypeProps): JSX.Element => {
   const { message } = props;
   return (
     <div className={styles['wrapper']}>
-      <h2 className={`${styles['search-error']}`}>{message}</h2>
+      <h2 className={`${styles['search-error']}`} role="error">
+        {message}
+      </h2>
     </div>
   );
 };
