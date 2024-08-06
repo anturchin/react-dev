@@ -13,7 +13,7 @@ vi.mock('next/image', () => ({
 }));
 
 const mockRouter = {
-  push: vi.fn(),
+  push: vi.fn().mockResolvedValue(true),
   query: {},
   isFallback: false,
   asPath: '',
