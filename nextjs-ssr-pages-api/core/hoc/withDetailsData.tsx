@@ -8,7 +8,7 @@ const withDetailsData = (WrappedComponent: ComponentType<LayoutCharacterProps>) 
     const page = context.query.page ? parseInt(context.query.page as string, 10) : 1;
     const characterId = context.query.characterId as string;
 
-    const searchResults = await fetchSearchResults(page);
+    const searchResults = await fetchSearchResults(page, '');
     const characterDetails = await fetchSearchDetails(Number(characterId));
 
     return {
