@@ -1,4 +1,5 @@
 import { ResultsType } from '@/components/smart/searchContainer/types';
+import { NEXT_PUBLIC_URL } from '@/core/constants';
 import { apiService } from '@/core/services/apiService';
 
 export const fetchSearchResults = async (
@@ -12,7 +13,7 @@ export const fetchSearchResults = async (
       info: { pages },
       results,
     } = await apiService.fetchSearchResults(
-      process.env.NEXT_PUBLIC_URL as string,
+      process.env.NEXT_PUBLIC_URL || NEXT_PUBLIC_URL,
       characterName,
       page
     );
