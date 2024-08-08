@@ -16,7 +16,7 @@ export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
   const { isError, character, currentPage } = props;
 
   const onHandleClose = (): void => {
-    router.push(`/page/${currentPage}`);
+    router.push(`/page/${currentPage}`, { scroll: false });
   };
 
   const content = isError ? (

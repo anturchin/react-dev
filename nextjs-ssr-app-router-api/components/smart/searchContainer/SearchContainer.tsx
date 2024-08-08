@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { SearchResults } from '@/components/smart/searchResults';
 import { SearchPagination } from '@/components/simple/searchPagination';
@@ -19,23 +20,29 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
 
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const { results, currentPage, pages, isError, children } = props;
 
   const handlePageChange = (newPage: number) => {
-    router.push(`/page/${newPage}`);
+    router.push(`/page/${newPage}`, { scroll: false });
   };
 
   const handleSearch = (newQuery: string): void => {
     setValueQuery(LsKey.QUERY_KEY, newQuery);
-    router.push(`/page/search?name=${newQuery}`);
+    router.push(`/page/search?name=${newQuery}`, { scroll: false });
   };
 
   const handleDetailsClick = (id: number): void => {
-    router.push(`/page/${currentPage}/character/${id}`);
+    router.push(`/page/${currentPage}/character/${id}`, { scroll: false });
   };
 
   const handleResultsClick = (): void => {
-    router.push(`/page/${currentPage || RESET_PAGE}`);
+    router.push(`/page/${currentPage || RESET_PAGE}`, { scroll: false });
   };
 
   const searchResultsOrError = isError ? (
@@ -67,5 +74,5 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
     </>
   );
 
-  return <>{content}</>;
+  return <>{isClient && content}</>;
 };
