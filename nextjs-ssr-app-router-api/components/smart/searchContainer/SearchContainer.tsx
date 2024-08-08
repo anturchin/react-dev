@@ -1,7 +1,6 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 
 import { SearchResults } from '@/components/smart/searchResults';
 import { SearchPagination } from '@/components/simple/searchPagination';
@@ -18,14 +17,7 @@ import styles from './SearchContainer.module.css';
 export const SearchContainer = (props: ResultsType): JSX.Element => {
   const router = useRouter();
 
-  const [isClient, setIsClient] = useState<boolean>(false);
-  const [isNavigating, setIsNavigating] = useState<boolean>(false);
-
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const { results, currentPage, pages, isError, children } = props;
 
@@ -34,28 +26,16 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
   };
 
   const handleSearch = (newQuery: string): void => {
-    if (!isNavigating) {
-      setIsNavigating(false);
-      setValueQuery(LsKey.QUERY_KEY, newQuery);
-      router.push(`/page/search?name=${newQuery}`);
-      setIsNavigating(false);
-    }
+    setValueQuery(LsKey.QUERY_KEY, newQuery);
+    router.push(`/page/search?name=${newQuery}`);
   };
 
   const handleDetailsClick = (id: number): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      router.push(`/page/${currentPage}/character/${id}`);
-      setIsNavigating(false);
-    }
+    router.push(`/page/${currentPage}/character/${id}`);
   };
 
   const handleResultsClick = (): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      router.push(`/page/${currentPage || RESET_PAGE}`);
-      setIsNavigating(false);
-    }
+    router.push(`/page/${currentPage || RESET_PAGE}`);
   };
 
   const searchResultsOrError = isError ? (
@@ -87,5 +67,5 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
     </>
   );
 
-  return <>{isClient && content}</>;
+  return <>{content}</>;
 };

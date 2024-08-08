@@ -1,11 +1,12 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 import { IDetailsCharacter, AdditionalClass, ImageSizeDetails } from './types';
 import { FAILED_TO_FETCH } from '@/core/constants';
 import { SearchError } from '@/components/simple/searchError';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
 
 import styles from './SearchDetails.module.css';
 
@@ -14,13 +15,8 @@ export const SearchDetails = (props: IDetailsCharacter): JSX.Element => {
 
   const { isError, character, currentPage } = props;
 
-  const [isNavigating, setIsNavigating] = useState<boolean>(false);
-
   const onHandleClose = (): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      void router.push(`/page/${currentPage}`).then(() => setIsNavigating(false));
-    }
+    router.push(`/page/${currentPage}`);
   };
 
   const content = isError ? (
