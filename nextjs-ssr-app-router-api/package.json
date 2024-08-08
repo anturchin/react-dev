@@ -13,7 +13,7 @@
     "ci:format": "prettier --check .",
     "test": "vitest run",
     "coverage": "vitest run --coverage",
-    "prepare": "cd ../ && husky nextjs-ssr-pages-api/.husky"
+    "prepare": "cd ../ && husky nextjs-ssr-app-router-api/.husky"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

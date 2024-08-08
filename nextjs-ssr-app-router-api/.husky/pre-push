@@ -1,2 +1,2 @@
-cd nextjs-ssr-pages-api/
+cd nextjs-ssr-app-router-api/
 npm run coverage
