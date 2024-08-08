@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
 
 import { ResultPropType } from '@/components/smart/searchResults/types';
 import { localStorageService } from '@/core/services/localStorageService';
@@ -34,15 +33,6 @@ export const selectedItemsSlice = createSlice({
     clearSelectedItems: (state) => {
       state.selectedItems = [];
     },
-  },
-  extraReducers(builder) {
-    builder.addCase(HYDRATE, (state, action) => {
-      const actionn = action as unknown as { payload: ISelectedItemsState };
-      return {
-        ...state,
-        selectedItems: actionn.payload.selectedItems,
-      };
-    });
   },
 });
 

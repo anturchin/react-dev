@@ -1,4 +1,6 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 import { SearchResults } from '@/components/smart/searchResults';
@@ -25,27 +27,34 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
     setIsClient(true);
   }, []);
 
-  const { results, currentPage, pages, isError, onPageChange, children } = props;
+  const { results, currentPage, pages, isError, children } = props;
+
+  const handlePageChange = (newPage: number) => {
+    router.push(`/page/${newPage}`);
+  };
 
   const handleSearch = (newQuery: string): void => {
     if (!isNavigating) {
       setIsNavigating(false);
       setValueQuery(LsKey.QUERY_KEY, newQuery);
-      void router.push(`/page/search?name=${newQuery}`).then(() => setIsNavigating(false));
+      router.push(`/page/search?name=${newQuery}`);
+      setIsNavigating(false);
     }
   };
 
   const handleDetailsClick = (id: number): void => {
     if (!isNavigating) {
       setIsNavigating(true);
-      void router.push(`/page/${currentPage}/character/${id}`).then(() => setIsNavigating(false));
+      router.push(`/page/${currentPage}/character/${id}`);
+      setIsNavigating(false);
     }
   };
 
   const handleResultsClick = (): void => {
     if (!isNavigating) {
       setIsNavigating(true);
-      void router.push(`/page/${currentPage || RESET_PAGE}`).then(() => setIsNavigating(false));
+      router.push(`/page/${currentPage || RESET_PAGE}`);
+      setIsNavigating(false);
     }
   };
 
@@ -65,7 +74,7 @@ export const SearchContainer = (props: ResultsType): JSX.Element => {
         <SearchBar initialQuery={valueQuery} onSearch={handleSearch} />
         {pages > 1 && (
           <SearchPagination
-            onPageChange={onPageChange}
+            onPageChange={handlePageChange}
             currentPage={currentPage}
             totalPage={pages}
           />

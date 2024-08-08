@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
 
 import { selectedItemsSlice } from './slices';
+import { localStorageService } from '../services/localStorageService';
+import { LsKey } from '../services/localStorageService/types';
 
 export const makeStore = () => {
   return configureStore({
@@ -12,8 +13,14 @@ export const makeStore = () => {
   });
 };
 
+makeStore().subscribe(() => {
+  const { selectedItems } = makeStore().getState();
+  localStorageService.saveQuery?.(
+    LsKey.SELECTED_ITEMS,
+    JSON.stringify(selectedItems.selectedItems)
+  );
+});
+
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppState = ReturnType<AppStore['getState']>;
 export type AppDispatch = AppStore['dispatch'];
-
-export const wrapper = createWrapper<AppStore>(makeStore);
