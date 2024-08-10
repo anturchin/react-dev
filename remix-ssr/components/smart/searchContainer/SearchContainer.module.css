@@ -1,0 +1,15 @@
+.wrapper {
+  margin-top: 50px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  max-width: 1140px;
+}
+
+@media (max-width: 998px) {
+  .wrapper {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
