@@ -1,9 +1,14 @@
-import type { MetaFunction } from '@remix-run/node';
+import { json, LoaderFunction } from '@remix-run/node';
 
-export const meta: MetaFunction = () => {
-  return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }];
+import { fetchSearchResults } from '../../core/utils/fetchUtils';
+import { HomeComponent } from '../components/HomePage';
+
+export const loader: LoaderFunction = async ({ params }) => {
+  const page = parseInt(params.page || '1', 10);
+  const searchResults = await fetchSearchResults(page, '');
+  return json(searchResults);
 };
 
-export default function Index() {
-  return <h1>Hello</h1>;
+export default function IndexRoute() {
+  return <HomeComponent />;
 }
