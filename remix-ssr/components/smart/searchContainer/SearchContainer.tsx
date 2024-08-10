@@ -1,20 +1,23 @@
 import { useState, useEffect, ReactNode } from 'react';
+import { useNavigate } from 'react-router';
 
 import { useLocalStorage } from '../../../core/hooks/useLocalStorage';
 import { LsKey } from '../../../core/services/localStorageService/types';
 import { ResultsType } from './types';
-import { FAILED_TO_FETCH } from '../../../core/constants';
-import { SearchError } from '../../simple/searchError';
-// import { SearchResults } from '../searchResults';
 import { ErrorBoundary } from '../errorBoundary';
 import { SearchBar } from '../searchBar/SearchBar';
 import { SearchPagination } from '../../simple/searchPagination';
+import { FAILED_TO_FETCH, RESET_PAGE } from '../../../core/constants';
+import { SearchError } from '../../simple/searchError';
 
 import styles from './SearchContainer.module.css';
+import { SearchResults } from '../searchResults/SearchResults';
 
 export const SearchContainer = (props: ResultsType): ReactNode => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const [isNavigating, setIsNavigating] = useState<boolean>(false);
+
+  const navigate = useNavigate();
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
 
@@ -28,33 +31,33 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
     if (!isNavigating) {
       setIsNavigating(false);
       setValueQuery(LsKey.QUERY_KEY, newQuery);
-      // void router.push(`/page/search?name=${newQuery}`).then(() => setIsNavigating(false));
+      navigate(`/page/search?name=${newQuery}`);
     }
   };
 
   const handleDetailsClick = (id: number): void => {
     if (!isNavigating) {
       setIsNavigating(true);
-      // void router.push(`/page/${currentPage}/character/${id}`).then(() => setIsNavigating(false));
+      navigate(`/page/${currentPage}/character/${id}`);
     }
   };
 
   const handleResultsClick = (): void => {
     if (!isNavigating) {
       setIsNavigating(true);
-      // void router.push(`/page/${currentPage || RESET_PAGE}`).then(() => setIsNavigating(false));
+      navigate(`/page/${currentPage || RESET_PAGE}`);
     }
   };
 
-  // const searchResultsOrError = isError ? (
-  //   <SearchError message={FAILED_TO_FETCH} />
-  // ) : (
-  //   <SearchResults
-  //     results={results!}
-  //     onResultClick={handleResultsClick}
-  //     onInfoDetailsClick={handleDetailsClick}
-  //   />
-  // );
+  const searchResultsOrError = isError ? (
+    <SearchError message={FAILED_TO_FETCH} />
+  ) : (
+    <SearchResults
+      results={results!}
+      onResultClick={handleResultsClick}
+      onInfoDetailsClick={handleDetailsClick}
+    />
+  );
 
   const content = (
     <>
@@ -68,7 +71,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
           />
         )}
         <div className={`${styles['wrapper']}`}>
-          {/*{searchResultsOrError}*/}
+          {searchResultsOrError}
           {children && children}
         </div>
       </ErrorBoundary>
