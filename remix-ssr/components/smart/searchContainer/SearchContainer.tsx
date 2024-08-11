@@ -9,17 +9,18 @@ import { SearchBar } from '../searchBar/SearchBar';
 import { SearchPagination } from '../../simple/searchPagination';
 import { FAILED_TO_FETCH, RESET_PAGE } from '../../../core/constants';
 import { SearchError } from '../../simple/searchError';
+import { SearchResults } from '../searchResults/SearchResults';
 
 import styles from './SearchContainer.module.css';
-import { SearchResults } from '../searchResults/SearchResults';
+import { useScrollPosition } from '../../../core/hooks/useScrollPosition';
 
 export const SearchContainer = (props: ResultsType): ReactNode => {
   const [isClient, setIsClient] = useState<boolean>(false);
-  const [isNavigating, setIsNavigating] = useState<boolean>(false);
-
   const navigate = useNavigate();
 
   const [valueQuery, setValueQuery] = useLocalStorage(LsKey.QUERY_KEY);
+
+  useScrollPosition();
 
   useEffect(() => {
     setIsClient(true);
@@ -32,25 +33,16 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
   };
 
   const handleSearch = (newQuery: string): void => {
-    if (!isNavigating) {
-      setIsNavigating(false);
-      setValueQuery(LsKey.QUERY_KEY, newQuery);
-      navigate(`/page/search?name=${newQuery}`);
-    }
+    setValueQuery(LsKey.QUERY_KEY, newQuery);
+    navigate(`/page/search?name=${newQuery}`);
   };
 
   const handleDetailsClick = (id: number): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      navigate(`/page/${currentPage}/character/${id}`);
-    }
+    navigate(`/character/${id}`);
   };
 
   const handleResultsClick = (): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      navigate(`/page/${currentPage || RESET_PAGE}`);
-    }
+    navigate(`/page/${currentPage || RESET_PAGE}`);
   };
 
   const searchResultsOrError = isError ? (
