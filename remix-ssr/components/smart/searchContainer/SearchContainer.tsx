@@ -1,5 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from '@remix-run/react';
 
 import { useLocalStorage } from '../../../core/hooks/useLocalStorage';
 import { LsKey } from '../../../core/services/localStorageService/types';
