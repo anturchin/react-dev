@@ -1,5 +1,5 @@
 import { json, LoaderFunction } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { Outlet, useLoaderData } from '@remix-run/react';
 
 import { fetchSearchResults } from '../../core/utils/fetchUtils';
 import { HomeComponent } from '~/components/HomePage';
@@ -18,7 +18,7 @@ export default function PageRoute() {
   return (
     <HomeComponent>
       <SearchContainer {...searchResults}>
-        <></>
+        <Outlet />
       </SearchContainer>
     </HomeComponent>
   );

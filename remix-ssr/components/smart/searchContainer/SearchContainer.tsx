@@ -38,7 +38,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
   };
 
   const handleDetailsClick = (id: number): void => {
-    navigate(`/character/${id}`);
+    navigate(`/page/${currentPage}/character/${id}`);
   };
 
   const handleResultsClick = (): void => {
