@@ -10,9 +10,9 @@ import { SearchPagination } from '../../simple/searchPagination';
 import { FAILED_TO_FETCH, RESET_PAGE } from '../../../core/constants';
 import { SearchError } from '../../simple/searchError';
 import { SearchResults } from '../searchResults/SearchResults';
+import { useScrollPosition } from '../../../core/hooks/useScrollPosition';
 
 import styles from './SearchContainer.module.css';
-import { useScrollPosition } from '../../../core/hooks/useScrollPosition';
 
 export const SearchContainer = (props: ResultsType): ReactNode => {
   const [isClient, setIsClient] = useState<boolean>(false);
