@@ -1,10 +1,10 @@
-import HomeComponent from '@/app/page';
+import HomeComponent, { IURLSearchParams } from '@/app/page';
 import { Params } from '@/types';
 
-const PageComponent = ({ params }: { params: Params }) => {
+const PageComponent = ({ searchParams, params }: { searchParams: IURLSearchParams, params: Params }) => {
   return (
     <>
-      <HomeComponent params={params}></HomeComponent>
+      <HomeComponent params={params} searchParams={searchParams} />
     </>
   );
 };
