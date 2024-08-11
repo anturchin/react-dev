@@ -57,4 +57,14 @@ describe('SearchContainer', () => {
 
     expect(screen.getByText('Failed to fetch data')).toBeInTheDocument();
   });
+
+  test('should render SearchPagination when pages > 1', () => {
+    render(
+      <Provider store={store}>
+        <SearchContainer results={[]} currentPage={1} pages={2} isError={false} />
+      </Provider>
+    );
+
+    expect(screen.getByText('prev')).toBeInTheDocument();
+  });
 });

@@ -5,9 +5,22 @@ import { SearchContainer } from '@/components/smart/searchContainer/SearchContai
 import { fetchSearchResults } from '@/core/utils/fetchUtils';
 import { Params } from '@/types';
 
-const HomeComponent = async ({ params, children }: { params: Params; children?: ReactNode }) => {
+export interface IURLSearchParams extends URLSearchParams {
+  name: string;
+}
+
+const HomeComponent = async ({
+  searchParams,
+  params,
+  children,
+}: {
+  searchParams: IURLSearchParams;
+  params: Params;
+  children?: ReactNode;
+}) => {
   const page = parseInt(params.page, 10) || 1;
-  const searchResults = await fetchSearchResults(page, '');
+  const query = searchParams?.name ? searchParams.name : '';
+  const searchResults = await fetchSearchResults(page, query);
 
   return (
     <>
