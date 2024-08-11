@@ -1,6 +1,5 @@
 import { describe, test, expect, vi, Mock } from 'vitest';
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { useLoaderData, useNavigate } from '@remix-run/react';
 
 import CharacterRoute from '../routes/page.$page.character.$characterId';

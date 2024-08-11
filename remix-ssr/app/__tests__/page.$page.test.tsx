@@ -1,6 +1,5 @@
 import { describe, test, expect, vi, Mock } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { useLoaderData } from '@remix-run/react';
 import { ReactNode } from 'react';
 

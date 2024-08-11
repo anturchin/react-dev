@@ -1,7 +1,6 @@
 import { describe, test, expect, vi, Mock } from 'vitest';
 import { ReactNode } from 'react';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 import { useLoaderData } from '@remix-run/react';
 
 import SearchPage from '../routes/page.search';
