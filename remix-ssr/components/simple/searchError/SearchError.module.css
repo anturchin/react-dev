@@ -1,0 +1,9 @@
+.wrapper {
+  min-width: 400px;
+  text-align: center;
+}
+.search-error {
+  margin-top: 100px;
+  color: darkred;
+  font-size: 4rem;
+}
