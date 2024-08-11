@@ -25,7 +25,11 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
     setIsClient(true);
   }, []);
 
-  const { results, currentPage, pages, isError, onPageChange, children } = props;
+  const { results, currentPage, pages, isError, children } = props;
+
+  const handlePageChange = (newPage: number) => {
+    navigate(`/page/${newPage}`);
+  };
 
   const handleSearch = (newQuery: string): void => {
     if (!isNavigating) {
@@ -65,7 +69,7 @@ export const SearchContainer = (props: ResultsType): ReactNode => {
         <SearchBar initialQuery={valueQuery} onSearch={handleSearch} />
         {pages > 1 && (
           <SearchPagination
-            onPageChange={onPageChange}
+            onPageChange={handlePageChange}
             currentPage={currentPage}
             totalPage={pages}
           />

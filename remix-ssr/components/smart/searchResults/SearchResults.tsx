@@ -1,13 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, MouseEvent, ReactNode, useContext } from 'react';
 
-import { useScrollPosition } from '../../../core/hooks/useScrollPosition';
 import { ThemeContext } from '../../../core/context/themeContext';
+import { AppDispatch, AppState } from '../../../core/store/store';
 import { generateCSV } from '../../../core/utils/csvUtils';
+import { clearSelectedItems, deleteSelectedItem, setSelectedItem } from '../../../core/store';
 import { Checkbox } from '../../ui/checkbox';
 import { stringUtils } from '../../../core/utils/stringUtils';
 import { Button } from '../../ui/button';
 import { Modal } from '../../simple/modal';
-import { ISearchResultsProps, ResultPropType } from './types';
+import { ISearchResultsProps } from './types';
 
 import styles from './SearchResults.module.css';
 
@@ -15,9 +17,8 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   const { results, onInfoDetailsClick, onResultClick } = props;
   const { theme } = useContext(ThemeContext);
 
-  useScrollPosition();
-
-  const selectedItems: ResultPropType[] = [];
+  const dispatch = useDispatch<AppDispatch>();
+  const { selectedItems } = useSelector((state: AppState) => state.selectedItems);
 
   const generateFileName = () => `${selectedItems.length}_character.csv`;
 
@@ -33,16 +34,16 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
   };
 
   const deselectItems = (): void => {
-    // dispatch(clearSelectedItems());
+    dispatch(clearSelectedItems());
   };
 
   const handleSelectedItem = (e: ChangeEvent<HTMLInputElement>): void => {
     e.stopPropagation();
-    // const item = results.find((item) => item.id === Number(e.target.id));
+    const item = results.find((item) => item.id === Number(e.target.id));
     if (e.target.checked) {
-      // if (item) dispatch(setSelectedItem({ ...item }));
+      if (item) dispatch(setSelectedItem({ ...item }));
     } else {
-      // if (item) dispatch(deleteSelectedItem({ ...item }));
+      if (item) dispatch(deleteSelectedItem({ ...item }));
     }
   };
 
@@ -79,11 +80,7 @@ export const SearchResults = (props: ISearchResultsProps): ReactNode => {
               className={`${styles['person-name']}`}
             >{`${stringUtils.cutString?.(result.name)}`}</h3>
             <p className={`${styles['person-gender']}`}>{result.gender}</p>
-            <img
-              className={`${styles['image']}`}
-              src={result.image}
-              alt={`Image of ${result.name}`}
-            />
+            <img className={`${styles['image']}`} src={result.image} alt="image" />
             <Button onClick={(e) => handleButtonClick(e, result.id)}>Info details</Button>
           </div>
         ))}

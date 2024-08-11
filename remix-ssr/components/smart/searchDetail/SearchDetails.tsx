@@ -1,22 +1,20 @@
-import { ReactNode, useState } from 'react';
+import { useNavigate } from '@remix-run/react';
+import { ReactNode } from 'react';
 
-import { IDetailsCharacter, AdditionalClass } from './types';
 import { Button } from '../../ui/button';
-import { FAILED_TO_FETCH } from '../../../core/constants';
 import { SearchError } from '../../simple/searchError';
+import { FAILED_TO_FETCH } from '../../../core/constants';
+import { IDetailsCharacter, AdditionalClass } from './types';
 
 import styles from './SearchDetails.module.css';
 
 export const SearchDetails = (props: IDetailsCharacter): ReactNode => {
+  const navigate = useNavigate();
+
   const { isError, character, currentPage } = props;
 
-  const [isNavigating, setIsNavigating] = useState<boolean>(false);
-
   const onHandleClose = (): void => {
-    if (!isNavigating) {
-      setIsNavigating(true);
-      // void router.push(`/page/${currentPage}`).then(() => setIsNavigating(false));
-    }
+    navigate(`/page/${currentPage}`);
   };
 
   const content = isError ? (
