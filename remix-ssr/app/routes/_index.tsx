@@ -2,7 +2,7 @@ import { json, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { fetchSearchResults } from '../../core/utils/fetchUtils';
-import { HomeComponent } from '~/components/HomePage';
+import { HomeComponent } from '../components/HomePage';
 import { SearchContainer } from '../../components/smart/searchContainer/SearchContainer';
 import { ResultsType } from '../../components/smart/searchContainer/types';
 

@@ -24,11 +24,11 @@ export const SearchDetails = (props: IDetailsCharacter): ReactNode => {
       <Button onClick={onHandleClose} additionalClass={AdditionalClass.RED}>
         Close
       </Button>
-      <img className={`${styles['details-img']}`} src={character!.image} alt={character!.name} />
-      <h3 className={`${styles['details-title']}`}>{character!.name}</h3>
-      <p className={`${styles['details-status']}`}>Status: {character!.status}</p>
-      <p className={`${styles['details-species']}`}>Species: {character!.species}</p>
-      <p className={`${styles['details-gender']}`}>Gender: {character!.gender}</p>
+      <img className={`${styles['details-img']}`} src={character?.image} alt={character?.name} />
+      <h3 className={`${styles['details-title']}`}>{character?.name}</h3>
+      <p className={`${styles['details-status']}`}>Status: {character?.status}</p>
+      <p className={`${styles['details-species']}`}>Species: {character?.species}</p>
+      <p className={`${styles['details-gender']}`}>Gender: {character?.gender}</p>
     </div>
   );
 
