@@ -3,7 +3,7 @@ import { useLoaderData } from '@remix-run/react';
 
 import { fetchSearchDetails } from '../../core/utils/fetchUtils';
 import { IDetailsCharacter } from '../../components/smart/searchDetail/types';
-import { SearchDetails } from '../../components/smart/searchDetail';
+import { SearchDetails } from '../../components/smart/searchDetail/SearchDetails';
 
 export type CombinedType = {
   currentPage: number;

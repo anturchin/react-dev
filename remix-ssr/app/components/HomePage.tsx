@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-import { SwitchTheme } from '../../components/simple/switchTheme';
-import { ThemeWrapper } from '../../components/smart/themeWrapper';
+import { SwitchTheme } from '../../components/simple/switchTheme/SwitchTheme';
+import { ThemeWrapper } from '../../components/smart/themeWrapper/ThemeWrapper';
 
 export const HomeComponent = ({ children }: { children?: ReactNode }) => {
   return (

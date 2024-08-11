@@ -1,7 +1,7 @@
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import { ReactNode } from 'react';
 
-import { StoreProvider } from '../components/smart/storeProvider';
+import { StoreProvider } from '../components/smart/storeProvider/StorProvider';
 
 import './global.css';
 
