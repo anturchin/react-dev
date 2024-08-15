@@ -5,6 +5,5 @@ export interface CustomButtonProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  isActive: boolean;
   children: ReactNode;
 }

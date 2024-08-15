@@ -1,7 +1,11 @@
+import { forwardRef } from 'react';
+
 import { CustomInputProps } from './CustomInput.props.ts';
 
 import styles from './CustomInput.module.css';
 
-export const CustomInput = (props: CustomInputProps) => {
-  return <input {...props} className={styles.input} />;
-};
+export const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
+  ({ ...props }, ref) => {
+    return <input {...props} ref={ref} className={styles.input} />;
+  }
+);
