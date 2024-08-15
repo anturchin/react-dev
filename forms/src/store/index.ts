@@ -1,2 +1,2 @@
 export { store } from './store';
-export { setUncontrolledData, setControlledData } from './formSlice';
+export { setUncontrolledData, setControlledData } from './form.slice.ts';
