@@ -1,3 +1,3 @@
 export { Main } from './Main/Main';
-export { FormControlled } from './Main/FormControlled/FormControlled';
-export { FormUncontrolled } from './Main/FormUncontrolled/FormUncontrolled';
+export { FormControlled } from './FormControlled/FormControlled';
+export { FormUncontrolled } from './FormUncontrolled/FormUncontrolled';

@@ -1,4 +1,4 @@
-import { Controlled } from '../../../containers';
+import { Controlled } from '../../containers';
 
 import styles from './FormControlled.module.css';
 
