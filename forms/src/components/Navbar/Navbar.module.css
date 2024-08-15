@@ -1,8 +1,26 @@
 .navbar {
+  padding: 1rem;
 }
 
 .navbar_list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
-.navbar_item {
+.navbar_item a {
+  text-decoration: none;
+  color: var(--dark);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+a.active {
+  color: darkblue;
 }

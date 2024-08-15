@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { NavbarName } from './Navbar.props.ts';
 
@@ -9,10 +9,20 @@ export const Navbar = () => {
     <nav className={styles.navbar}>
       <ul className={styles.navbar_list}>
         <li className={styles.navbar_item}>
-          <Link to="/controlled">{NavbarName.Controlled}</Link>
+          <NavLink
+            to="/controlled-form"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            {NavbarName.Controlled}
+          </NavLink>
         </li>
         <li className={styles.navbar_item}>
-          <Link to="/uncontrolled">{NavbarName.Uncontrolled}</Link>
+          <NavLink
+            to="/uncontrolled-form"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            {NavbarName.Uncontrolled}
+          </NavLink>
         </li>
       </ul>
     </nav>

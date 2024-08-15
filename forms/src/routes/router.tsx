@@ -7,11 +7,11 @@ export const router = createBrowserRouter([
     element: <Main />,
     children: [
       {
-        path: 'controlled',
+        path: 'controlled-form',
         element: <FormControlled />,
       },
       {
-        path: 'uncontrolled',
+        path: 'uncontrolled-form',
         element: <FormUncontrolled />,
       },
     ],

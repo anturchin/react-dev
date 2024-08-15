@@ -1,4 +1,4 @@
 export const enum NavbarName {
-  Controlled = 'Controlled',
-  Uncontrolled = 'Uncontrolled',
+  Controlled = 'controlled form',
+  Uncontrolled = 'uncontrolled form',
 }
