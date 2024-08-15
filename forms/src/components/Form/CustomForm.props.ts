@@ -5,6 +5,5 @@ export interface CustomFormProps
     FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
   > {
-  onSubmit: () => void;
   children: ReactNode;
 }

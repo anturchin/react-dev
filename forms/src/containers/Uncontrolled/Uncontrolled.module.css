@@ -1,2 +1,18 @@
 .uncontrolled {
+  display: flex;
+  justify-content: center;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}
+
+.input_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn_wrapper {
+  margin-top: 5rem;
+  width: 100%;
 }

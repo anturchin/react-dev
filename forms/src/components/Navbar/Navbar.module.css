@@ -12,15 +12,16 @@
 
 .navbar_item a {
   text-decoration: none;
+  text-transform: capitalize;
   color: var(--dark);
   font-size: 2rem;
   font-weight: 500;
 }
 
 a:hover {
-  color: darkblue;
+  color: #ffa500;
 }
 
 a.active {
-  color: darkblue;
+  color: #78b159;
 }

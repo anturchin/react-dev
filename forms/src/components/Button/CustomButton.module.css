@@ -1,0 +1,27 @@
+.bnt {
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  background-color: #ffa500;
+  transition: all 250ms;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.bnt:hover:not(:disabled),
+.bnt:focus:not(:disabled) {
+  background-color: #78b159;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+.bnt:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+.bnt:disabled {
+  opacity: 0.3;
+  background-color: #ff8c69;
+  cursor: auto;
+}

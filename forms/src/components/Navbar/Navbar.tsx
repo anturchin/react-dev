@@ -10,18 +10,18 @@ export const Navbar = () => {
       <ul className={styles.navbar_list}>
         <li className={styles.navbar_item}>
           <NavLink
-            to="/controlled-form"
-            className={({ isActive }) => (isActive ? styles.active : '')}
-          >
-            {NavbarName.Controlled}
-          </NavLink>
-        </li>
-        <li className={styles.navbar_item}>
-          <NavLink
             to="/uncontrolled-form"
             className={({ isActive }) => (isActive ? styles.active : '')}
           >
             {NavbarName.Uncontrolled}
+          </NavLink>
+        </li>
+        <li className={styles.navbar_item}>
+          <NavLink
+            to="/controlled-form"
+            className={({ isActive }) => (isActive ? styles.active : '')}
+          >
+            {NavbarName.Controlled}
           </NavLink>
         </li>
       </ul>

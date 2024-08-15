@@ -1,5 +1,5 @@
-export { Form } from './Form/Form';
-export { Button } from './Button/Button';
-export { Input } from './Input/Input';
-export { Label } from './Label/Label';
+export { CustomForm } from './Form/CustomForm.tsx';
+export { CustomButton } from './Button/CustomButton.tsx';
+export { CustomInput } from './Input/CustomInput.tsx';
+export { CustomLabel } from './Label/CustomLabel.tsx';
 export { Navbar } from './Navbar/Navbar';
