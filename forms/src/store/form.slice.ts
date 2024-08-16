@@ -1,11 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { GENDER } from '../containers/Uncontrolled/Uncontrolled.props.ts';
+
 interface FormData {
   name: string;
   age: number;
   email: string;
   password: string;
-  gender: string;
+  gender: GENDER;
+  terms: boolean;
   picture: string;
   country: string;
 }

@@ -5,6 +5,12 @@
   text-transform: capitalize;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .input_item {
   display: flex;
   flex-direction: row;
@@ -20,4 +26,14 @@
 .btn_wrapper {
   margin-top: 5rem;
   width: 100%;
+}
+
+.errors {
+  position: relative;
+  margin-top: -1.5rem;
+  color: #ff2400;
+  align-self: center;
+  text-transform: lowercase;
+  max-width: 40rem;
+  text-align: justify;
 }

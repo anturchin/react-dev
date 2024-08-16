@@ -6,6 +6,7 @@
   outline: none;
   padding: 0.5rem;
   min-width: 30rem;
+  background-color: transparent;
 }
 
 .input::placeholder {
@@ -14,4 +15,8 @@
 
 .input.error {
   color: #ff2400;
+}
+
+input[type='file'] {
+  border: none;
 }
