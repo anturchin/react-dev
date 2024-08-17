@@ -13,10 +13,6 @@
   text-align: center;
 }
 
-.input.error {
-  color: #ff2400;
-}
-
 input[type='file'] {
   border: none;
 }

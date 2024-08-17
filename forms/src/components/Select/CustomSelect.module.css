@@ -1,0 +1,11 @@
+.select {
+  border: none;
+  border-bottom: 0.1rem solid #3a3a3a;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  outline: none;
+  padding: 0.5rem;
+  min-width: 30rem;
+  background-color: transparent;
+  text-align: center;
+}
