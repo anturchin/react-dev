@@ -1,4 +1,4 @@
-export const LabelName: string[] = [
+export const labelName: string[] = [
   'name',
   'age',
   'gender',

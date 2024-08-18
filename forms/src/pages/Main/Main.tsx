@@ -54,17 +54,31 @@ export const Main = () => {
             <p>Gender: {controlledData.gender}</p>
             <p>Email: {controlledData.email}</p>
             <p>Country: {controlledData.country}</p>
+            <p className={styles.picture}>Picture: {controlledData.picture}</p>
           </div>
         )}
 
         {uncontrolledData && (
           <div className={styles.tileStyle} ref={uncontrolledHighlightRef}>
             <h2>Uncontrolled Form Data</h2>
-            <p>Name: {uncontrolledData.name}</p>
-            <p>Age: {uncontrolledData.age}</p>
-            <p>Gender: {uncontrolledData.gender}</p>
-            <p>Email: {uncontrolledData.email}</p>
-            <p>Country: {uncontrolledData.country}</p>
+            <p>
+              <strong>Name</strong>: {uncontrolledData.name}
+            </p>
+            <p>
+              <strong>Age</strong>: {uncontrolledData.age}
+            </p>
+            <p>
+              <strong>Gender</strong>: {uncontrolledData.gender}
+            </p>
+            <p>
+              <strong>Email</strong>: {uncontrolledData.email}
+            </p>
+            <p>
+              <strong>Country</strong>: {uncontrolledData.country}
+            </p>
+            <p className={styles.picture}>
+              <strong>Picture</strong>: {uncontrolledData.picture}
+            </p>
           </div>
         )}
       </section>

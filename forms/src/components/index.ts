@@ -1,6 +1,6 @@
-export { CustomForm } from './Form/CustomForm.tsx';
-export { CustomButton } from './Button/CustomButton.tsx';
-export { CustomInput } from './Input/CustomInput.tsx';
-export { CustomLabel } from './Label/CustomLabel.tsx';
+export { CustomForm } from './ui/Form/CustomForm.tsx';
+export { CustomButton } from './ui/Button/CustomButton.tsx';
+export { CustomInput } from './ui/Input/CustomInput.tsx';
+export { CustomLabel } from './ui/Label/CustomLabel.tsx';
 export { Navbar } from './Navbar/Navbar';
-export { CustomSelect } from './Select/CustomSelect';
+export { CustomSelect } from './ui/Select/CustomSelect';
