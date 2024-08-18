@@ -41,16 +41,16 @@ export const Uncontrolled = () => {
     country: createRef(),
   });
 
+  const selectedGender = () => {
+    return formRefs.current.male.current?.checked
+      ? GENDER.MALE
+      : formRefs.current.female.current?.checked
+        ? GENDER.FEMALE
+        : ('' as GENDER);
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const selectedGender = () => {
-      return formRefs.current.male.current?.checked
-        ? GENDER.MALE
-        : formRefs.current.female.current?.checked
-          ? GENDER.FEMALE
-          : ('' as GENDER);
-    };
 
     const formData = {
       name: formRefs.current.name.current?.value || '',
