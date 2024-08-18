@@ -1,0 +1,27 @@
+.main {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.tileWrapper {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.tileStyle {
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 82px -40px rgba(39, 43, 51, 0.91) inset;
+  width: 25rem;
+  height: 30rem;
+  overflow: auto;
+  overflow-x: hidden;
+  scrollbar-color: #78b159 var(--light);
+  scrollbar-width: thin;
+}
+.picture {
+  word-wrap: break-word;
+}
