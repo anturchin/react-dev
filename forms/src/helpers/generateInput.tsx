@@ -23,11 +23,12 @@ export const generateInput = ({
   formRefs,
   control,
 }: InputParam) => {
-  return (
-    <div key={label} className={styles.wrapper}>
-      <div className={styles.input_item}>
-        <CustomLabel htmlFor={label}>{label}</CustomLabel>
-        {control ? (
+  if (control) {
+    return (
+      <div key={label} className={styles.wrapper}>
+        <div className={styles.input_item}>
+          <CustomLabel htmlFor={label}>{label}</CustomLabel>
+
           <Controller
             name={label as Label}
             control={control}
@@ -48,18 +49,29 @@ export const generateInput = ({
               />
             )}
           />
-        ) : (
+        </div>
+        {errorMap && errorMap[label] && (
+          <p className={styles.errors}>{errorMap[label]}</p>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div key={label} className={styles.wrapper}>
+        <div className={styles.input_item}>
+          <CustomLabel htmlFor={label}>{label}</CustomLabel>
+
           <CustomInput
             ref={formRefs?.current[label]}
             name={label}
             id={label}
             type={type}
           />
+        </div>
+        {errorMap && errorMap[label] && (
+          <p className={styles.errors}>{errorMap[label]}</p>
         )}
       </div>
-      {errorMap && errorMap[label] && (
-        <p className={styles.errors}>{errorMap[label]}</p>
-      )}
-    </div>
-  );
+    );
+  }
 };

@@ -54,7 +54,7 @@ export const Uncontrolled = () => {
 
     const formData = {
       name: formRefs.current.name.current?.value || '',
-      age: parseInt(formRefs.current.age.current?.value || '0', 10),
+      age: formRefs.current.age.current?.value || '0',
       email: formRefs.current.email.current?.value || '',
       password: formRefs.current.password.current?.value || '',
       confirmPassword: formRefs.current.confirmPassword.current?.value || '',

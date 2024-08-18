@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-type PictureValue = {
+export type PictureValue = {
   size: number;
   type: string;
 };
@@ -9,10 +9,12 @@ export const validationSchema = Yup.object().shape({
   name: Yup.string()
     .matches(/^[A-Z]/, 'Name must start with an uppercase letter')
     .required('Name is required'),
-  age: Yup.number()
-    .positive('Age must be a positive number')
-    .integer('Age must be an integer')
-    .required('Age is required'),
+  age: Yup.string()
+    .required('Age is required')
+    .test('is-valid-age', 'Age must be a positive integer', (value) => {
+      const age = Number(value);
+      return Number.isInteger(age) && age > 0;
+    }),
   email: Yup.string().email('Invalid email').required('Email is required'),
   password: Yup.string()
     .matches(
@@ -38,4 +40,6 @@ export const validationSchema = Yup.object().shape({
     ),
   country: Yup.string().required('Country is required'),
   terms: Yup.bool().oneOf([true], 'You must accept the terms and conditions'),
+  male: Yup.string().notRequired(),
+  female: Yup.string().notRequired(),
 });

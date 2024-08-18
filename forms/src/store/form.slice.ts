@@ -4,10 +4,10 @@ import { GENDER } from '../containers/Uncontrolled/Uncontrolled.props.ts';
 
 interface FormData {
   name: string;
-  age: number;
+  age: string;
   email: string;
   password: string;
-  gender: GENDER;
+  gender: GENDER | string;
   terms: boolean;
   picture: string;
   country: string;

@@ -23,11 +23,12 @@ export const generateOptions = ({
   optionRef,
   control,
 }: OptionParam) => {
-  return (
-    <div key={label} className={styles.wrapper}>
-      <div className={styles.input_item}>
-        <CustomLabel htmlFor={label}>{label}</CustomLabel>
-        {control ? (
+  if (control) {
+    return (
+      <div key={label} className={styles.wrapper}>
+        <div className={styles.input_item}>
+          <CustomLabel htmlFor={label}>{label}</CustomLabel>
+
           <Controller
             control={control}
             name={label as Label}
@@ -46,7 +47,18 @@ export const generateOptions = ({
               </CustomSelect>
             )}
           />
-        ) : (
+        </div>
+        {errorMap && errorMap.country && (
+          <p className={styles.errors}>{errorMap.country}</p>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div key={label} className={styles.wrapper}>
+        <div className={styles.input_item}>
+          <CustomLabel htmlFor={label}>{label}</CustomLabel>
+
           <CustomSelect ref={optionRef?.current[label]} name={label} id={label}>
             <option value="">Select a country</option>
             {countries.map((country) => (
@@ -55,11 +67,11 @@ export const generateOptions = ({
               </option>
             ))}
           </CustomSelect>
+        </div>
+        {errorMap && errorMap.country && (
+          <p className={styles.errors}>{errorMap.country}</p>
         )}
       </div>
-      {errorMap && errorMap.country && (
-        <p className={styles.errors}>{errorMap.country}</p>
-      )}
-    </div>
-  );
+    );
+  }
 };
